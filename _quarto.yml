@@ -11,7 +11,7 @@ website:
         href: https://github.com/
 format:
   html:
-    theme: flatly
+    theme: lux
     css: styles.css
 
 
