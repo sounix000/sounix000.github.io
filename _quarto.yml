@@ -11,7 +11,7 @@ website:
         href: https://github.com/
 format:
   html:
-    theme: lux
+    theme: cosmo
     css: styles.css
 
 
