@@ -1,0 +1,30 @@
+[
+  {
+    "objectID": "souvik_sarkar.html",
+    "href": "souvik_sarkar.html",
+    "title": "Souvik Sarkar",
+    "section": "",
+    "text": "Professionally, I am a technical writer with experience in docs-as-code workflows and open source environments. I write technical content for software engineers, dev-ops engineers, and system administrators. Currently I work at SUSE, and before that at Red Hat, Fusioncharts (data visualization), and Ribbon Communications (telecom). In my early career, I worked as a web developer and software engineer for a few years.\nAs a hobby, I like learning Mathematics and Statistics. This is what keeps my brain alive and going - the difficult puzzles and the satisfaction of solving them. Most of the posts in this blog are notes from my academic misadventures. Occassionaly, you might also find a few posts about side projects that I did, or my unqualified opinions about something that I found interesting.\nIn my free time I play with my son and watch stand-up comedy videos on YouTube. Oh, and did I say that I often zone out, day dream, procrastinate, and overthink?\nIf you wish to contact me, drop me an email at sounix000@gmail.com."
+  },
+  {
+    "objectID": "posts/welcome/index.html",
+    "href": "posts/welcome/index.html",
+    "title": "Welcome To My Blog",
+    "section": "",
+    "text": "This is the first post in a Quarto blog. Welcome!\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Curiosity | Imagination | Rigor",
+    "section": "",
+    "text": "Post With Code\n\n\n\n\n\n\n\nnews\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\n\n\nMar 14, 2024\n\n\nHarlow Malloc\n\n\n\n\n\n\n  \n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\n\n\nMar 11, 2024\n\n\nTristan O’Malley\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "posts/post-with-code/index.html",
+    "href": "posts/post-with-code/index.html",
+    "title": "Post With Code",
+    "section": "",
+    "text": "This is a post with executable code."
+  }
+]
