@@ -31,7 +31,7 @@ We can extend the same argument for all previous calls, and finally reach the be
 As shown in the following table, the winning strategy is to start first and select $6$, while continuing to add eleven to my own previously selected integer, till I reach $50$:
 
 | Call count | Person | Value or range |
-| :--------: | :----: | -------------: |
+| :--------- | :----- | :------------- |
 | 1 | **me** | $6$ |
 | 2 | opponent | $[7, 16]$ |
 | 3 | **me** | $6 + 11 = 17$ |

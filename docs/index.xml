@@ -43,56 +43,56 @@
 <table class="table">
 <thead>
 <tr class="header">
-<th style="text-align: center;">Call count</th>
-<th style="text-align: center;">Person</th>
-<th style="text-align: right;">Value or range</th>
+<th style="text-align: left;">Call count</th>
+<th style="text-align: left;">Person</th>
+<th style="text-align: left;">Value or range</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: center;">1</td>
-<td style="text-align: center;"><strong>me</strong></td>
-<td style="text-align: right;"><img src="https://latex.codecogs.com/png.latex?6"></td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;"><strong>me</strong></td>
+<td style="text-align: left;"><img src="https://latex.codecogs.com/png.latex?6"></td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">2</td>
-<td style="text-align: center;">opponent</td>
-<td style="text-align: right;"><img src="https://latex.codecogs.com/png.latex?%5B7,%2016%5D"></td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">opponent</td>
+<td style="text-align: left;"><img src="https://latex.codecogs.com/png.latex?%5B7,%2016%5D"></td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">3</td>
-<td style="text-align: center;"><strong>me</strong></td>
-<td style="text-align: right;"><img src="https://latex.codecogs.com/png.latex?6%20+%2011%20=%2017"></td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;"><strong>me</strong></td>
+<td style="text-align: left;"><img src="https://latex.codecogs.com/png.latex?6%20+%2011%20=%2017"></td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">4</td>
-<td style="text-align: center;">opponent</td>
-<td style="text-align: right;"><img src="https://latex.codecogs.com/png.latex?%5B18,%2027%5D"></td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">opponent</td>
+<td style="text-align: left;"><img src="https://latex.codecogs.com/png.latex?%5B18,%2027%5D"></td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">5</td>
-<td style="text-align: center;"><strong>me</strong></td>
-<td style="text-align: right;"><img src="https://latex.codecogs.com/png.latex?17%20+%2011%20=%2028"></td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;"><strong>me</strong></td>
+<td style="text-align: left;"><img src="https://latex.codecogs.com/png.latex?17%20+%2011%20=%2028"></td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">6</td>
-<td style="text-align: center;">opponent</td>
-<td style="text-align: right;"><img src="https://latex.codecogs.com/png.latex?%5B29,%2038%5D"></td>
+<td style="text-align: left;">6</td>
+<td style="text-align: left;">opponent</td>
+<td style="text-align: left;"><img src="https://latex.codecogs.com/png.latex?%5B29,%2038%5D"></td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">7</td>
-<td style="text-align: center;"><strong>me</strong></td>
-<td style="text-align: right;"><img src="https://latex.codecogs.com/png.latex?28%20+%2011%20=%2039"></td>
+<td style="text-align: left;">7</td>
+<td style="text-align: left;"><strong>me</strong></td>
+<td style="text-align: left;"><img src="https://latex.codecogs.com/png.latex?28%20+%2011%20=%2039"></td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">8</td>
-<td style="text-align: center;">opponent</td>
-<td style="text-align: right;"><img src="https://latex.codecogs.com/png.latex?%5B40,%2049%5D"></td>
+<td style="text-align: left;">8</td>
+<td style="text-align: left;">opponent</td>
+<td style="text-align: left;"><img src="https://latex.codecogs.com/png.latex?%5B40,%2049%5D"></td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">9</td>
-<td style="text-align: center;"><strong>me</strong></td>
-<td style="text-align: right;"><img src="https://latex.codecogs.com/png.latex?39%20+%2011%20=%2050"></td>
+<td style="text-align: left;">9</td>
+<td style="text-align: left;"><strong>me</strong></td>
+<td style="text-align: left;"><img src="https://latex.codecogs.com/png.latex?39%20+%2011%20=%2050"></td>
 </tr>
 </tbody>
 </table>
