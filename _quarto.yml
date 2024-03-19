@@ -17,6 +17,8 @@ website:
         href: https://github.com/
   page-footer: 
     center: "Copyright 2024, Souvik Sarkar"
+    border: true
+    background: light
 format:
   html:
     theme: cosmo
