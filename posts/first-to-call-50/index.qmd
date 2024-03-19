@@ -24,7 +24,7 @@ Let the calls be $C_i$, $i = 1, 2, 3, ..., w$, where $C_w$ is the winning call. 
 
 Applying the invariant on the termination condition, we can say that the call just before the winning call must be $40\leq C_{w-1} \leq49$. In other words, for a person to win, the opponent must select an integer from the set $[40, 49]$ in the penultimate call.
 
-It also implies that to win, it is sufficient to select $C_{w-2} = 39$ in the call before that, i.e., the first person to select 39 can win the game irrespective of the opponent's next selection. For example, if I am at $39$ and the opponent selects $39 + 8 = 47$, then I can select $47 + 3 = 50$. It can be easily verified that for all possible selections available to the opponent in the penultimate round, I can win by selecting $50$ in the last call.
+It also implies that to win, it is sufficient to select $C_{w-2} = 39$ in the call before that, i.e., the first person to select $39$ can win the game irrespective of the opponent's next selection. For example, if I am at $39$ and the opponent selects $39 + 8 = 47$, then I can select $47 + 3 = 50$. It can be easily verified that for all possible selections available to the opponent in the penultimate round, I can win by selecting $50$ in the last call.
 
 We can extend the same argument for all previous calls, and finally reach the beginning of the game. The trick here is to assume that I win and calculate back to the beginning of the game, while forcing the opponent to select integers from ranges that favor my desired selections.
 
