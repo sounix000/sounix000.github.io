@@ -13,9 +13,11 @@ about:
 
 ---
 
-Professionally, I am a technical writer with experience in docs-as-code workflows and open source environments. I write technical content for software engineers, dev-ops engineers, and system administrators. Currently I work at SUSE, and before that at Red Hat, Fusioncharts (data visualization), and Ribbon Communications (telecom). In my early career, I worked as a web developer and software engineer for a few years.
+Professionally, I am a technical writer with experience in docs-as-code workflows and open source environments. I write technical content for software engineers, dev-ops engineers, and system administrators.
 
-As a hobby, I like learning Mathematics and Statistics. This is what keeps my brain alive and going - the difficult puzzles and the satisfaction of solving them. Most of the posts in this blog are notes from my academic misadventures. Occassionaly, you might also find a few posts about side projects that I did, or my unqualified opinions about something that I found interesting. 
+Currently, I work as a Senior Technical Writer at SUSE. Prior to that, I worked at Red Hat, Fusioncharts (data visualization), and Ribbon Communications (telecom). In my early career, I worked as a web developer and software engineer for a few years.
 
-In my free time I play with my son and watch stand-up comedy videos on YouTube. Oh, and did I say that I often zone out, day dream, procrastinate, and overthink? 
+As a hobby, I like solving puzzles and problems; the difficulty and satisfaction dervided from solving them is what makes my life exciting. Most of the posts in this blog are notes from my intellectual misadventures or side projects.
+
+Okay, enough of bragging about myself. Here's the real me - I often zone out, day dream, procrastinate, and overthink. I prefer theory over practice, beautiful over useful, satire over directness, mountains over oceans, and tea over coffee. 
 

@@ -6,10 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Harlow Malloc">
-<meta name="dcterms.date" content="2024-03-14">
+<meta name="dcterms.date" content="2024-03-27">
 
-<title>Curiosity | Imagination | Rigor - Post With Code</title>
+<title>Curiosity | Imagination | Rigor - First to call 50</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -62,6 +61,8 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -103,11 +104,9 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Post With Code</h1>
+      <h1 class="title">First to call 50</h1>
                                 <div class="quarto-categories">
-                <div class="quarto-category">news</div>
-                <div class="quarto-category">code</div>
-                <div class="quarto-category">analysis</div>
+                <div class="quarto-category">strategic game</div>
               </div>
                   </div>
   </div>
@@ -115,17 +114,11 @@ ul.task-list li input[type="checkbox"] {
   
   <div class="quarto-title-meta">
 
-      <div>
-      <div class="quarto-title-meta-heading">Author</div>
-      <div class="quarto-title-meta-contents">
-               <p>Harlow Malloc </p>
-            </div>
-    </div>
       
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">March 14, 2024</p>
+        <p class="date">March 27, 2024</p>
       </div>
     </div>
     
@@ -143,9 +136,86 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<p>This is a post with executable code.</p>
+<section id="problem" class="level2">
+<h2 class="anchored" data-anchor-id="problem">Problem</h2>
+<p>You and I are to play a competitive game. We shall take it in turns to call out integers. The first person to call out <span class="math inline">\(50\)</span> wins. The rules are as follows:</p>
+<ul>
+<li>The player who starts must call out an integer between <span class="math inline">\(1\)</span> and <span class="math inline">\(10\)</span>, inclusive;</li>
+<li>A new number called out must exceed the most recent number called by at least <span class="math inline">\(1\)</span> and by no more than <span class="math inline">\(10\)</span>. For example, if the first player calls out <span class="math inline">\(9\)</span>, then the range of valid numbers for the opponent is <span class="math inline">\(10\)</span> to <span class="math inline">\(19\)</span>, inclusive.</li>
+</ul>
+<p>Do you want to go first, and if so, what is your strategy?</p>
+</section>
+<section id="solution" class="level2">
+<h2 class="anchored" data-anchor-id="solution">Solution</h2>
+<p>Let the calls be <span class="math inline">\(C_i\)</span>, <span class="math inline">\(i = 1, 2, 3, ..., w\)</span>, where <span class="math inline">\(C_w\)</span> is the winning call. Based on the given information:</p>
+<ul>
+<li>Starting condition: <span class="math inline">\(1\leq C_1 \leq10\)</span>, which is the first call.</li>
+<li>Invariant condition: <span class="math inline">\(C_{i-1} + 1 \leq C_i \leq C_{i-1} + 10 \implies 1 \leq C_i - C_{i-1} \leq 10\)</span>, which is the range of difference between two consecutive calls.</li>
+<li>Termination condition: <span class="math inline">\(C_w = 50\)</span>, which is the last and the winning call.</li>
+</ul>
+<p>Applying the invariant on the termination condition, we can say that the call just before the winning call must be <span class="math inline">\(40\leq C_{w-1} \leq49\)</span>. In other words, for a person to win, the opponent must select an integer from the set <span class="math inline">\([40, 49]\)</span> in the penultimate call.</p>
+<p>It also implies that to win, it is sufficient to select <span class="math inline">\(C_{w-2} = 39\)</span> in the call before that, i.e., the first person to select 39 can win the game irrespective of the opponent’s next selection. For example, if I am at <span class="math inline">\(39\)</span> and the opponent selects <span class="math inline">\(39 + 8 = 47\)</span>, then I can select <span class="math inline">\(47 + 3 = 50\)</span>. It can be easily verified that for all possible selections available to the opponent in the penultimate round, I can win by selecting <span class="math inline">\(50\)</span> in the last call.</p>
+<p>We can extend the same argument for all previous calls, and finally reach the beginning of the game. The trick here is to assume that I win and calculate back to the beginning of the game, while forcing the opponent to select integers from ranges that favor my desired selections.</p>
+<p>As shown in the following table, the winning strategy is to start first and select <span class="math inline">\(6\)</span>, while continuing to add eleven to my own previously selected integer, till I reach <span class="math inline">\(50\)</span>:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Call count</th>
+<th style="text-align: center;">Person</th>
+<th style="text-align: right;">Value or range</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;"><strong>me</strong></td>
+<td style="text-align: right;"><span class="math inline">\(6\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">opponent</td>
+<td style="text-align: right;"><span class="math inline">\([7, 16]\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;"><strong>me</strong></td>
+<td style="text-align: right;"><span class="math inline">\(6 + 11 = 17\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">opponent</td>
+<td style="text-align: right;"><span class="math inline">\([18, 27]\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">5</td>
+<td style="text-align: center;"><strong>me</strong></td>
+<td style="text-align: right;"><span class="math inline">\(17 + 11 = 28\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">opponent</td>
+<td style="text-align: right;"><span class="math inline">\([29, 38]\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">7</td>
+<td style="text-align: center;"><strong>me</strong></td>
+<td style="text-align: right;"><span class="math inline">\(28 + 11 = 39\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">opponent</td>
+<td style="text-align: right;"><span class="math inline">\([40, 49]\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">9</td>
+<td style="text-align: center;"><strong>me</strong></td>
+<td style="text-align: right;"><span class="math inline">\(39 + 11 = 50\)</span></td>
+</tr>
+</tbody>
+</table>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

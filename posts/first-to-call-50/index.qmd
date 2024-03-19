@@ -1,0 +1,43 @@
+---
+title: "First to call 50"
+date: "2024-03-27"
+image: "strategy_table.png"
+categories: [strategic game]
+---
+
+## Problem
+
+You and I are to play a competitive game. We shall take it in turns to call out integers. The first person to call out $50$ wins. The rules are as follows:
+
+- The player who starts must call out an integer between $1$ and $10$, inclusive;
+- A new number called out must exceed the most recent number called by at least $1$ and by no more than $10$. For example, if the first player calls out $9$, then the range of valid numbers for the opponent is $10$ to $19$, inclusive.
+
+Do you want to go first, and if so, what is your strategy?
+
+## Solution
+
+Let the calls be $C_i$, $i = 1, 2, 3, ..., w$, where $C_w$ is the winning call. Based on the given information:
+
+- Starting condition: $1\leq C_1 \leq10$, which is the first call.
+- Invariant condition: $C_{i-1} + 1 \leq C_i \leq C_{i-1} + 10 \implies 1 \leq C_i - C_{i-1} \leq 10$, which is the range of difference between two consecutive calls.
+- Termination condition: $C_w = 50$, which is the last and the winning call.
+
+Applying the invariant on the termination condition, we can say that the call just before the winning call must be $40\leq C_{w-1} \leq49$. In other words, for a person to win, the opponent must select an integer from the set $[40, 49]$ in the penultimate call.
+
+It also implies that to win, it is sufficient to select $C_{w-2} = 39$ in the call before that, i.e., the first person to select 39 can win the game irrespective of the opponent's next selection. For example, if I am at $39$ and the opponent selects $39 + 8 = 47$, then I can select $47 + 3 = 50$. It can be easily verified that for all possible selections available to the opponent in the penultimate round, I can win by selecting $50$ in the last call.
+
+We can extend the same argument for all previous calls, and finally reach the beginning of the game. The trick here is to assume that I win and calculate back to the beginning of the game, while forcing the opponent to select integers from ranges that favor my desired selections.
+
+As shown in the following table, the winning strategy is to start first and select $6$, while continuing to add eleven to my own previously selected integer, till I reach $50$:
+
+| Call count | Person | Value or range |
+| :--------: | :----: | -------------: |
+| 1 | **me** | $6$ |
+| 2 | opponent | $[7, 16]$ |
+| 3 | **me** | $6 + 11 = 17$ |
+| 4 | opponent | $[18, 27]$ |
+| 5 | **me** | $17 + 11 = 28$ |
+| 6 | opponent | $[29, 38]$ |
+| 7 | **me** | $28 + 11 = 39$ |
+| 8 | opponent | $[40, 49]$ |
+| 9 | **me** | $39 + 11 = 50$ |

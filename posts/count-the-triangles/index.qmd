@@ -1,0 +1,30 @@
+---
+title: "Count the number of triangles"
+date: "2024-03-24"
+image: "pentagon_star.svg"
+categories: [combinatorics]
+---
+
+## Problem
+
+Count the number of triangles formed by inscribing a star in a regular pentagon.
+
+![](pentagon_star.svg)
+
+## Solution
+
+To begin with, recollect the basic fact: *three non-collinear points can form a triangle.*
+
+Now, segregate the different categories of triangles based on *how the vertices are distributed*, and calculate the number of triangles for each category. Observe that there are only *three such categories*:
+
+- **Category 1**: All three vertices of a triangle belong to the set of vertices of the pentagon, and therefore, lie along the perimeter of the structure. The number of such triangles is $\binom{5}{3}\ = 10$.
+
+- **Category 2**: Two of the vertices of a triangle belong to the set of points of intersection within the pentagon, and the third vertex is along the perimeter. Imagine each edge of the innermost pentagon to be the base of a triangle, because they join two adjacent inner points of intersection. Then the third vertex opposite to the base is simply the one on the perimeter. From the figure, it is evident that there are *only 5 such triangles*.
+
+- **Category 3**: Two of the vertices of a triangle are along the perimeter, and the third vertex belongs to the set of points of intersection within the pentagon. This is the trickiest category, and it's easy to miss some triangles hiding here. Observe that the two vertices along the perimeter fall into the following subcategories:
+
+  - *The two vertices along the perimeter are adjacent to one another*. In this case, imagine that an edge of the pentagon is the base of some triangles, whose third vertex is one of the inner points of intersection. It's easy to see that each edge of the pentagon serves as the base for three such triangles. A pentagon has five edges, and therefore, there are $5 * 3 = 15$ such triangles.
+
+  - *The two vertices along the perimeter are **not** adjacent to one another*. In such cases, you will find that the two non-adjacent vertices along the perimeter are joined by a straight line, which is part of the inner star. It's easy to see that each such line forms the base of exactly one triangle, whose third vertex is an inner point of intersection. There are five such straight lines forming the star, and therefore, *five such triangles*.
+
+Therefore, the **total number of triangles** combining all categories: $10 + 5 + (15 + 5) = 35$.

@@ -4,27 +4,55 @@
     "href": "souvik_sarkar.html",
     "title": "Souvik Sarkar",
     "section": "",
-    "text": "Professionally, I am a technical writer with experience in docs-as-code workflows and open source environments. I write technical content for software engineers, dev-ops engineers, and system administrators. Currently I work at SUSE, and before that at Red Hat, Fusioncharts (data visualization), and Ribbon Communications (telecom). In my early career, I worked as a web developer and software engineer for a few years.\nAs a hobby, I like learning Mathematics and Statistics. This is what keeps my brain alive and going - the difficult puzzles and the satisfaction of solving them. Most of the posts in this blog are notes from my academic misadventures. Occassionaly, you might also find a few posts about side projects that I did, or my unqualified opinions about something that I found interesting.\nIn my free time I play with my son and watch stand-up comedy videos on YouTube. Oh, and did I say that I often zone out, day dream, procrastinate, and overthink?"
+    "text": "Professionally, I am a technical writer with experience in docs-as-code workflows and open source environments. I write technical content for software engineers, dev-ops engineers, and system administrators.\nCurrently, I work as a Senior Technical Writer at SUSE. Prior to that, I worked at Red Hat, Fusioncharts (data visualization), and Ribbon Communications (telecom). In my early career, I worked as a web developer and software engineer for a few years.\nAs a hobby, I like solving puzzles and problems; the difficulty and satisfaction dervided from solving them is what makes my life exciting. Most of the posts in this blog are notes from my intellectual misadventures or side projects.\nOkay, enough of bragging about myself. Here’s the real me - I often zone out, day dream, procrastinate, and overthink. I prefer theory over practice, beautiful over useful, satire over directness, mountains over oceans, and tea over coffee."
   },
   {
-    "objectID": "posts/welcome/index.html",
-    "href": "posts/welcome/index.html",
-    "title": "Welcome To My Blog",
+    "objectID": "posts/first-to-call-50/index.html",
+    "href": "posts/first-to-call-50/index.html",
+    "title": "First to call 50",
     "section": "",
-    "text": "This is the first post in a Quarto blog. Welcome!\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
+    "text": "You and I are to play a competitive game. We shall take it in turns to call out integers. The first person to call out \\(50\\) wins. The rules are as follows:\n\nThe player who starts must call out an integer between \\(1\\) and \\(10\\), inclusive;\nA new number called out must exceed the most recent number called by at least \\(1\\) and by no more than \\(10\\). For example, if the first player calls out \\(9\\), then the range of valid numbers for the opponent is \\(10\\) to \\(19\\), inclusive.\n\nDo you want to go first, and if so, what is your strategy?"
+  },
+  {
+    "objectID": "posts/first-to-call-50/index.html#problem",
+    "href": "posts/first-to-call-50/index.html#problem",
+    "title": "First to call 50",
+    "section": "",
+    "text": "You and I are to play a competitive game. We shall take it in turns to call out integers. The first person to call out \\(50\\) wins. The rules are as follows:\n\nThe player who starts must call out an integer between \\(1\\) and \\(10\\), inclusive;\nA new number called out must exceed the most recent number called by at least \\(1\\) and by no more than \\(10\\). For example, if the first player calls out \\(9\\), then the range of valid numbers for the opponent is \\(10\\) to \\(19\\), inclusive.\n\nDo you want to go first, and if so, what is your strategy?"
+  },
+  {
+    "objectID": "posts/first-to-call-50/index.html#solution",
+    "href": "posts/first-to-call-50/index.html#solution",
+    "title": "First to call 50",
+    "section": "Solution",
+    "text": "Solution\nLet the calls be \\(C_i\\), \\(i = 1, 2, 3, ..., w\\), where \\(C_w\\) is the winning call. Based on the given information:\n\nStarting condition: \\(1\\leq C_1 \\leq10\\), which is the first call.\nInvariant condition: \\(C_{i-1} + 1 \\leq C_i \\leq C_{i-1} + 10 \\implies 1 \\leq C_i - C_{i-1} \\leq 10\\), which is the range of difference between two consecutive calls.\nTermination condition: \\(C_w = 50\\), which is the last and the winning call.\n\nApplying the invariant on the termination condition, we can say that the call just before the winning call must be \\(40\\leq C_{w-1} \\leq49\\). In other words, for a person to win, the opponent must select an integer from the set \\([40, 49]\\) in the penultimate call.\nIt also implies that to win, it is sufficient to select \\(C_{w-2} = 39\\) in the call before that, i.e., the first person to select 39 can win the game irrespective of the opponent’s next selection. For example, if I am at \\(39\\) and the opponent selects \\(39 + 8 = 47\\), then I can select \\(47 + 3 = 50\\). It can be easily verified that for all possible selections available to the opponent in the penultimate round, I can win by selecting \\(50\\) in the last call.\nWe can extend the same argument for all previous calls, and finally reach the beginning of the game. The trick here is to assume that I win and calculate back to the beginning of the game, while forcing the opponent to select integers from ranges that favor my desired selections.\nAs shown in the following table, the winning strategy is to start first and select \\(6\\), while continuing to add eleven to my own previously selected integer, till I reach \\(50\\):\n\n\n\nCall count\nPerson\nValue or range\n\n\n\n\n1\nme\n\\(6\\)\n\n\n2\nopponent\n\\([7, 16]\\)\n\n\n3\nme\n\\(6 + 11 = 17\\)\n\n\n4\nopponent\n\\([18, 27]\\)\n\n\n5\nme\n\\(17 + 11 = 28\\)\n\n\n6\nopponent\n\\([29, 38]\\)\n\n\n7\nme\n\\(28 + 11 = 39\\)\n\n\n8\nopponent\n\\([40, 49]\\)\n\n\n9\nme\n\\(39 + 11 = 50\\)"
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Curiosity | Imagination | Rigor",
     "section": "",
-    "text": "Post With Code\n\n\n\n\n\n\n\nnews\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\n\n\nMar 14, 2024\n\n\nHarlow Malloc\n\n\n\n\n\n\n  \n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\n\n\nMar 11, 2024\n\n\nTristan O’Malley\n\n\n\n\n\n\nNo matching items"
+    "text": "First to call 50\n\n\n\n\n\n\n\nstrategic game\n\n\n\n\n\n\n\n\n\n\n\nMar 27, 2024\n\n\n\n\n\n\n  \n\n\n\n\nCount the number of triangles\n\n\n\n\n\n\n\ncombinatorics\n\n\n\n\n\n\n\n\n\n\n\nMar 24, 2024\n\n\n\n\n\n\nNo matching items"
   },
   {
-    "objectID": "posts/post-with-code/index.html",
-    "href": "posts/post-with-code/index.html",
-    "title": "Post With Code",
+    "objectID": "posts/count-the-triangles/index.html",
+    "href": "posts/count-the-triangles/index.html",
+    "title": "Count the number of triangles",
     "section": "",
-    "text": "This is a post with executable code."
+    "text": "Count the number of triangles formed by inscribing a star in a regular pentagon."
+  },
+  {
+    "objectID": "posts/count-the-triangles/index.html#problem",
+    "href": "posts/count-the-triangles/index.html#problem",
+    "title": "Count the number of triangles",
+    "section": "",
+    "text": "Count the number of triangles formed by inscribing a star in a regular pentagon."
+  },
+  {
+    "objectID": "posts/count-the-triangles/index.html#solution",
+    "href": "posts/count-the-triangles/index.html#solution",
+    "title": "Count the number of triangles",
+    "section": "Solution",
+    "text": "Solution\nTo begin with, recollect the basic fact: three non-collinear points can form a triangle.\nNow, segregate the different categories of triangles based on how the vertices are distributed, and calculate the number of triangles for each category. Observe that there are only three such categories:\n\nCategory 1: All three vertices of a triangle belong to the set of vertices of the pentagon, and therefore, lie along the perimeter of the structure. The number of such triangles is \\(\\binom{5}{3}\\ = 10\\).\nCategory 2: Two of the vertices of a triangle belong to the set of points of intersection within the pentagon, and the third vertex is along the perimeter. Imagine each edge of the innermost pentagon to be the base of a triangle, because they join two adjacent inner points of intersection. Then the third vertex opposite to the base is simply the one on the perimeter. From the figure, it is evident that there are only 5 such triangles.\nCategory 3: Two of the vertices of a triangle are along the perimeter, and the third vertex belongs to the set of points of intersection within the pentagon. This is the trickiest category, and it’s easy to miss some triangles hiding here. Observe that the two vertices along the perimeter fall into the following subcategories:\n\nThe two vertices along the perimeter are adjacent to one another. In this case, imagine that an edge of the pentagon is the base of some triangles, whose third vertex is one of the inner points of intersection. It’s easy to see that each edge of the pentagon serves as the base for three such triangles. A pentagon has five edges, and therefore, there are \\(5 * 3 = 15\\) such triangles.\nThe two vertices along the perimeter are not adjacent to one another. In such cases, you will find that the two non-adjacent vertices along the perimeter are joined by a straight line, which is part of the inner star. It’s easy to see that each such line forms the base of exactly one triangle, whose third vertex is an inner point of intersection. There are five such straight lines forming the star, and therefore, five such triangles.\n\n\nTherefore, the total number of triangles combining all categories: \\(10 + 5 + (15 + 5) = 35\\)."
   }
 ]
