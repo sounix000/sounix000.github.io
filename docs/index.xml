@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>Curiosity | Imagination | Rigor</title>
+<link>https://sounix000.github.io/index.html</link>
+<atom:link href="https://sounix000.github.io/index.xml" rel="self" type="application/rss+xml"/>
+<description>Blog of Souvik Sarkar on Mathematics, Statistcs, and Computer Science.</description>
+<generator>quarto-1.3.427</generator>
+<lastBuildDate>Tue, 26 Mar 2024 18:30:00 GMT</lastBuildDate>
+<item>
+  <title>First to call 50</title>
+  <link>https://sounix000.github.io/posts/first-to-call-50/index.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="problem" class="level2">
+<h2 class="anchored" data-anchor-id="problem">Problem</h2>
+<p>You and I are to play a competitive game. We shall take it in turns to call out integers. The first person to call out <img src="https://latex.codecogs.com/png.latex?50"> wins. The rules are as follows:</p>
+<ul>
+<li>The player who starts must call out an integer between <img src="https://latex.codecogs.com/png.latex?1"> and <img src="https://latex.codecogs.com/png.latex?10">, inclusive;</li>
+<li>A new number called out must exceed the most recent number called by at least <img src="https://latex.codecogs.com/png.latex?1"> and by no more than <img src="https://latex.codecogs.com/png.latex?10">. For example, if the first player calls out <img src="https://latex.codecogs.com/png.latex?9">, then the range of valid numbers for the opponent is <img src="https://latex.codecogs.com/png.latex?10"> to <img src="https://latex.codecogs.com/png.latex?19">, inclusive.</li>
+</ul>
+<p>Do you want to go first, and if so, what is your strategy?</p>
+</section>
+<section id="solution" class="level2">
+<h2 class="anchored" data-anchor-id="solution">Solution</h2>
+<p>Let the calls be <img src="https://latex.codecogs.com/png.latex?C_i">, <img src="https://latex.codecogs.com/png.latex?i%20=%201,%202,%203,%20...,%20w">, where <img src="https://latex.codecogs.com/png.latex?C_w"> is the winning call. Based on the given information:</p>
+<ul>
+<li>Starting condition: <img src="https://latex.codecogs.com/png.latex?1%5Cleq%20C_1%20%5Cleq10">, which is the first call.</li>
+<li>Invariant condition: <img src="https://latex.codecogs.com/png.latex?C_%7Bi-1%7D%20+%201%20%5Cleq%20C_i%20%5Cleq%20C_%7Bi-1%7D%20+%2010%20%5Cimplies%201%20%5Cleq%20C_i%20-%20C_%7Bi-1%7D%20%5Cleq%2010">, which is the range of difference between two consecutive calls.</li>
+<li>Termination condition: <img src="https://latex.codecogs.com/png.latex?C_w%20=%2050">, which is the last and the winning call.</li>
+</ul>
+<p>Applying the invariant on the termination condition, we can say that the call just before the winning call must be <img src="https://latex.codecogs.com/png.latex?40%5Cleq%20C_%7Bw-1%7D%20%5Cleq49">. In other words, for a person to win, the opponent must select an integer from the set <img src="https://latex.codecogs.com/png.latex?%5B40,%2049%5D"> in the penultimate call.</p>
+<p>It also implies that to win, it is sufficient to select <img src="https://latex.codecogs.com/png.latex?C_%7Bw-2%7D%20=%2039"> in the call before that, i.e., the first person to select 39 can win the game irrespective of the opponent’s next selection. For example, if I am at <img src="https://latex.codecogs.com/png.latex?39"> and the opponent selects <img src="https://latex.codecogs.com/png.latex?39%20+%208%20=%2047">, then I can select <img src="https://latex.codecogs.com/png.latex?47%20+%203%20=%2050">. It can be easily verified that for all possible selections available to the opponent in the penultimate round, I can win by selecting <img src="https://latex.codecogs.com/png.latex?50"> in the last call.</p>
+<p>We can extend the same argument for all previous calls, and finally reach the beginning of the game. The trick here is to assume that I win and calculate back to the beginning of the game, while forcing the opponent to select integers from ranges that favor my desired selections.</p>
+<p>As shown in the following table, the winning strategy is to start first and select <img src="https://latex.codecogs.com/png.latex?6">, while continuing to add eleven to my own previously selected integer, till I reach <img src="https://latex.codecogs.com/png.latex?50">:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Call count</th>
+<th style="text-align: center;">Person</th>
+<th style="text-align: right;">Value or range</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;"><strong>me</strong></td>
+<td style="text-align: right;"><img src="https://latex.codecogs.com/png.latex?6"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">opponent</td>
+<td style="text-align: right;"><img src="https://latex.codecogs.com/png.latex?%5B7,%2016%5D"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;"><strong>me</strong></td>
+<td style="text-align: right;"><img src="https://latex.codecogs.com/png.latex?6%20+%2011%20=%2017"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">opponent</td>
+<td style="text-align: right;"><img src="https://latex.codecogs.com/png.latex?%5B18,%2027%5D"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">5</td>
+<td style="text-align: center;"><strong>me</strong></td>
+<td style="text-align: right;"><img src="https://latex.codecogs.com/png.latex?17%20+%2011%20=%2028"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">opponent</td>
+<td style="text-align: right;"><img src="https://latex.codecogs.com/png.latex?%5B29,%2038%5D"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">7</td>
+<td style="text-align: center;"><strong>me</strong></td>
+<td style="text-align: right;"><img src="https://latex.codecogs.com/png.latex?28%20+%2011%20=%2039"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">opponent</td>
+<td style="text-align: right;"><img src="https://latex.codecogs.com/png.latex?%5B40,%2049%5D"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">9</td>
+<td style="text-align: center;"><strong>me</strong></td>
+<td style="text-align: right;"><img src="https://latex.codecogs.com/png.latex?39%20+%2011%20=%2050"></td>
+</tr>
+</tbody>
+</table>
+
+
+</section>
+
+ ]]></description>
+  <category>strategic game</category>
+  <guid>https://sounix000.github.io/posts/first-to-call-50/index.html</guid>
+  <pubDate>Tue, 26 Mar 2024 18:30:00 GMT</pubDate>
+  <media:content url="https://sounix000.github.io/posts/first-to-call-50/strategy_table.png" medium="image" type="image/png" height="79" width="144"/>
+</item>
+<item>
+  <title>Count the number of triangles</title>
+  <link>https://sounix000.github.io/posts/count-the-triangles/index.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="problem" class="level2">
+<h2 class="anchored" data-anchor-id="problem">Problem</h2>
+<p>Count the number of triangles formed by inscribing a star in a regular pentagon.</p>
+<p><img src="https://sounix000.github.io/posts/count-the-triangles/pentagon_star.svg" class="img-fluid"></p>
+</section>
+<section id="solution" class="level2">
+<h2 class="anchored" data-anchor-id="solution">Solution</h2>
+<p>To begin with, recollect the basic fact: <em>three non-collinear points can form a triangle.</em></p>
+<p>Now, segregate the different categories of triangles based on <em>how the vertices are distributed</em>, and calculate the number of triangles for each category. Observe that there are only <em>three such categories</em>:</p>
+<ul>
+<li><p><strong>Category 1</strong>: All three vertices of a triangle belong to the set of vertices of the pentagon, and therefore, lie along the perimeter of the structure. The number of such triangles is <img src="https://latex.codecogs.com/png.latex?%5Cbinom%7B5%7D%7B3%7D%5C%20=%2010">.</p></li>
+<li><p><strong>Category 2</strong>: Two of the vertices of a triangle belong to the set of points of intersection within the pentagon, and the third vertex is along the perimeter. Imagine each edge of the innermost pentagon to be the base of a triangle, because they join two adjacent inner points of intersection. Then the third vertex opposite to the base is simply the one on the perimeter. From the figure, it is evident that there are <em>only 5 such triangles</em>.</p></li>
+<li><p><strong>Category 3</strong>: Two of the vertices of a triangle are along the perimeter, and the third vertex belongs to the set of points of intersection within the pentagon. This is the trickiest category, and it’s easy to miss some triangles hiding here. Observe that the two vertices along the perimeter fall into the following subcategories:</p>
+<ul>
+<li><p><em>The two vertices along the perimeter are adjacent to one another</em>. In this case, imagine that an edge of the pentagon is the base of some triangles, whose third vertex is one of the inner points of intersection. It’s easy to see that each edge of the pentagon serves as the base for three such triangles. A pentagon has five edges, and therefore, there are <img src="https://latex.codecogs.com/png.latex?5%20*%203%20=%2015"> such triangles.</p></li>
+<li><p><em>The two vertices along the perimeter are <strong>not</strong> adjacent to one another</em>. In such cases, you will find that the two non-adjacent vertices along the perimeter are joined by a straight line, which is part of the inner star. It’s easy to see that each such line forms the base of exactly one triangle, whose third vertex is an inner point of intersection. There are five such straight lines forming the star, and therefore, <em>five such triangles</em>.</p></li>
+</ul></li>
+</ul>
+<p>Therefore, the <strong>total number of triangles</strong> combining all categories: <img src="https://latex.codecogs.com/png.latex?10%20+%205%20+%20(15%20+%205)%20=%2035">.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>combinatorics</category>
+  <guid>https://sounix000.github.io/posts/count-the-triangles/index.html</guid>
+  <pubDate>Sat, 23 Mar 2024 18:30:00 GMT</pubDate>
+  <media:content url="https://sounix000.github.io/posts/count-the-triangles/pentagon_star.svg" medium="image" type="image/svg+xml"/>
+</item>
+</channel>
+</rss>

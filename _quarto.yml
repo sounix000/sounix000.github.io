@@ -4,6 +4,7 @@ project:
 
 website:
   title: "Curiosity | Imagination | Rigor"
+  description: "Blog of Souvik Sarkar on Mathematics, Statistcs, and Computer Science."
   favicon: profile.png
   twitter-card: true
   site-url: https://sounix000.github.io
@@ -15,6 +16,8 @@ website:
       - souvik_sarkar.qmd
       - icon: github
         href: https://github.com/
+      - icon: rss
+        href: index.xml
   page-footer: 
     center: "Copyright 2024, Souvik Sarkar"
     border: true
