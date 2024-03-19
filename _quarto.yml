@@ -4,6 +4,9 @@ project:
 
 website:
   title: "Curiosity | Imagination | Rigor"
+  search: 
+    location: navbar
+    type: overlay
   navbar:
     right:
       - souvik_sarkar.qmd
@@ -11,8 +14,26 @@ website:
         href: https://github.com/
 format:
   html:
-    theme: flatly
+    theme: cosmo
     css: styles.css
+    toc: true
+    toc-depth: 3
+    toc-location: left
+    anchor-sections: true
+    link-external-icon: true
+
+comments:
+  giscus: 
+    repo: sounix000/sounix000.github.io
+    repo-id: R_kgDOLgR5mA
+    category: Announcements
+    category-id: DIC_kwDOLgR5mM4CeEwB
+    mapping: pathname
+    reactions-enabled: true
+    loading: lazy
+    input-position: top
+    theme: light
+    language: en
 
 
 

@@ -63,7 +63,7 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed fullcontent">
+<body class="floating nav-fixed fullcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -99,6 +99,10 @@ ul.task-list li input[type="checkbox"] {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     
 <!-- main -->
@@ -122,10 +126,15 @@ ul.task-list li input[type="checkbox"] {
   </a>
 </div>
       <div class="about-contents"><main class="content" id="quarto-document-content">
-<p>Professionally, I am a technical writer with experience in docs-as-code workflows and open source environments. I write technical content for software engineers, dev-ops engineers, and system administrators.</p>
+<p>Professionally, I am a technical writer with experience in docs-as-code workflows and open source environments. I write technical content for software engineers, dev-ops engineers, and system administrators. Sometimes I write code to better understand the topic of my assignments.</p>
 <p>Currently, I work as a Senior Technical Writer at SUSE. Prior to that, I worked at Red Hat, Fusioncharts (data visualization), and Ribbon Communications (telecom). In my early career, I worked as a web developer and software engineer for a few years.</p>
-<p>As a hobby, I like solving puzzles and problems; the difficulty and satisfaction dervided from solving them is what makes my life exciting. Most of the posts in this blog are notes from my intellectual misadventures or side projects.</p>
-<p>Okay, enough of bragging about myself. Here’s the real me - I often zone out, day dream, procrastinate, and overthink. I prefer theory over practice, beautiful over useful, satire over directness, mountains over oceans, and tea over coffee.</p>
+<p>As a hobby, I like solving puzzles and problems; the difficulty and satisfaction derived from solving them is what makes my life exciting. In fact, most of the posts in this blog are either notes from my intellectual misadventures, or side projects in programming and data anaylis.</p>
+<p>Okay, enough of bragging about myself. Here’s the real me:</p>
+<ul>
+<li>Preferences: I prefer beautiful over useful, and satire over directness.</li>
+<li>Superpower: I can smell bullshit, greed, and sadism from lightyears away.</li>
+<li>Vices: I often zone out, day dream, procrastinate, and overthink.</li>
+</ul>
 
 
 </main></div>
@@ -359,7 +368,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       });
     }
   }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // default icon
+          link.classList.add("external");
+      }
+    }
 });
+</script>
+<script src="https://giscus.app/client.js" data-repo="sounix000/sounix000.github.io" data-repo-id="R_kgDOLgR5mA" data-category="Announcements" data-category-id="DIC_kwDOLgR5mM4CeEwB" data-mapping="pathname" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" data-loading="lazy" async="">
 </script>
 </div> <!-- /content -->
 

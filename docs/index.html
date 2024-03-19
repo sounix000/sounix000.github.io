@@ -97,7 +97,7 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -133,9 +133,10 @@ ul.task-list li input[type="checkbox"] {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
+  
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
     <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(2)</span></div><div class="category" data-category="combinatorics">combinatorics <span class="quarto-category-count">(1)</span></div><div class="category" data-category="strategic game">strategic game <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
 <main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
@@ -148,7 +149,7 @@ ul.task-list li input[type="checkbox"] {
 
 <div class="quarto-listing quarto-listing-container-default" id="listing-listing">
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="strategic game" data-listing-date-sort="1711477800000" data-listing-file-modified-sort="1710839008346" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3">
+<div class="quarto-post image-right" data-index="0" data-categories="strategic game" data-listing-date-sort="1711477800000" data-listing-file-modified-sort="1710845647501" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3">
 <div class="thumbnail">
 <p><a href="./posts/first-to-call-50/index.html"> <img src="./posts/first-to-call-50/strategy_table.png" class="thumbnail-image"> </a></p>
 </div>
@@ -180,7 +181,7 @@ Mar 27, 2024
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="1" data-categories="combinatorics" data-listing-date-sort="1711218600000" data-listing-file-modified-sort="1710839418010" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2">
+<div class="quarto-post image-right" data-index="1" data-categories="combinatorics" data-listing-date-sort="1711218600000" data-listing-file-modified-sort="1710845641941" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2">
 <div class="thumbnail">
 <p><a href="./posts/count-the-triangles/index.html"> <img src="./posts/count-the-triangles/pentagon_star.svg" class="thumbnail-image"> </a></p>
 </div>
@@ -448,6 +449,20 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       });
     }
   }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // default icon
+          link.classList.add("external");
+      }
+    }
 });
 </script>
 </div> <!-- /content -->

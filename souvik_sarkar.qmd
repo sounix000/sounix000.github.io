@@ -13,11 +13,15 @@ about:
 
 ---
 
-Professionally, I am a technical writer with experience in docs-as-code workflows and open source environments. I write technical content for software engineers, dev-ops engineers, and system administrators.
+Professionally, I am a technical writer with experience in docs-as-code workflows and open source environments. I write technical content for software engineers, dev-ops engineers, and system administrators. Sometimes I write code to better understand the topic of my assignments.
 
 Currently, I work as a Senior Technical Writer at SUSE. Prior to that, I worked at Red Hat, Fusioncharts (data visualization), and Ribbon Communications (telecom). In my early career, I worked as a web developer and software engineer for a few years.
 
-As a hobby, I like solving puzzles and problems; the difficulty and satisfaction dervided from solving them is what makes my life exciting. Most of the posts in this blog are notes from my intellectual misadventures or side projects.
+As a hobby, I like solving puzzles and problems; the difficulty and satisfaction derived from solving them is what makes my life exciting. In fact, most of the posts in this blog are either notes from my intellectual misadventures, or side projects in programming and data anaylis.
 
-Okay, enough of bragging about myself. Here's the real me - I often zone out, day dream, procrastinate, and overthink. I prefer theory over practice, beautiful over useful, satire over directness, mountains over oceans, and tea over coffee. 
+Okay, enough of bragging about myself. Here's the real me:
+
+- Preferences: I prefer beautiful over useful, and satire over directness.
+- Superpower: I can smell bullshit, greed, and sadism from lightyears away.
+- Vices: I often zone out, day dream, procrastinate, and overthink.
 
