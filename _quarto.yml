@@ -4,6 +4,9 @@ project:
 
 website:
   title: "Curiosity | Imagination | Rigor"
+  favicon: profile.png
+  twitter-card: true
+  site-url: https://sounix000.github.io
   search: 
     location: navbar
     type: overlay
@@ -12,6 +15,8 @@ website:
       - souvik_sarkar.qmd
       - icon: github
         href: https://github.com/
+  page-footer: 
+    center: "Copyright 2024, Souvik Sarkar"
 format:
   html:
     theme: cosmo
@@ -19,8 +24,6 @@ format:
     toc: true
     toc-depth: 3
     toc-location: left
-    anchor-sections: true
-    link-external-icon: true
 
 comments:
   giscus: 
