@@ -28,7 +28,7 @@ It also implies that to win, it is sufficient to select $C_{w-2} = 39$ in the ca
 
 We can extend the same argument for all previous calls, and finally reach the beginning of the game. The trick here is to assume that I win and calculate back to the beginning of the game, while forcing the opponent to select integers from ranges that favor my desired selections.
 
-As shown in the following table, the winning strategy is to start first and select $6$, while continuing to add eleven to my own previously selected integer, till I reach $50$:
+As shown in the following table, **the winning strategy is to start first and select $6$, while continuing to add eleven to my own previously selected integer, till I reach $50$**:
 
 | Call count | Person | Value or range |
 | :--------- | :----- | :------------- |
