@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1,user-scalable=no">
+<meta name="description" content="Man pages in Linux">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js/styles/vs.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markdown-it-texmath/css/texmath.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/goessner/mdmath/themes/publication/style.css">
+
+<title>Man pages in Linux</title>
+</head>
+<body id="top">
+<header>
+<h1>Man pages in Linux</h1>
+<h3>A short introduction to its different types</h3>
+
+
+
+
+</header>
+<main>
+
+<h2 dir="auto" id="overview">Overview</h2>
+<p dir="auto">When installed along with packages or manually, the <code>man</code> pages are invaluable source of accurate, precise, and terse information about various files available in your Linux system. However, for beginners, the types of <code>man</code> pages are often confusing. This article encourages you to explore the types of <code>man</code> pages, with simple examples.</p>
+<h2 dir="auto" id="read-the-man-page-about-the-man-command">Read the man page about the <code>man</code> command</h2>
+<ol dir="auto">
+<li dir="auto">Reading and understanding the documentation about <code>man</code> is the first logical and essential step. In your terminal application, execute the following command:</li>
+</ol>
+<pre><code class="code-line language-bash" dir="auto">$ man man
+</code></pre>
+<ol start="2" dir="auto">
+<li dir="auto">
+<p dir="auto">You may be prompted to provide an appropriate option. Provide <code>1</code>.</p>
+</li>
+<li dir="auto">
+<p dir="auto">Notice that at the start of the information displayed, <code>MAN(1)</code> is written. The associated number within the parenthesis indicates the type of man page information displayed. You will learn more about the meaning of different numbers in the next step.</p>
+</li>
+<li dir="auto">
+<p dir="auto">Read the <code>DESCRIPTION</code> in the information displayed, and focus on the following excerpt:</p>
+</li>
+</ol>
+<pre><code class="code-line language-bash" dir="auto">The  table  below  shows  the section numbers of the manual followed by the types of pages they contain.
+
+       0   Header files (usually found <span class="hljs-keyword">in</span> /usr/include)
+       1   Executable programs or shell commands
+       2   System calls (<span class="hljs-built_in">functions</span> provided by the kernel)
+       3   Library calls (<span class="hljs-built_in">functions</span> within program libraries)
+       4   Special files (usually found <span class="hljs-keyword">in</span> /dev)
+       5   File formats and conventions eg /etc/passwd
+       6   Games
+       7   Miscellaneous (including macro packages and conventions), e.g. man(7), groff(7)
+       8   System administration commands (usually only <span class="hljs-keyword">for</span> root)
+       9   Kernel routines [Non standard]
+</code></pre>
+<ol start="5" dir="auto">
+<li dir="auto">Quit the man page by typing <code>q</code>.</li>
+</ol>
+<p dir="auto">As you have probably guessed by now, <code>MAN(1)</code> at the top of the page means the information displayed in the man page is about the the executable program or shell command <code>man</code>.</p>
+<h2 dir="auto" id="test-the-man-page-types-with-examples">Test the man page types with examples</h2>
+<p dir="auto">Equipped with the basic concept of the types of man pages, let us now run some commands to validate the correctness of our mental model. We will use two variations of <code>systemd</code> as our examples; feel free to replace it with any other suitable string and follow along.</p>
+<ol dir="auto">
+<li dir="auto">In your terminal appliction, run the following command:</li>
+</ol>
+<pre><code class="code-line language-bash" dir="auto">$ man systemd
+</code></pre>
+<ol start="2" dir="auto">
+<li dir="auto">
+<p dir="auto">At the top of the man page displayed, notice <code>SYSTEMD(1)</code>. It means that the man page is about <code>systemd</code>, and the kind of information displayed are very similar to executable programs or shell commands. The man page of type <code>1</code> is also the most common type of man page. Quit the man page by pressing <code>q</code>.</p>
+</li>
+<li dir="auto">
+<p dir="auto">In your terminal application, run the following command:</p>
+</li>
+</ol>
+<pre><code class="code-line language-bash" dir="auto">$ man systemd.service
+</code></pre>
+<ol start="4" dir="auto">
+<li dir="auto">
+<p dir="auto">At the top of the man page displayed, notice <code>SYSTEMD.SERVICE(5)</code>. Recall that <code>5</code> represents the type <code>File formats and conventions</code>. Now, if you read the information provided in the man page, you will realize that it is indeed about file configuration. Quit the man page by pressing <code>q</code>.</p>
+</li>
+<li dir="auto">
+<p dir="auto">You can see the same information as displayed by the above command, if you directly pass on the number <code>5</code> while invoking the man page. Run the following command and verify it:</p>
+</li>
+</ol>
+<pre><code class="code-line language-bash" dir="auto">$ man 5 systemd.service
+</code></pre>
+<ol start="6" dir="auto">
+<li dir="auto">However, if you pass on an inappropriate number such as <code>1</code>, you get an error, because no man page of type <code>1</code> is unavailable for <code>systemd.service</code>.</li>
+</ol>
+<pre><code class="code-line language-bash" dir="auto">$ man 1 systemd.service
+No manual entry <span class="hljs-keyword">for</span> systemd.service <span class="hljs-keyword">in</span> section 1
+</code></pre>
+<h2 dir="auto" id="conclusion">Conclusion</h2>
+<p dir="auto">Therefore, you can conceptualize the general theme in the following manner: <em>Running the <code>man &lt;STRING&gt;</code> command opens up the man page, if available or installed. The top of the displayed information contains <code>&lt;STRING&gt;(N)</code>, where <code>N</code> an integer from <code>0</code> to <code>9</code>. The number <code>N</code> denotes the section number, or the type of man page information that is displayed.</em></p>
+
+</main>
+</body>
+</html>

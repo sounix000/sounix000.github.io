@@ -13,6 +13,8 @@ This is the famous `Hello, World!` program in C.
 
 ## Code
 
+The first C program:
+
 ```c
 #include <stdio.h>
 
@@ -22,6 +24,7 @@ int main()
     return 0;
 }
 ```
+<figcaption>C program: Hello World</figcaption>
 
 ## Compilation
 
