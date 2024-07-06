@@ -15,7 +15,7 @@
 >
 > <br>
 > 
-> I am **Souvik Sarkar** &mdash; technical writer with experience in software and API documentation using docs-as-code and open source workflows. As a former <a href="../software/software.html" target="_blank">*software engineer*</a>, I love learning about the <a href="../../index.html" target="_blank">*theorectical*</a> foundations of technology. For professional engagements, see my <a href="../resume/technical_writer_souvik_sarkar.pdf" target="_blank">*resume*</a> and/or write an <a href="mailto:sounix000@gmail.com" target="_blank">*email*</a>. 
+> I am **Souvik Sarkar** &mdash; technical writer with experience in software development and API documentation using docs-as-code and open source workflows. In my free time, I like learning about the <a href="../../index.html" target="_blank">*theoretical foundations*</a> of technology. For professional engagements, see my <a href="../resume/technical_writer_souvik_sarkar.pdf" target="_blank">*resume*</a> and/or write an <a href="mailto:sounix000@gmail.com" target="_blank">*email*</a>. 
 
 <br>
 
