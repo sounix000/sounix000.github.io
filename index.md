@@ -1,7 +1,7 @@
 ---
 "lang": "en",
 "title": "Souvik Sarkar",
-"subtitle": "Portfolio of open source technical documentation and writing samples",
+"subtitle": "Portfolio of writing samples and open source technical documentation",
 "description": "Technical Documentation portfolio of Souvik Sarkar"
 ---
 
@@ -11,9 +11,11 @@
 
 </aside>
 
-> I am **Souvik Sarkar** &mdash; a **technical writer** with experience in *software development* and API documentation using *docs-as-code* and *open source* workflows. In my free time, I like to teach mathematical problem solving to high school students. 
+> I am a *technical writer* with experience in *software development* and *API documentation* using *docs-as-code* and *open source* workflows. I like working on system and infrastructure software, networks, and security. 
 > 
 > For professional engagements, see my *writing samples* below, download my <a href="./portfolio/resume/technical_writer_souvik_sarkar.pdf" target="_blank">*resume*</a>, and write an <a href="mailto:sounix000@gmail.com" target="_blank">*email*</a>. 
+
+<br>
 
 ## Writing samples
 
@@ -40,6 +42,8 @@ Most organizations ask to do take-home assignments as part of the interview proc
 - [**General English**]:
   - <a href="./portfolio/tech_docs/TicTacToe.pdf" target="_blank">How to play Tic-Tac-Toe</a>
   - <a href="./portfolio/tech_docs/ATM.pdf" target="_blank">Using an ATM for financial transactions</a>
+
+<br>
 
 ## Professional contributions
 
