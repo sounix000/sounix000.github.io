@@ -1,6 +1,6 @@
 ---
 title: "Welcome To My Blog"
-author: "Tristan O'Malley"
+author: "Souvik Sarkar"
 date: "2024-12-06"
 categories: [news]
 ---

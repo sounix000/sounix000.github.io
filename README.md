@@ -1,2 +1,3 @@
-# sounix000.github.io
-Technical blog of Souvik Sarkar
+# Curiosity | Imagination | Rigor
+
+Technical blog of Souvik Sarkar at [sounix000.github.io](https://sounix000.github.io).
