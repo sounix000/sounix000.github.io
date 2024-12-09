@@ -1,0 +1,21 @@
+---
+title: "Souvik Sarkar"
+image: profile.jpeg
+about:
+  template: solana
+  links:
+    - icon: github
+      text: Github
+      href: https://github.com/sounix000
+    - icon: linkedin
+      text: LinkedIn
+      href: https://linkedin.com/in/sounix000
+    - icon: twitter
+      text: Twitter
+      href: https://twitter.com/sounix000
+
+---
+
+I am an engineer with interest in _system software_, _security_ and _cryptography_. Apart from solving problems and developing software, I write on technical topics on this blog.
+
+When not working, I enjoy having deep conversations with people who are genuine and authentic.
