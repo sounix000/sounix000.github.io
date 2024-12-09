@@ -15,7 +15,7 @@ website:
       mapping: pathname
       reactions-enabled: true
       input-position: bottom
-      theme: preferred_color_scheme
+      theme: light
       language: en
         
   navbar:
