@@ -1,7 +1,6 @@
 = Souvik Sarkar
-
-:toc:
-:toc-placement: left
+:toc: left
+:toclevels: 5
 :nofooter:
 
 image::profile.png[]
