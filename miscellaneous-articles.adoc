@@ -1,0 +1,16 @@
+== Miscellaneous articles
+
+A collection of miscellaneous articles:
+
+* _Python/ML/Cloud_: link:./portfolio/tech_docs/python_gcp_ml_vision.pdf[Automatically interacting with Google Cloud Storage and Vision API using Python]
+* _QA/Automation_: https://sounix000.github.io/browserstack-assignment/[Test automation using Selenium (Python), BrowserStack, and GitHub Actions]
+* _Dev-Ops_: link:./portfolio/tech_docs/debug_kubernetes_pods.md[Getting started with debugging pods in Kubernetes]
+* _Linux_: link:./portfolio/tech_docs/man_pages.md[A short introduction to man pages in Linux]
+* _Git_: link:./portfolio/tech_docs/git_reflog_reset.md[Resolving incorrect Git rebase issues using reflog]
+* _Javascript_: https://www.smashingmagazine.com/2019/02/interactive-weather-dashboard-api-vue-js/[Creating an interactive weather dashboard using Vue.js and APIs]
+* _Web/API_: link:./portfolio/tech_docs/RESTvsSOAP.pdf[An introduction to SOAP and REST for web services]
+* _Code Review_: link:./portfolio/tech_docs/FindNeedles.pdf[A critical analysis of a Java code snippet]
+* _Documentation Review_: https://sounix000.github.io/browserstack-assignment/doc-analysis[A short critical analysis of BrowserStack's documentation]
+* _General English_:
+  ** link:./portfolio/tech_docs/TicTacToe.pdf[How to play Tic-Tac-Toe]
+  ** link:./portfolio/tech_docs/ATM.pdf[Using an ATM for financial transactions]
