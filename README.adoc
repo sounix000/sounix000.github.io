@@ -14,11 +14,11 @@ For professional purposes, you can **find me** at: link:https://github.com/souni
 == Writing samples
 Over the last several years, most of my _professional work_ has been in _open-source projects_. If you are reviewing my portfolio to assess how I perform in a professional environment, the best way is to skim through the _merged pull requests_:
 
-* link:https://github.com/SUSE/doc-sle/pulls?q=is%3Apr+is%3Aclosed+author%3Asounix000[*Administration Guides (legacy) for SUSE Linux Enterprise*]
-* link:https://github.com/SUSE/doc-modular/pulls/sounix000[*Modular Documentation for SUSE Linux Enterprise*]
-* link:https://github.com/SUSE/doc-unversioned/pulls?q=is%3Apr+is%3Aclosed+author%3Asounix000[*Compliance and Certification Documentation for SUSE Linux Enterprise*]
-* link:https://github.com/openshift/openshift-docs/pulls?q=is%3Apr+author%3Asounix000+is%3Aclosed[*OpenShift Pipelines Documentation*]
+* link:https://github.com/SUSE/doc-sle/pulls?q=is%3Apr+is%3Aclosed+author%3Asounix000[Administration Guides (legacy) for SUSE Linux Enterprise]
+* link:https://github.com/SUSE/doc-modular/pulls/sounix000[Modular Documentation for SUSE Linux Enterprise]
+* link:https://github.com/SUSE/doc-unversioned/pulls?q=is%3Apr+is%3Aclosed+author%3Asounix000[Compliance and Certification Documentation for SUSE Linux Enterprise]
+* link:https://github.com/openshift/openshift-docs/pulls?q=is%3Apr+author%3Asounix000+is%3Aclosed[OpenShift Pipelines Documentation]
 
-In addition, I maintain a collection of link:miscellaneous-articles.html[**miscellaneous articles**].
+In addition, I maintain a collection of link:miscellaneous-articles.html[*miscellaneous articles*].
 
 
