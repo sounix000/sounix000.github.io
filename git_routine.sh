@@ -1,3 +1,5 @@
+asciidoctor -o index.html -a nofooter README.adoc
+
 git add --all
-git commit -m "Publish site to docs, including source files"
+git commit -m "Publish site"
 git push
