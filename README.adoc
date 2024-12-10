@@ -7,10 +7,7 @@ image::profile.png[]
 
 == About
 
-I am an *engineer and writer* with experience in _software development_ and _modular documentation_. Currently I work as a Senior Technical Writer at SUSE. Prior to that, I worked at Red Hat. You can find more information about my career on my xref:./resume/technical_writer_souvik_sarkar.pdf[résumé]. My **areas of interest** are:
-
-* System and Infrastructure Software
-* Network Security and Cryptography 
+I am an *engineer and writer* with experience in _software development_ and _modular documentation_. system software, network security, and cryptography. You can find information about my career on my xref:./resume/technical_writer_souvik_sarkar.pdf[résumé]. My **areas of interest** are:
 
 For professional purposes, you can **find me** at: link:https://github.com/sounix000/[GitHub] | link:https://gitlab.com/sounix000/[GitLab] | link:https://www.linkedin.com/in/sounix000/[Linkedin] | mailto:sounix000@gmail.com[Email] | Mobile: (+91) 6360229130
 
