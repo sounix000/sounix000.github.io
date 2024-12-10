@@ -7,11 +7,7 @@ image::profile.png[]
 
 == About
 
-I am an *engineer and writer* with experience in _software development_ and _modular documentation_.
-
-Currently I work as a Senior Technical Writer at SUSE. Prior to that, I worked at Red Hat. You can find more information about my career on my xref:./resume/technical_writer_souvik_sarkar.pdf[résumé].
-
-My **areas of interest** are:
+I am an *engineer and writer* with experience in _software development_ and _modular documentation_. Currently I work as a Senior Technical Writer at SUSE. Prior to that, I worked at Red Hat. You can find more information about my career on my xref:./resume/technical_writer_souvik_sarkar.pdf[résumé]. My **areas of interest** are:
 
 * System and Infrastructure Software
 * Network Security and Cryptography 
