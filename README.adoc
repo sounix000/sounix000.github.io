@@ -12,7 +12,7 @@ I am an *engineer and writer* with experience in _software development_ and _mod
 * System and Infrastructure Software
 * Network Security and Cryptography 
 
-For professional purposes, you can find me at the following places: link:https://github.com/sounix000/[GitHub] | link:https://gitlab.com/sounix000/[GitLab] | link:https://www.linkedin.com/in/sounix000/[Linkedin] | mailto:sounix000@gmail.com[Email] | Mobile: (+91) 6360229130
+For professional purposes, you can **find me** at: link:https://github.com/sounix000/[GitHub] | link:https://gitlab.com/sounix000/[GitLab] | link:https://www.linkedin.com/in/sounix000/[Linkedin] | mailto:sounix000@gmail.com[Email] | Mobile: (+91) 6360229130
 
 == Writing samples
 Over the last several years, most of my _professional work_ has been in _open-source projects_. If you are reviewing my portfolio to assess how I perform in a professional environment, the best way is to skim through the _merged pull requests_:
