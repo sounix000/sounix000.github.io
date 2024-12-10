@@ -1,4 +1,7 @@
 == Miscellaneous articles
+:toc: left
+:toclevels: 5
+:nofooter:
 
 A collection of miscellaneous articles:
 
