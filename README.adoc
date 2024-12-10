@@ -7,7 +7,9 @@ image::profile.png[]
 
 == About
 
-I am an *engineer and writer* with experience in _software development_ and _modular documentation_. My areas of interest are:
+I am an *engineer and writer* with experience in _software development_ and _modular documentation_.
+
+My areas of interest are:
 
 * **System Software**
 * **Network Security**
