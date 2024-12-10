@@ -7,9 +7,9 @@ image::profile.png[]
 
 == About
 
-I am an *engineer and writer* with experience in software development and modular documentation. My **areas of interest** are _system software_, _network security_, and _cryptography_. For more information on my career, download my xref:./resume/technical_writer_souvik_sarkar.pdf[résumé] or browse my link:https://www.linkedin.com/in/sounix000/[Linkedin]. 
+I am an *engineer and writer* with experience in software development and modular documentation. My **areas of interest** are _system software_, _network security_, and _cryptography_. For more information on my career, download my xref:./resume/technical_writer_souvik_sarkar.pdf[résumé]. 
 
-You can also **find me** at: link:https://github.com/sounix000/[GitHub] | link:https://gitlab.com/sounix000/[GitLab] | link:https://www.linkedin.com/in/sounix000/[Linkedin] | link:https://discord.com/users/778296944552181820[Discord]
+**Profiles**: link:https://github.com/sounix000/[GitHub] | link:https://www.linkedin.com/in/sounix000/[Linkedin]
 
 == Writing samples
 Over the last several years, most of my _professional work_ has been in _open-source projects_. If you are reviewing my portfolio to assess how I perform in a professional environment, the best way is to skim through the _merged pull requests_:
