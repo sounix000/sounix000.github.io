@@ -4,6 +4,7 @@ project:
   resources:
     - favicon.ico
     - images/**
+    - resume/souvik_sarkar_resume.pdf
 
 website:
   description: "Website of Souvik Sarkar"
