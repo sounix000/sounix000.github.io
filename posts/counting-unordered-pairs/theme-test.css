@@ -1,0 +1,23 @@
+/* Scoped theme test for this post only — restrained chalkboard-green
+   accent + warm paper background, layered on top of the site CSS.
+   Not wired into _brand.yml yet; delete this file once a direction
+   is picked, or promote it into _brand.yml site-wide. */
+:root {
+  --bs-body-bg: #FBF9F3;
+  --bs-link-color: #1F6B44;
+  --bs-link-color-rgb: 31, 107, 68;
+  --bs-link-hover-color: #164F32;
+  --bs-link-hover-color-rgb: 22, 79, 50;
+}
+
+a:hover {
+  text-decoration-color: #164F32;
+}
+
+/* Same story: the TOC active-link color is hardcoded with !important
+   in Bootstrap's compiled CSS, so it needs a matching !important here. */
+.sidebar nav[role="doc-toc"] ul > li > a.active,
+.sidebar nav[role="doc-toc"] ul > li > ul > li > a.active {
+  border-left: 1px solid #1F6B44 !important;
+  color: #1F6B44 !important;
+}

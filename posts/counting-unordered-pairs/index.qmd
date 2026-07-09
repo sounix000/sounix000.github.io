@@ -4,6 +4,7 @@ description: "Three different proofs of C(n,2), from a checkerboard table to ove
 date: "2026-03-18"
 categories: [mathematics]
 image: images/cover.png
+css: theme-test.css
 ---
 
 ## Problem statement

@@ -1,0 +1,16 @@
+typography:
+  fonts:
+    - family: STIX Two Text
+      source: google
+    - family: IBM Plex Mono
+      source: google
+  base: STIX Two Text
+  headings: STIX Two Text
+  monospace: IBM Plex Mono
+
+# Chalkboard-green navbar, in place of Cosmo's default blue
+defaults:
+  bootstrap:
+    defaults:
+      navbar-bg: "#1F3D2B"
+      navbar-fg: "#F1EFE7"
