@@ -1,0 +1,35 @@
+# options specified here will apply to all posts in this folder
+
+# Default author for all posts
+author: "Souvik Sarkar"
+
+# freeze computational output
+# (see https://quarto.org/docs/projects/code-execution.html#freeze)
+freeze: true
+
+# Enable banner style title blocks
+title-block-banner: true
+
+# Table of contents for every post
+toc: true
+
+# Social preview cards (Open Graph), using each post's `image:`
+open-graph: true
+
+# TikZ/diagram rendering (see _extensions/pandoc-ext/diagram)
+filters:
+  - diagram
+
+# Giscus comments (scoped to posts/ only via this _metadata.yml)
+comments:
+  giscus:
+    repo: sounix000/sounix000.github.io
+    repo-id: R_kgDORBEQrA
+    category: General
+    category-id: DIC_kwDORBEQrM4C_ZUY
+    mapping: pathname
+    reactions-enabled: true
+    input-position: top
+    theme: preferred_color_scheme
+    language: en
+    loading: lazy

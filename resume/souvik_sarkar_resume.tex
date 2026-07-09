@@ -1,0 +1,129 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Medium Length Professional CV
+% LaTeX Template
+% Version 2.0 (8/5/13)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Trey Hunner (http://www.treyhunner.com/)
+%
+% Revision author (current version):
+% Souvik Sarkar (https://cuimri.com)
+%
+% Important note:
+% This template requires the resume.cls file to be in the same directory as the
+% .tex file. The resume.cls file provides the resume style used for structuring the document.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%------------------------------------------------------------------------------
+
+\documentclass{resume} % Use the custom resume.cls style
+
+\usepackage{amsfonts}
+\usepackage{bookmark}
+\usepackage[left=0.75in,top=0.6in,right=0.75in,bottom=0.6in]{geometry} % Document margins
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    urlcolor=blue
+}
+
+%------------------------------------------------------------------------------
+%	CONTACTS SECTION
+%------------------------------------------------------------------------------
+
+\name{SOUVIK SARKAR} % Your name
+\address{\bf Senior Technical Writer} % Your profession
+\address{\bf \href{https://cuimri.com}{Website}} % Your portfolio
+
+\begin{document}
+
+%------------------------------------------------------------------------------
+%	PROFESSIONAL SUMMARY SECTION
+%------------------------------------------------------------------------------
+
+\begin{rSection}{Overview} 
+A math-minded, code-literate technical writer documenting system software with clarity and precision.   
+\end{rSection}
+
+%------------------------------------------------------------------------------
+%	SKILLS SECTION
+%------------------------------------------------------------------------------
+
+\begin{rSection}{Skills}
+
+\begin{tabular}{ @{} >{\bfseries}l @{\hspace{6ex}} l }
+Programming & Python, C \\
+Documentation & Markdown \\
+Common Tools & Bash, Git, AI
+\end{tabular}
+
+\end{rSection}
+
+%------------------------------------------------------------------------------
+%	WORK EXPERIENCE SECTION
+%------------------------------------------------------------------------------
+
+\begin{rSection}{Employment}
+
+\begin{rSubsection}{SUSE}{March 2023--Present}{Senior Technical Writer}{}
+\item Planned, researched, and maintained modular/topic-based articles as well as legacy monolithic guides for SUSE Linux Enterprise, with focus on cryptography, performance, and virtualization. 
+\end{rSubsection}
+
+%------------------------------------------------
+
+\begin{rSubsection}{Red Hat}{November 2020--March 2023}{Senior Technical Writer}{}
+\item Led documentation efforts for OpenShift CI/CD Pipelines, including triaging issues, creating documentation plans, and deciding content strategy.   
+\end{rSubsection}
+
+\begin{rSubsection}{Ribbon Communications}{January 2019--November 2020}{Senior Technical Writer}{}
+\item Led documentation efforts for Session Border Controller, including the CLI reference and REST API user guide.
+\end{rSubsection}
+
+%------------------------------------------------
+
+\begin{rSubsection}{FusionCharts (Infosoft Global Pvt. Ltd.)}{March 2018--January 2019}{Technical Content Writer}{}
+\item Developed applications, samples, content, and automation scripts for developer documentation.
+\end{rSubsection}
+
+%------------------------------------------------
+
+\begin{rSubsection}{Tata Elxsi}{June 2016--March 2018}{Consultant Technical Writer}{Contractor for Ribbon Communications}
+\item Created and maintained Quick Start tutorials, API guides, User guides, and Release Notes.
+\end{rSubsection}
+
+%------------------------------------------------
+
+\begin{rSubsection}{Agaze Technologies}{September 2015--May 2016}{Software Engineer}{}
+\item Developed web applications focusing on back-end implementation.
+\end{rSubsection}
+
+%------------------------------------------------
+
+\begin{rSubsection}{Self-employed}{July 2012--August 2015}{Mathematics Coach}{}
+\item Coached high school students for competitive entrances and olympiads.
+\end{rSubsection}
+
+\end{rSection}
+
+%------------------------------------------------------------------------------
+%	EDUCATION SECTION
+%------------------------------------------------------------------------------
+
+\begin{rSection}{Education}
+
+\begin{rSubsection}{Bachelor of Technology}{2014}{Applied Electronics and Instrumentation Engineering}{West Bengal University of Technology}
+\item[] % empty item, renders nothing visible
+\end{rSubsection}
+
+\end{rSection}
+
+%------------------------------------------------------------------------------
+
+\end{document}

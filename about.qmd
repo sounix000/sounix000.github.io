@@ -1,0 +1,22 @@
+---
+title: "Souvik Sarkar"
+image: images/souvik.png
+about:
+  template: jolla
+  links:
+    - icon: mastodon
+      text: Mathstodon
+      href: https://mathstodon.xyz/@cuimri
+    - icon: github
+      text: Github
+      href: https://github.com/sounix000
+    - icon: linkedin
+      text: LinkedIn
+      href: https://linkedin.com/in/sounix00
+    - icon: envelope
+      text: Email
+      href: mailto:sounix000@gmail.com
+
+---
+
+A math-minded, code-literate technical writer documenting system software with clarity and precision.

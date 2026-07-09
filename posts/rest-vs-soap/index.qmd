@@ -1,0 +1,82 @@
+---
+title: "Choosing between REST and SOAP"
+description: "A practical decision guide for choosing between SOAP and REST web services."
+date: "2020-11-12"
+categories: [software]
+image: images/cover.png
+---
+
+When designing a web service, you must carefully evaluate the choice between SOAP and REST. This guide covers their strengths, limitations, and use cases to help you make an informed decision.
+
+## SOAP
+
+SOAP (Simple Object Access Protocol) is a protocol for exchanging XML-based messages over a network. It uses Web Services Description Language (WSDL) to define:
+
+- Resources, operations, and procedure calls
+- Message structure, encoding, and encapsulation
+- Bindings with network transport protocols
+
+SOAP APIs are often auto-generated using tools that create server-side and client-side code templates, but the resulting implementations can be challenging to develop and maintain.
+
+### When to choose SOAP
+
+SOAP is suitable for:
+
+- **Enterprise-level security:** supports WS-Security for encryption, authentication, and message integrity
+- **Complex transactions:** ensures reliability in distributed environments through features like ACID-compliant transactions
+- **Strict contracts:** enforces formal service definitions using WSDL, ensuring consistency and reliability
+- **Stateful interactions:** useful for cases requiring session management or multi-step workflows
+- **Legacy systems:** facilitates integration with older enterprise systems
+
+### SOAP limitations
+
+- **Tight coupling:** changes to the server often require updates to the client, reducing flexibility
+- **XML-only payloads:** mandatory use of XML increases message size and complexity
+- **High overhead:** SOAP messages are verbose, requiring more bandwidth and processing power
+- **Slower development:** complex implementation results in longer development cycles
+
+## REST
+
+REST (Representational State Transfer) is an architectural style that leverages standard HTTP methods for stateless web service interactions. REST APIs:
+
+- Use URLs to represent resources
+- Support multiple data formats, including JSON, XML, and HTML
+- Implement HTTP methods such as `GET`, `POST`, `PUT`, `DELETE`, and `PATCH`
+- Can mark responses as cacheable, reducing client-server interactions
+
+Tools and frameworks can generate REST APIs and documentation from application code, enabling rapid development.
+
+### When to choose REST
+
+REST is ideal for:
+
+- **Public APIs:** designed for widespread adoption and third-party integrations
+- **Rapid development:** simple and flexible, with fewer constraints than SOAP
+- **Data format flexibility:** supports lightweight formats like JSON, ideal for modern web and mobile applications
+- **Scalability and caching:** statelessness and response caching improve performance and scalability
+- **Broad adoption:** widely supported by tools, frameworks, and a large developer community
+
+### REST limitations
+
+- **Security challenges:** requires additional measures (HTTPS, token-based authentication) to ensure security
+- **Limited operations:** restricted to standard HTTP methods, which may not cover all use cases
+- **Scalability complexities:** point-to-point communication can complicate scaling with multiple clients
+- **Versioning difficulties:** major schema changes can break clients if not managed properly
+
+## Decision guide
+
+| | SOAP | REST |
+|---|---|---|
+| Best for | Secure, reliable, stateful operations — enterprise or legacy systems | Simple, scalable, fast APIs for modern web/mobile apps |
+| Payload | XML only | JSON, XML, HTML |
+| Coupling | Tight | Loose |
+| State | Stateful support | Stateless |
+
+::: {.callout-tip}
+Choose REST for most modern web services unless your requirements specifically align with SOAP's strengths, such as strict contracts or enterprise-grade security.
+:::
+
+## Other considerations
+
+- Assess your team's expertise with SOAP or REST.
+- Plan for future maintenance, including versioning strategies for the APIs.

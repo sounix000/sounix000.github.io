@@ -1,0 +1,20 @@
+[
+  {
+    "listing": "/index.html",
+    "items": [
+      "/posts/mersenne-prime-sieve/index.html",
+      "/posts/first-to-call-fifty/index.html",
+      "/posts/counting-unordered-pairs/index.html",
+      "/posts/count-triangles-pentagon-star/index.html",
+      "/posts/joy-of-useless-pursuits/index.html",
+      "/posts/fixing-software-documentation/index.html",
+      "/posts/debugging-pods-kubernetes/index.html",
+      "/posts/browserstack-doc-analysis/index.html",
+      "/posts/test-automation-selenium/index.html",
+      "/posts/tic-tac-toe/index.html",
+      "/posts/google-cloud-vision-api/index.html",
+      "/posts/rest-vs-soap/index.html",
+      "/posts/java-code-review/index.html"
+    ]
+  }
+]

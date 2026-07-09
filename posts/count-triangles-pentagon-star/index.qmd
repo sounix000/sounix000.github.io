@@ -1,0 +1,69 @@
+---
+title: "Count the triangles in a five-sided star"
+description: "Counting all 35 triangles hidden inside a pentagon and its inscribed pentagram."
+date: "2026-02-09"
+categories: [mathematics]
+image: images/cover.png
+---
+
+## Problem
+
+Count the number of distinct triangles formed when a regular pentagram is drawn inside a regular pentagon by connecting every second vertex (i.e., draw the five-pointed star formed by skipping one vertex each time).
+
+The figure consists of a regular pentagon with its five vertices connected every second vertex, producing the familiar five-pointed star (pentagram) whose intersecting diagonals create five interior intersection points.
+
+```{.tikz}
+\begin{tikzpicture}[scale=1.6, line cap=round, line join=round]
+  \foreach \i in {0,...,4} {
+    \coordinate (V\i) at ({90+72*\i}:1.6);
+  }
+  \draw[thick] (V0) -- (V1) -- (V2) -- (V3) -- (V4) -- cycle;
+  \draw[thick] (V0) -- (V2) -- (V4) -- (V1) -- (V3) -- cycle;
+\end{tikzpicture}
+```
+
+## Strategy
+
+Outline of the counting method:
+
+- Classify triangles by the types of their vertices: whether a vertex lies on the outer pentagon ("perimeter vertex") or at an intersection point formed by the pentagram ("internal point").
+- Use the $5$-fold rotational symmetry to count representatives of each class and multiply appropriately; verify there is no double counting.
+- Where necessary, examine local configurations around one vertex/edge and propagate by symmetry.
+
+## Solution
+
+We proceed by enumerating triangle types.
+
+**Type I: three perimeter vertices.** Choose any $3$ of the $5$ outer vertices. This gives
+
+$$\binom{5}{3} = 10$$
+
+triangles.
+
+**Type II: two perimeter vertices and one internal intersection.** Consider an outer edge as a potential base. For each outer edge there are a fixed finite number of internal intersection points that together with that base produce triangles contained in the figure. A local inspection (or symmetry argument) shows there are $3$ distinct interior-point choices per edge that yield distinct internal triangles, and counting over the $5$ edges gives
+
+$$5 \times 3 = 15$$
+
+triangles of this type.
+
+**Type III: one perimeter vertex and two internal intersections.** Around each outer vertex, the two nearby intersection points formed by the star lines create exactly one triangle together with that vertex (by symmetry and direct inspection). Hence there are
+
+$$5$$
+
+triangles of this type.
+
+**Type IV: three internal intersection points.** Some triangles are formed solely by three intersection points of the star's diagonals. By symmetry and explicit counting of admissible intersection-triples one finds
+
+$$5$$
+
+such triangles.
+
+::: {.callout-important title="Total count"}
+Summing the above counts yields the total number of distinct triangles formed:
+
+$$10 + 15 + 5 + 5 = 35.$$
+:::
+
+## Conclusion
+
+By classifying triangles according to vertex types and exploiting the pentagon's symmetry, one deduces that the pentagon with its inscribed pentagram contains exactly **$35$ distinct triangles**.

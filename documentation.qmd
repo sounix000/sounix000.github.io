@@ -1,0 +1,15 @@
+---
+title: "Documentation"
+---
+
+Open source technical documentation:
+
+- [SUSE Linux Enterprise - Modular Documentation](https://github.com/SUSE/doc-modular/pulls?q=is%3Apr+author%3Asounix000+is%3Aclosed)
+
+- [SUSE Linux Enterprise - Legacy Documentation](https://github.com/SUSE/doc-sle/pulls?q=is%3Apr+is%3Aclosed+author%3Asounix000)
+
+- [SUSE Linux Enterprise - Compliance Documentation](https://github.com/SUSE/doc-unversioned/pulls?q=is%3Apr+author%3Asounix000+is%3Aclosed)
+
+- [Red Hat OpenShift - CI/CD Pipelines Documentation](https://github.com/openshift/openshift-docs/pulls?q=is%3Apr+is%3Aclosed+author%3Asounix000)
+
+- [FusionCharts - Weather Dashboard using Vue.js](https://www.smashingmagazine.com/2019/02/interactive-weather-dashboard-api-vue-js/)

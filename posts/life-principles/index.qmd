@@ -1,0 +1,45 @@
+---
+title: "Principles of my life"
+description: "A short list of personal rules across body, mind, work, money, and relationships."
+date: "2024-07-15"
+categories: [miscellaneous]
+image: images/cover.png
+draft: true
+---
+
+A short list of rules I try to actually live by, grouped by the areas of life they govern.
+
+## Body
+
+- Eat on time, simple and nutritious.
+- Sleep enough, at fixed times.
+- Move the body: run, stretch, lift.
+- Maintain cleanliness and silence.
+
+## Mind
+
+- Study mathematics, solve problems.
+- Read literature, especially philosophy.
+- Protect study time; it's sacred.
+- Seek coherence and elegance.
+
+## Profession
+
+- Do small, precise work every day.
+- Avoid multitasking and drama.
+- Keep tools simple and durable.
+- Build minimal, permanent systems.
+
+## Money
+
+- Save automatically; spend consciously.
+- Eliminate waste wherever possible.
+- Plan monthly and review weekly.
+- Treat time as currency.
+
+## Relationships
+
+- Give respect, not indulgence.
+- Avoid arguments that prove nothing.
+- Keep promises; apologize when wrong.
+- Prefer kindness to cleverness.

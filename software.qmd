@@ -1,0 +1,13 @@
+---
+title: "Software"
+---
+
+Executable ideas and experiments:
+
+- [Test automation using Selenium, BrowserStack, and GitHub](https://github.com/sounix000/browserstack-qa-automation): A collection of scripts that creates a test automation workflow using Selenium, BrowserStack, and GitHub.
+
+- [Landmark detection using Google Cloud and Vision API](https://github.com/sounix000/landmark-detection-gcp): An extendable Python project that combines multiple products from Google Cloud's offerings.
+
+- [Weather Dashboard using Vue.js](https://github.com/sounix000/weather-dashboard-vue): A client-side application using FusionChart's charting libraries, UI elements, and third-party weather data APIs for real-time data.
+
+- [Cryptocurrency Converter and Real-time Price Dashboard](https://github.com/sounix000/cryptocharts): A client-side application to create and maintain cryptocurrency price converters and real-time price dashboards.

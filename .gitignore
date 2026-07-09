@@ -1,0 +1,44 @@
+# macOS
+.DS_Store
+
+# ── IDE ────────────────────────────────────────────────────────────────────────
+# VS Code workspace settings are often machine-specific (interpreter paths, etc.)
+.vscode/
+
+# ── Claude Code ───────────────────────────────────────────────────────────────
+# Local per-machine Claude settings
+.claude/
+
+/.quarto/
+**/*.quarto_ipynb
+
+/.luarc.json
+
+# Quarto's default (unused here since output-dir is docs/) and freeze caches —
+# both regenerate locally and are machine/run specific.
+/_site/
+/_freeze/
+
+# ── LaTeX (resume/) ───────────────────────────────────────────────────────────
+# Build artifacts from pdflatex/latexmk; only the .tex source and .cls/.pdf
+# output are meant to be committed.
+*.aux
+*.log
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.out
+*.toc
+*.lof
+*.lot
+*.bbl
+*.blg
+*.idx
+*.ilg
+*.ind
+*.run.xml
+*-blx.bib
+*.bcf
+*.nav
+*.snm
+*.vrb

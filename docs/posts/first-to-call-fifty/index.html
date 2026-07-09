@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Souvik Sarkar">
+<meta name="dcterms.date" content="2026-04-13">
+<meta name="description" content="Solving a number-calling game with backward induction and modular arithmetic.">
+
+<title>First to call 50: winning strategy using backward induction – Curiosity | Imagination | Rigor</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-3e7735b7b22659e5fa437aca0bb49075.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="First to call 50: winning strategy using backward induction – Curiosity | Imagination | Rigor">
+<meta property="og:description" content="Solving a number-calling game with backward induction and modular arithmetic.">
+<meta property="og:image" content="https://cuimri.com/posts/first-to-call-fifty/images/cover.png">
+<meta property="og:site_name" content="Curiosity | Imagination | Rigor">
+<meta property="og:image:height" content="630">
+<meta property="og:image:width" content="1200">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../images/logo.png" alt="" class="navbar-logo light-content">
+    <img src="../../images/logo.png" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Curiosity | Imagination | Rigor</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../software.html"> 
+<span class="menu-text">Software</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../documentation.html"> 
+<span class="menu-text">Documentation</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="../../index.xml"> <i class="bi bi-rss" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">First to call 50: winning strategy using backward induction</h1>
+                  <div>
+        <div class="description">
+          Solving a number-calling game with backward induction and modular arithmetic.
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">mathematics</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Souvik Sarkar </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">April 13, 2026</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#problem-statement" id="toc-problem-statement" class="nav-link active" data-scroll-target="#problem-statement">Problem statement</a></li>
+  <li><a href="#informal-analysis" id="toc-informal-analysis" class="nav-link" data-scroll-target="#informal-analysis">Informal analysis</a></li>
+  <li><a href="#backward-induction" id="toc-backward-induction" class="nav-link" data-scroll-target="#backward-induction">Backward induction</a></li>
+  <li><a href="#formal-justification" id="toc-formal-justification" class="nav-link" data-scroll-target="#formal-justification">Formal justification</a></li>
+  <li><a href="#concrete-strategy" id="toc-concrete-strategy" class="nav-link" data-scroll-target="#concrete-strategy">Concrete strategy</a></li>
+  <li><a href="#winning-sequence-example" id="toc-winning-sequence-example" class="nav-link" data-scroll-target="#winning-sequence-example">Winning sequence (example)</a></li>
+  <li><a href="#why-the-strategy-works" id="toc-why-the-strategy-works" class="nav-link" data-scroll-target="#why-the-strategy-works">Why the strategy works</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<section id="problem-statement" class="level2">
+<h2 class="anchored" data-anchor-id="problem-statement">Problem statement</h2>
+<p>Two players take turns calling out integers. The first person to call out <span class="math inline">\(50\)</span> wins.</p>
+<p>Rules:</p>
+<ul>
+<li>The first player must call an integer between <span class="math inline">\(1\)</span> and <span class="math inline">\(10\)</span> (inclusive).</li>
+<li>Each subsequent number must be strictly greater than the previous number by at least <span class="math inline">\(1\)</span> and at most <span class="math inline">\(10\)</span>.</li>
+<li>The player who first calls exactly <span class="math inline">\(50\)</span> wins immediately.</li>
+</ul>
+<p><strong>Question:</strong> should you go first, and what is the optimal strategy?</p>
+</section>
+<section id="informal-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="informal-analysis">Informal analysis</h2>
+<p>Let the calls during the game be denoted <span class="math inline">\(C_1, C_2, \ldots, C_w\)</span>, where <span class="math inline">\(C_1\)</span> is the first call and <span class="math inline">\(C_w = 50\)</span> is the winning call. The rules imply</p>
+<p><span class="math display">\[1 \leq C_1 \leq 10, \qquad 1 \leq C_i - C_{i-1} \leq 10 \text{ for } i \geq 2.\]</span></p>
+<p>We analyze the game by backward induction: identify positions (numbers) that are <em>winning positions</em> for the player about to move, meaning that from such a number the player to move can force a win with perfect play.</p>
+</section>
+<section id="backward-induction" class="level2">
+<h2 class="anchored" data-anchor-id="backward-induction">Backward induction</h2>
+<p>To call <span class="math inline">\(50\)</span> on your turn, the previous call must lie in the range <span class="math inline">\([40, 49]\)</span>. Therefore, if you can force the opponent to hand you any number in <span class="math inline">\([40, 49]\)</span>, you win by calling <span class="math inline">\(50\)</span>.</p>
+<p>To force the opponent into <span class="math inline">\([40, 49]\)</span>, you would like to hand them the number <span class="math inline">\(39\)</span>, because from <span class="math inline">\(39\)</span> the opponent’s allowed responses are <span class="math inline">\([40, 49]\)</span> and then you can call <span class="math inline">\(50\)</span>.</p>
+<p>Repeating this backward: <span class="math inline">\(39, 28, 17, 6\)</span> are the critical numbers — if you call one of these on your turn, the opponent is forced into an interval that allows you to move to the next critical number (adding <span class="math inline">\(11\)</span> each time), eventually reaching <span class="math inline">\(39\)</span> and then <span class="math inline">\(50\)</span>.</p>
+<p>Thus the numbers <span class="math inline">\(6, 17, 28, 39, 50\)</span> form the thread of winning positions, spaced <span class="math inline">\(11\)</span> apart.</p>
+</section>
+<section id="formal-justification" class="level2">
+<h2 class="anchored" data-anchor-id="formal-justification">Formal justification</h2>
+<div class="callout callout-style-default callout-note callout-titled" title="Claim">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Claim
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If a player on their turn calls a number congruent to <span class="math inline">\(6 \pmod{11}\)</span> — i.e., of the form <span class="math inline">\(6 + 11k\)</span> — then with perfect play that player can force a win. Conversely, if the player to move holds a number <em>not</em> congruent to <span class="math inline">\(6 \pmod{11}\)</span>, the opponent can (by proper play) move to a number congruent to <span class="math inline">\(6 \pmod{11}\)</span>.</p>
+</div>
+</div>
+<p><strong>Proof.</strong> Suppose on your turn you call <span class="math inline">\(n = 6 + 11k\)</span> for some integer <span class="math inline">\(k \geq 0\)</span> (so <span class="math inline">\(n \leq 50\)</span> as relevant). The opponent must respond with a number <span class="math inline">\(m\)</span> satisfying</p>
+<p><span class="math display">\[n + 1 \leq m \leq n + 10.\]</span></p>
+<p>All such <span class="math inline">\(m\)</span> satisfy <span class="math inline">\(m \equiv n + r \pmod{11}\)</span> for some <span class="math inline">\(r \in \{1, \ldots, 10\}\)</span>, so <span class="math inline">\(m \not\equiv 6 \pmod{11}\)</span>. In particular, no response of the opponent can be congruent to <span class="math inline">\(6 \pmod{11}\)</span>. Therefore, you can always respond by calling</p>
+<p><span class="math display">\[n' = n + 11 = 6 + 11(k+1),\]</span></p>
+<p>which is legal because <span class="math inline">\(n' - m \leq n' - (n+1) = 10\)</span> and <span class="math inline">\(n' - m \geq n' - (n+10) = 1\)</span>. Thus you move to the next number in the sequence <span class="math inline">\(6, 17, 28, 39, 50\)</span>.</p>
+<p>This induction continues until you call <span class="math inline">\(50\)</span>. Hence control of numbers congruent to <span class="math inline">\(6 \pmod{11}\)</span> lets you force the win. Conversely, if it is your opponent’s turn and they hold a number not congruent to <span class="math inline">\(6 \pmod{11}\)</span>, you can always choose a response that lands on the next <span class="math inline">\(6 \pmod{11}\)</span> number, forcing them back into the losing class.</p>
+<p>Therefore the positions congruent to <span class="math inline">\(6 \pmod{11}\)</span> are precisely the winning positions for the player about to move.</p>
+</section>
+<section id="concrete-strategy" class="level2">
+<h2 class="anchored" data-anchor-id="concrete-strategy">Concrete strategy</h2>
+<div class="callout callout-style-default callout-tip callout-titled" title="Strategy">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Strategy
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Go first and call <span class="math inline">\(6\)</span>. After that, whenever your opponent calls some number, respond by playing the unique number that brings the running total to the next term of the sequence <span class="math inline">\(6, 17, 28, 39, 50\)</span> — i.e., always move to the smallest number of the form <span class="math inline">\(6 + 11k\)</span> that is at most <span class="math inline">\(50\)</span>. This guarantees that you will be the one to call <span class="math inline">\(50\)</span>.</p>
+</div>
+</div>
+</section>
+<section id="winning-sequence-example" class="level2">
+<h2 class="anchored" data-anchor-id="winning-sequence-example">Winning sequence (example)</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Turn</th>
+<th>Player</th>
+<th>My call</th>
+<th>Opponent’s possible responses</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(1\)</span></td>
+<td>Me</td>
+<td><span class="math inline">\(6\)</span></td>
+<td>—</td>
+<td>start at a <span class="math inline">\(6 \pmod{11}\)</span> position</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(2\)</span></td>
+<td>Opponent</td>
+<td>—</td>
+<td><span class="math inline">\([7, 16]\)</span></td>
+<td>any call in this interval</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(3\)</span></td>
+<td>Me</td>
+<td><span class="math inline">\(17\)</span></td>
+<td>—</td>
+<td>move to next <span class="math inline">\(6 \pmod{11}\)</span> number</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(4\)</span></td>
+<td>Opponent</td>
+<td>—</td>
+<td><span class="math inline">\([18, 27]\)</span></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(5\)</span></td>
+<td>Me</td>
+<td><span class="math inline">\(28\)</span></td>
+<td>—</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(6\)</span></td>
+<td>Opponent</td>
+<td>—</td>
+<td><span class="math inline">\([29, 38]\)</span></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(7\)</span></td>
+<td>Me</td>
+<td><span class="math inline">\(39\)</span></td>
+<td>—</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(8\)</span></td>
+<td>Opponent</td>
+<td>—</td>
+<td><span class="math inline">\([40, 49]\)</span></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(9\)</span></td>
+<td>Me</td>
+<td><span class="math inline">\(50\)</span></td>
+<td>—</td>
+<td>win</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="why-the-strategy-works" class="level2">
+<h2 class="anchored" data-anchor-id="why-the-strategy-works">Why the strategy works</h2>
+<p>Two simple facts suffice:</p>
+<ol type="1">
+<li>On any move you can increase the current number by <span class="math inline">\(1\)</span> to <span class="math inline">\(10\)</span>.</li>
+<li>The residue classes modulo <span class="math inline">\(11\)</span> partition the integers into blocks of size <span class="math inline">\(11\)</span>. By forcing the running total into the residue class <span class="math inline">\(6 \pmod{11}\)</span> on your turns, you deny the opponent the ability to do so on theirs — so you can maintain control and eventually reach <span class="math inline">\(50\)</span>.</li>
+</ol>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>The first player wins with perfect play by starting at <span class="math inline">\(6\)</span> and then repeatedly adding <span class="math inline">\(11\)</span> (after the opponent moves), following the sequence <span class="math inline">\(6, 17, 28, 39, 50\)</span>. The winning positions are exactly those congruent to <span class="math inline">\(6 \pmod{11}\)</span>.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Generalization">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Generalization
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The same backward-induction method generalizes: if on each move a player may add between <span class="math inline">\(1\)</span> and <span class="math inline">\(M\)</span>, and the target is <span class="math inline">\(T\)</span>, then winning positions are those congruent to <span class="math inline">\(r \pmod{M+1}\)</span> where <span class="math inline">\(r\)</span> is the smallest positive integer such that <span class="math inline">\(T \equiv r \pmod{M+1}\)</span> and that is reachable from a legal initial move.</p>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/cuimri\.com");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<input type="hidden" id="giscus-base-theme" value="preferred_color_scheme">
+<input type="hidden" id="giscus-alt-theme" value="preferred_color_scheme">
+<script>
+  function loadGiscus() {
+    // Function to get the theme based on body class
+    const getTheme = () => {
+      let baseTheme = document.getElementById('giscus-base-theme').value;
+      let altTheme = document.getElementById('giscus-alt-theme').value;
+      return document.body.classList.contains('quarto-dark') ? altTheme : baseTheme;
+    };
+    const script = document.createElement("script");
+    script.src = "https://giscus.app/client.js";
+    script.async = true;
+    script.dataset.repo = "sounix000/sounix000.github.io";
+    script.dataset.repoId = "R_kgDORBEQrA";
+    script.dataset.category = "General";
+    script.dataset.categoryId = "DIC_kwDORBEQrM4C_ZUY";
+    script.dataset.mapping = "pathname";
+    script.dataset.reactionsEnabled = "1";
+    script.dataset.emitMetadata = "0";
+    script.dataset.inputPosition = "top";
+    script.dataset.theme = getTheme();
+    script.dataset.lang = "en";
+    script.crossOrigin = "anonymous";
+    // Append the script to the desired div instead of at the end of the body
+    document.getElementById("quarto-content").appendChild(script);
+  }
+  loadGiscus();
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

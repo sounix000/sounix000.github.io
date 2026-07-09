@@ -1,0 +1,31 @@
+project:
+  type: website
+  output-dir: docs
+  resources:
+    - favicon.ico
+    - images/**
+
+website:
+  description: "Website of Souvik Sarkar"
+  site-url: https://cuimri.com # you must change this appropriately for RSS feeds to work properly
+  title: "Curiosity | Imagination | Rigor"
+  navbar:
+    logo: images/logo.png
+    right:
+      - text: Software
+        href: software.qmd
+      - text: Documentation
+        href: documentation.qmd
+      - text: About
+        href: about.qmd
+      - icon: rss
+        href: index.xml
+format:
+  html:
+    theme:
+      - cosmo
+      - brand
+    css: styles.css
+
+
+
