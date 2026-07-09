@@ -1,1 +1,19 @@
 /* css styles */
+
+/* _brand.yml's link-color (#1F6B44) only reaches the light-mode
+   stylesheet — it's too dark to pass contrast against the near-black
+   dark-mode background (~2.4:1, well under WCAG's 4.5:1 minimum), so
+   Bootstrap's own dark-mode default lightens colors instead of reusing
+   the light one. Do the same here rather than let dark mode fall back
+   to Cosmo's default blue. */
+html[data-bs-theme="dark"] a {
+  color: #5CB88A;
+}
+html[data-bs-theme="dark"] a:hover {
+  color: #7FCBA3;
+}
+html[data-bs-theme="dark"] .sidebar nav[role="doc-toc"] ul > li > a.active,
+html[data-bs-theme="dark"] .sidebar nav[role="doc-toc"] ul > li > ul > li > a.active {
+  border-left-color: #5CB88A !important;
+  color: #5CB88A !important;
+}

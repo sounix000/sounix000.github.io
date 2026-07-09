@@ -23,8 +23,8 @@ website:
 format:
   html:
     theme:
-      - cosmo
-      - brand
+      light: [cosmo, brand]
+      dark: [cosmo, brand]
     css: styles.css
 
 
