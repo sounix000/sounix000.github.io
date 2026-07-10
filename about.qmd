@@ -1,6 +1,6 @@
 ---
 title: "Souvik Sarkar"
-image: images/souvik.png
+image: images/logo.png
 about:
   template: jolla
   links:

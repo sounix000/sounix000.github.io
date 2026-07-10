@@ -1,11 +1,27 @@
 /* css styles */
 
-/* _brand.yml's link-color (#1F6B44) only reaches the light-mode
-   stylesheet — it's too dark to pass contrast against the near-black
-   dark-mode background (~2.4:1, well under WCAG's 4.5:1 minimum), so
-   Bootstrap's own dark-mode default lightens colors instead of reusing
-   the light one. Do the same here rather than let dark mode fall back
-   to Cosmo's default blue. */
+/* The listing sidebar's category filters are plain divs (not <a> tags),
+   so they don't pick up the site's a/a:hover link-color styling on
+   their own — give them the same treatment explicitly. */
+.quarto-listing-category .category {
+  color: #1F6B44;
+}
+.quarto-listing-category .category:hover {
+  color: #164F32;
+}
+html[data-bs-theme="dark"] .quarto-listing-category .category {
+  color: #5CB88A;
+}
+html[data-bs-theme="dark"] .quarto-listing-category .category:hover {
+  color: #7FCBA3;
+}
+
+/* dark-mode.html sets data-bs-theme on <html> from the OS/browser
+   prefers-color-scheme setting (there's no manual toggle). _brand.yml's
+   link-color (#1F6B44) only reaches the light-mode stylesheet — it's
+   too dark to pass contrast against the near-black dark-mode
+   background (~2.4:1, well under WCAG's 4.5:1 minimum), so lighten it
+   here rather than let dark mode fall back to Cosmo's default blue. */
 html[data-bs-theme="dark"] a {
   color: #5CB88A;
 }

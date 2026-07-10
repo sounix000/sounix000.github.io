@@ -1,0 +1,14 @@
+<script>
+(function () {
+  // Bootstrap's compiled CSS already ships a full [data-bs-theme=dark]
+  // companion; Quarto's own light/dark theme split + toggle button
+  // don't reliably set that attribute when a `brand` theme layer is
+  // present, so drive it directly from the OS/browser preference.
+  var query = window.matchMedia("(prefers-color-scheme: dark)");
+  function applyColorMode(e) {
+    document.documentElement.setAttribute("data-bs-theme", e.matches ? "dark" : "light");
+  }
+  applyColorMode(query);
+  query.addEventListener("change", applyColorMode);
+})();
+</script>

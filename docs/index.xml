@@ -21,7 +21,6 @@
 
 
 
-
 <section id="what-are-mersenne-primes" class="level2">
 <h2 class="anchored" data-anchor-id="what-are-mersenne-primes">What are Mersenne primes?</h2>
 <p>Mersenne primes are prime numbers of the form <img src="https://latex.codecogs.com/png.latex?2%5Ep%20-%201"> where <img src="https://latex.codecogs.com/png.latex?p"> is also prime. Named after the French monk Marin Mersenne (1588–1648), these primes have fascinated mathematicians for centuries due to their connection with perfect numbers and their computational importance in modern cryptography.</p>
@@ -109,7 +108,6 @@
   <dc:creator>Souvik Sarkar</dc:creator>
   <link>https://cuimri.com/posts/first-to-call-fifty/</link>
   <description><![CDATA[ 
-
 
 
 
@@ -301,7 +299,6 @@
 
 
 
-
 <section id="problem-statement" class="level2">
 <h2 class="anchored" data-anchor-id="problem-statement">Problem statement</h2>
 <div class="callout callout-style-default callout-note callout-titled" title="Motivating problem">
@@ -324,7 +321,7 @@
 <section id="approach-1-the-concrete-case-n-5" class="level2">
 <h2 class="anchored" data-anchor-id="approach-1-the-concrete-case-n-5">Approach 1: the concrete case <img src="https://latex.codecogs.com/png.latex?n%20=%205"></h2>
 <p>Lay out a <img src="https://latex.codecogs.com/png.latex?5%20%5Ctimes%205"> table whose rows and columns are indexed by the teams <img src="https://latex.codecogs.com/png.latex?T_1,%20%5Cldots,%20T_5">. A check mark in row <img src="https://latex.codecogs.com/png.latex?T_i">, column <img src="https://latex.codecogs.com/png.latex?T_j"> records the game between team <img src="https://latex.codecogs.com/png.latex?i"> and team <img src="https://latex.codecogs.com/png.latex?j">.</p>
-<img src="https://cuimri.com/posts/counting-unordered-pairs/index_files/mediabag/748565b9d732cf5874b1ed3d257ebcad5561d800.svg" class="img-fluid">
+<img src="https://cuimri.com/posts/counting-unordered-pairs/index_files/mediabag/1a526b18bf182c2ffaf144cf1e537aa6b0f01ad6.svg" class="img-fluid">
 <p><strong>Reading the table.</strong></p>
 <ul>
 <li>Diagonal (red, ✗): a team cannot play itself.</li>
@@ -522,12 +519,11 @@
 
 
 
-
 <section id="problem" class="level2">
 <h2 class="anchored" data-anchor-id="problem">Problem</h2>
 <p>Count the number of distinct triangles formed when a regular pentagram is drawn inside a regular pentagon by connecting every second vertex (i.e., draw the five-pointed star formed by skipping one vertex each time).</p>
 <p>The figure consists of a regular pentagon with its five vertices connected every second vertex, producing the familiar five-pointed star (pentagram) whose intersecting diagonals create five interior intersection points.</p>
-<img src="https://cuimri.com/posts/count-triangles-pentagon-star/index_files/mediabag/2044ca545e986a14a1676f10091aa533aa1b71e1.svg" class="img-fluid">
+<img src="https://cuimri.com/posts/count-triangles-pentagon-star/index_files/mediabag/1c4c86bda62effbe77cf6d964a7698b4594771cf.svg" class="img-fluid">
 </section>
 <section id="strategy" class="level2">
 <h2 class="anchored" data-anchor-id="strategy">Strategy</h2>
@@ -586,7 +582,6 @@
   <dc:creator>Souvik Sarkar</dc:creator>
   <link>https://cuimri.com/posts/joy-of-useless-pursuits/</link>
   <description><![CDATA[ 
-
 
 
 
@@ -672,7 +667,6 @@
   <dc:creator>Souvik Sarkar</dc:creator>
   <link>https://cuimri.com/posts/fixing-software-documentation/</link>
   <description><![CDATA[ 
-
 
 
 
@@ -766,7 +760,6 @@
   <dc:creator>Souvik Sarkar</dc:creator>
   <link>https://cuimri.com/posts/debugging-pods-kubernetes/</link>
   <description><![CDATA[ 
-
 
 
 
@@ -1121,7 +1114,6 @@ font-style: inherit;">'{.spec.imagePullSecrets[0].name}'</span></span></code></p
 
 
 
-
 <p>Based on my 30-minute analysis of BrowserStack’s documentation and comparing with a competitor’s documentation, I don’t find anything that I strongly dislike. However, as a technical writer trained to pay attention to details, I have the following nitpicks.</p>
 <section id="principles-of-minimalism-are-not-followed" class="level2">
 <h2 class="anchored" data-anchor-id="principles-of-minimalism-are-not-followed">1. Principles of minimalism are not followed</h2>
@@ -1226,7 +1218,6 @@ Tip
   <dc:creator>Souvik Sarkar</dc:creator>
   <link>https://cuimri.com/posts/test-automation-selenium/</link>
   <description><![CDATA[ 
-
 
 
 
@@ -2290,7 +2281,6 @@ Note
 
 
 
-
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
 <p>Tic-tac-toe is a simple and fun game that you can play anywhere. To play, you need a 3x3 grid and an opponent. You can also practice against yourself or a computer and surprise your friends with your unbeatable skills.</p>
@@ -2399,7 +2389,6 @@ Tip
   <dc:creator>Souvik Sarkar</dc:creator>
   <link>https://cuimri.com/posts/google-cloud-vision-api/</link>
   <description><![CDATA[ 
-
 
 
 
@@ -3113,7 +3102,6 @@ Note
 
 
 
-
 <p>When designing a web service, you must carefully evaluate the choice between SOAP and REST. This guide covers their strengths, limitations, and use cases to help you make an informed decision.</p>
 <section id="soap" class="level2">
 <h2 class="anchored" data-anchor-id="soap">SOAP</h2>
@@ -3249,7 +3237,6 @@ Tip
   <dc:creator>Souvik Sarkar</dc:creator>
   <link>https://cuimri.com/posts/java-code-review/</link>
   <description><![CDATA[ 
-
 
 
 
