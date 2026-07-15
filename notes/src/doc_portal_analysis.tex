@@ -1,0 +1,124 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{xcolor}
+\geometry{margin=1in}
+
+\lstset{
+    basicstyle=\ttfamily,
+    breaklines=true,
+    frame=single,
+    backgroundcolor=\color{gray!10}
+}
+
+% Define document metadata in the preamble
+\title{\bfseries A brief analysis of BrowserStack's documentation}
+\author{Souvik Sarkar \\ \texttt{sounix000@gmail.com}} % Applied your signature author block
+\date{October 27, 2022}
+
+\begin{document}
+
+\maketitle % Generates your standard title, author, and email block
+
+Based on my 30 minute analysis of BrowserStack's documentation and comparing with a competitor's documentation, I don't find anything that I strongly dislike. However, as a technical writer trained to pay attention to details, I have the following \textbf{nitpicks}:
+
+\section*{Principles of minimalism are not followed}
+
+For example, in Getting started - Python - Prerequisites, the first bullet point is verbose.
+
+\textbf{Existing sentence}:
+
+\begin{lstlisting}
+You need to have BrowserStack Username and Access key, which you can find in your account settings. If you have not created an account yet, you can sign up for a Free Trial or purchase a plan.
+\end{lstlisting}
+
+\textbf{Suggested sentence}:
+
+\begin{lstlisting}
+Note your BrowserStack Username and Access key from the account settings. Unregistered users can sign up for a trial account or purchase a plan.
+\end{lstlisting}
+
+The suggestion also demonstrates restructuring of sentences to emphasize user's actions, and brings more clarity.
+
+\section*{Section headings are not in gerund form}
+
+For example, in Getting started - Python - Run your first test:
+
+\textbf{Existing heading}:
+
+\begin{lstlisting}
+Run your first test
+\end{lstlisting}
+
+\textbf{Suggested heading}:
+
+\begin{lstlisting}
+Running your first test
+\end{lstlisting}
+
+Gerund forms of phrases are appropriate for highlighting a process, which might contain several steps. For the steps, we can use action oriented sentences in simple present tense, such as ``Create a sample test code file''.
+
+\section*{Admonitions are misused}
+
+For example:
+
+\begin{itemize}
+    \item The following \textbf{Warning} should ideally be a \textbf{Caution}, because the user needs to be mindful about adding the \texttt{driver.quit()} statement at the end of the code.
+    
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.5\textwidth]{images/warning.png}
+        \caption{Warning admonition example}
+        \label{fig:warning}
+    \end{figure}
+    
+    \item \textbf{Protip} is not a standard admonition. Instead, use \textbf{Tip}.
+    
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.5\textwidth]{images/protip.png}
+        \caption{Protip admonition example}
+        \label{fig:protip}
+    \end{figure}
+\end{itemize}
+
+\section*{Some unnecessary images}
+
+Images could have been used more sparingly to avoid maintenance problems. This is even more important for images that represent products such as GitHub, which are beyond BrowserStack's control.
+
+In addition, images without appropriate \texttt{alt-text} hampers accessibility and SEO.
+
+\section*{Doc site UI/UX can be improved}
+
+Modern documentation websites adopt a three-column approach: documentation suite navigation on the left, content in the middle, and current page ToC on the right. BrowserStack's documentation website mostly leaves the right column blank. As a result, the left navigation panel looks more crowded and needs frequent scrolling.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/browserstack-doc.png}
+    \caption{BrowserStack documentation site}
+    \label{fig:browserstack-doc}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/lambdatest-doc.png}
+    \caption{LambdaTest documentation site}
+    \label{fig:lambdatest-doc}
+\end{figure}
+
+\section*{General comment}
+
+\begin{itemize}
+    \item Some navigation links within the text/content are broken, especially the ones that navigates to different sections within the same article.
+    
+    \item In lots of occasions, the writing style deviates significantly from Google's documentation style guide. In fact, a seasoned writer can easily identify the documents contributed by developers, testers, product managers, or customer support. While this is not a big problem, the documentation experience can certainly be made more consistent.
+\end{itemize}
+
+\section*{Bonus}
+
+Modern test environments, especially in enterprise situations, are mostly containers running on clusters. If the onboarding docs describe procedures using containers, the onboarding experience and the documentation becomes more standardized and maintainable.
+
+\end{document}

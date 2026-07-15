@@ -1,0 +1,117 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\usepackage{float}
+\geometry{margin=1in}
+
+% Define document metadata in the preamble
+\title{\bfseries How to not lose in Tic-Tac-Toe}
+\author{Souvik Sarkar \\ \texttt{sounix000@gmail.com}} % Applied your signature author block
+\date{November 16, 2020}
+
+\begin{document}
+
+\maketitle % Generates your standard title, author, and email block
+
+\section*{Overview}
+
+Tic-tac-toe is a simple and fun game that you can play anywhere. To play, you need a \textbf{3x3} grid and an opponent. You can also practice against yourself or a computer and surprise your friends with your unbeatable skills.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.3\textwidth]{images/tic1.png}
+\end{figure}
+
+\section*{Rules}
+
+The rules of the game are as follows:
+
+\begin{itemize}
+    \item You and your opponent choose either \textbf{X} or \textbf{O} as your symbol. If you choose \textbf{O}, your opponent will get \textbf{X}.
+    
+    \item On your turn, place your symbol in any vacant cell in the \textbf{3x3} grid. The first player can place their symbol in any of the nine cells.
+    
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.3\textwidth]{images/tic2.png}
+    \end{figure}
+    
+    \item The goal is to mark three consecutive cells in a straight line. This can be horizontal, vertical, or diagonal. \textit{The first player to mark three consecutive cells \textbf{wins} the game}.
+    
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.3\textwidth]{images/tic3.png}
+    \end{figure}
+    
+    \item \textit{If neither player marks three consecutive cells before the grid is full, the game ends in a \textbf{draw}}.
+    
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.3\textwidth]{images/tic4.png}
+    \end{figure}
+\end{itemize}
+
+\section*{Winning strategies}
+
+Tic-tac-toe is a zero-sum game, meaning that \textit{if both players make the \textbf{best possible moves}, the game will always end in a \textbf{draw}}. Computer games are often programmed based on this principle. You can play these games to practice and improve your chances of not losing.
+
+The real fun is playing against human opponents because they are prone to making mistakes. \textit{You can \textbf{win} or force a \textbf{draw} if you follow these strategies}:
+
+\begin{itemize}
+    \item On your first move, always place your symbol in the center (the middlemost cell). This gives you the most opportunities to create a straight-line arrangement in all four directions (horizontal, vertical, and two diagonals).
+    
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.3\textwidth]{images/tic5.png}
+    \end{figure}
+    
+    \item If your opponent starts by placing their symbol in the center, place your symbol in one of the four corners. This gives you the chance to extend your line in both horizontal and vertical directions.
+    
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.3\textwidth]{images/tic6.png}
+    \end{figure}
+\end{itemize}
+
+\begin{tcolorbox}[colback=green!5!white,colframe=green!75!black,title=Tip]
+You can use this tactic at any move, provided your opponent is two or more steps away from winning.
+\end{tcolorbox}
+
+\begin{itemize}
+    \item If your opponent has already marked two consecutive cells, block the third cell in that line. Remember, once your opponent marks three consecutive cells, the game is over.
+    
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.3\textwidth]{images/tic7.png}
+    \end{figure}
+    
+    \item If your opponent has multiple ways to complete a line, blocking one path may not be enough. In this case, you will lose regardless of which path you block.
+    
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.3\textwidth]{images/tic8.png}
+    \end{figure}
+    
+    \item If you are blocked, explore other open directions to maximize your chances. It is also important to use the cells you have already marked strategically.
+    
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.3\textwidth]{images/tic9.png}
+    \end{figure}
+\end{itemize}
+
+\section*{Example}
+
+In the \textit{$i$-th} move of a sample game, your opponent places their symbol as \textit{$X_i$}, and you place your symbol as \textit{$O_i$}. From the figure, you can understand the game's progression and outcome.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.3\textwidth]{images/tic10.png}
+\end{figure}
+
+If a \textbf{3x3} grid is too simple for you, try a \textbf{4x4} or \textbf{5x5} grid. But always stay alert and \textit{anticipate your opponent's next two moves}. Most importantly, have fun playing Tic-tac-toe!
+
+\end{document}

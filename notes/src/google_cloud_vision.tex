@@ -1,0 +1,404 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+\geometry{margin=1in}
+
+\lstset{
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    frame=single,
+    backgroundcolor=\color{gray!10},
+    columns=flexible
+}
+
+\lstdefinestyle{python}{
+    language=Python,
+    keywordstyle=\color{blue}\bfseries,
+    commentstyle=\color{green!60!black},
+    stringstyle=\color{red}
+}
+
+\lstdefinestyle{bash}{
+    language=bash,
+    keywordstyle=\color{blue}\bfseries,
+    commentstyle=\color{green!60!black}
+}
+
+\title{Landmark detection using Google Cloud and Vision API}
+\author{Souvik Sarkar \\ \texttt{sounix000@gmail.com}}
+\date{November 14, 2020}
+
+\begin{document}
+
+\maketitle
+
+\section*{Overview}
+
+This tutorial illustrates how to programmatically interact with Google Cloud Platform's (GCP) Storage and Vision APIs, using Python 3.x and other relevant tools on your local machine. Python developers can use the tutorial as a guide for the following purposes:
+
+\begin{itemize}
+    \item Exploring and testing GCP's features and capabilities
+    \item Integrating GCP products with their applications
+\end{itemize}
+
+The tutorial involves \textit{automated detection of landmarks} in images of various locations, using the Google Cloud Storage and Vision APIs. You will learn how to:
+
+\begin{itemize}
+    \item Configure various GCP products and services for your project.
+    \item Set up the project with appropriate structure.
+    \item Create a Python script for interacting with the APIs.
+    \item Extend the project using various GCP offerings.
+    \item Delete the project from GCP.
+\end{itemize}
+
+\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title=Note]
+\begin{itemize}
+    \item The commands and sample code are \textit{unsuitable for production use}.
+    \item All user-replaceable values are written in \texttt{UPPERCASE\_CODE\_FONT}.
+\end{itemize}
+\end{tcolorbox}
+
+\section*{Prerequisites}
+
+To maximize the learning experience, familiarity with the following is recommended:
+
+\begin{itemize}
+    \item Development using Python 3.x
+    \item Common Linux commands
+    \item SDKs and libraries
+\end{itemize}
+
+Prior experience with cloud platforms is not necessary, but definitely helpful. The tutorial contains links to relevant documentation for each product.
+
+\section*{Using GCP products}
+
+This tutorial uses the following GCP products within the free tier limits:
+
+\begin{itemize}
+    \item \textbf{Google Cloud Storage}: Store assets and objects for your applications.
+    
+    \item \textbf{Google Vision API}: Use Google's pre-trained computer vision models for common image-based applications.
+    
+    \item \textbf{Google Cloud Client Libraries}: Develop application using client libraries for your chosen programming language.
+    
+    \item \textbf{Google Cloud SDK}: Deploy and manage applications using command-line tools.
+\end{itemize}
+
+\section*{Configuring google cloud}
+
+To set up your project, resources, and APIs in Google Cloud Platform:
+
+\begin{enumerate}
+    \item Sign in to Google Cloud Platform using your Google Account credentials.
+    
+    \item Create a new project and note the \textit{Project ID}.
+    
+    \item Create a storage bucket for the project and set the following \textit{Permissions}:
+    \begin{itemize}
+        \item Public access to \texttt{allUsers}
+        \item Access control to \texttt{Uniform}
+    \end{itemize}
+    
+    In addition, note the name of the bucket.
+    
+    \begin{tcolorbox}[colback=yellow!5!white,colframe=orange!75!black,title=Warning]
+    Setting public permissions exposes your bucket to unrestricted access. Avoid this in production environments.
+    \end{tcolorbox}
+    
+    \item Try the Vision API, then enable it for your project.
+    
+    \begin{tcolorbox}[colback=green!5!white,colframe=green!75!black,title=Tip]
+    Do not generate authorization credentials when enabling the Vision API using the Google Cloud Console. In the next section, we create the authentication credentials using the \texttt{gcloud} utility.
+    \end{tcolorbox}
+\end{enumerate}
+
+\section*{Setting up the project}
+
+Create a development environment on your local machine with all necessary packages, Cloud SDK, and client libraries.
+
+\subsection*{Creating a development environment}
+
+\begin{enumerate}
+    \item Ensure Python 3.x and \texttt{pip3} are installed on your system, and upgrade \texttt{pip} if necessary:
+
+\begin{lstlisting}[style=bash]
+$ python3 --version
+$ pip3 --version
+$ pip3 install --upgrade pip
+\end{lstlisting}
+
+    \item Create a project directory and navigate to it:
+
+\begin{lstlisting}[style=bash]
+$ mkdir PROJECT_DIRECTORY
+$ cd PROJECT_DIRECTORY
+\end{lstlisting}
+
+    \item Set up a virtual environment:
+
+\begin{lstlisting}[style=bash]
+$ pip3 install --upgrade virtualenv
+$ virtualenv VIRTUALENV_NAME
+$ source VIRTUALENV_NAME/bin/activate
+\end{lstlisting}
+
+    Your terminal prompt will change to indicate you are within the virtual environment.
+\end{enumerate}
+
+\subsection*{Installing google cloud sdk}
+
+\begin{enumerate}
+    \item Install the Cloud SDK for your operating system. Accept default options during installation.
+    
+    \item Initialize the project:
+
+\begin{lstlisting}[style=bash]
+$ gcloud init
+\end{lstlisting}
+
+    When the program prompts, provide inputs that are relevant to the project.
+\end{enumerate}
+
+\subsection*{Installing and configuring client libraries}
+
+\begin{enumerate}
+    \item Install the Storage and Vision client libraries for Python:
+
+\begin{lstlisting}[style=bash]
+$ pip3 install --upgrade google-cloud-storage google-cloud-vision
+\end{lstlisting}
+
+    \item Create a service account:
+
+\begin{lstlisting}[style=bash]
+$ gcloud iam service-accounts create SERVICE_ACCOUNT_NAME
+\end{lstlisting}
+
+    \item Grant permissions to the service account:
+
+\begin{lstlisting}[style=bash]
+$ gcloud projects add-iam-policy-binding PROJECT_ID \
+  --member="serviceAccount:SERVICE_ACCOUNT_NAME@PROJECT_ID.iam.gserviceaccount.com" \
+  --role="roles/owner"
+\end{lstlisting}
+
+    \item Generate a key file:
+
+\begin{lstlisting}[style=bash]
+$ gcloud iam service-accounts keys create KEY_FILE.json \
+  --iam-account=SERVICE_ACCOUNT_NAME@PROJECT_ID.iam.gserviceaccount.com
+\end{lstlisting}
+
+    \begin{tcolorbox}[colback=yellow!5!white,colframe=orange!75!black,title=Warning]
+    Ensure that the private key in the \texttt{KEY\_FILE.json} file is unavailable to the public. If you use GitHub or similar services to host the code for this project, add the name of the key file to \texttt{.gitignore}.
+    \end{tcolorbox}
+    
+    \item Configure the authentication credentials by setting the \texttt{GOOGLE\_APPLICATION\_CREDENTIALS} environment variable to the name of the key file.
+    
+    \begin{itemize}
+        \item Append the following line to \texttt{\textasciitilde/.bashrc} (or your shell's equivalent):
+
+\begin{lstlisting}[style=bash]
+$ export GOOGLE_APPLICATION_CREDENTIALS="PATH/TO/PROJECT_DIRECTORY/KEY_FILE.json"
+\end{lstlisting}
+
+        \item Source the file to make the changes effective:
+
+\begin{lstlisting}[style=bash]
+$ source ~/.bashrc
+\end{lstlisting}
+    \end{itemize}
+\end{enumerate}
+
+\section*{Creating a python script}
+
+Write a Python script that performs the following tasks:
+
+\begin{enumerate}
+    \item Accepts a directory containing images of famous landmarks.
+    \item Uploads images to the Cloud Storage bucket.
+    \item For each uploaded image
+    \begin{itemize}
+        \item Uses the Vision API to extract information about the landmarks present in the image.
+        \item Prints some information of common interest (for example, description and location of the landmark).
+    \end{itemize}
+\end{enumerate}
+
+\subsection*{Project structure}
+
+To complete the project structure, create the following:
+
+\begin{itemize}
+    \item A directory containing images of landmarks.
+    \item A \texttt{main.py} file.
+\end{itemize}
+
+\begin{lstlisting}
+. PROJECT_DIRECTORY
+|
+|--- VIRTUALENV_NAME
+|        |
+|        |--- bin
+|        |--- include
+|        |--- lib
+|        |--- lib64
+|        |--- pyenv.cfg
+|
+|--- IMAGE_DIRECTORY
+|        |
+|        |--- image1.png
+|        |--- image2.jpg
+|        |--- image3.jpeg
+|
+|--- KEY_FILE.json
+|
+|--- main.py
+\end{lstlisting}
+
+\subsection*{Sample code in \texttt{main.py}}
+
+In the \texttt{main.py} file, write code which is similar to the following sample:
+
+\begin{lstlisting}[style=python]
+# Import dependencies
+from __future__ import print_function
+from google.cloud import storage, vision
+import io, os
+
+# Define functions
+def get_image_names(image_dir):
+    """Returns a list containing absolute paths of images."""
+    image_abspath_list = []
+    for file in os.listdir('./' + image_dir):
+        image_abspath_list.append(os.path.abspath(image_dir + '/' + file))
+    return image_abspath_list
+
+def upload_landmark_images(bucket_name, image_abspath_list):
+    """Returns a list containing relative URIs of uploaded images."""
+    relative_storage_uris = []
+    storage_client = storage.Client()
+    bucket = storage_client.bucket(bucket_name)
+    for image_abspath in image_abspath_list:
+        image_name = image_abspath.split('/')[-1]
+        blob = bucket.blob(image_name)
+        blob.upload_from_filename(image_abspath)
+        relative_storage_uris.append('gs://' + bucket_name + '/' + image_name)
+    return relative_storage_uris
+
+def get_landmark_information(relative_storage_uris):
+    """Returns information on uploaded images."""
+    vision_client = vision.ImageAnnotatorClient()
+    image_object = vision.Image()
+    for image_uri in relative_storage_uris:
+        image_object.source.image_uri = image_uri
+        vision_response = vision_client.landmark_detection(image=image_object)
+        print('\n', '+' * 100, '\n')
+        print('IMAGE:', image_uri, '\n')
+        for landmark in vision_response.landmark_annotations:
+            print('=' * 50)
+            print('Landmark name:', landmark.description)
+            print('Landmark location:', landmark.locations)
+            print('Detection confidence score:', landmark.score)
+
+# Accept user inputs
+print('\n')
+image_dir = input('Enter the image directory: ')
+bucket_name = input('Enter the bucket name: ')
+
+# Call functions
+print('\n', 'Getting image names...')
+image_abspath_list = get_image_names(image_dir)
+print(' DONE', '\n')
+
+print('\n', 'Uploading images to cloud storage...')
+relative_storage_uris = upload_landmark_images(bucket_name, image_abspath_list)
+print(' DONE', '\n')
+
+print('\n', 'Extracting landmark information...')
+get_landmark_information(relative_storage_uris)
+print('\n', '+' * 100, '\n')
+print(' DONE... All information displayed!')
+print('\n\n')
+\end{lstlisting}
+
+\subsection*{Running the script}
+
+Run the \texttt{main.py} file. In the terminal, you will see an output similar to the following:
+
+\begin{lstlisting}[style=bash]
+$ python3 main.py 
+
+Enter the image directory: IMAGE_DIRECTORY
+Enter the bucket name: BUCKET_NAME
+
+Getting image names...
+DONE 
+
+Uploading images to cloud storage...
+DONE 
+
+Extracting landmark information...
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+IMAGE: gs://BUCKET_NAME/IMAGE_1.jpg 
+==================================================
+Landmark name: Taj Mahal
+Landmark location: [lat_lng {
+  latitude: 27.174698469698683
+  longitude: 78.042073
+}
+]
+Detection confidence score: 0.8424403667449951
+==================================================
+Landmark name: Taj Mahal Garden
+Landmark location: [lat_lng {
+  latitude: 27.1732425
+  longitude: 78.0421396
+}
+]
+Detection confidence score: 0.7699416875839233
+==================================================
+Landmark name: Taj Mahal
+Landmark location: [lat_lng {
+  latitude: 27.166695
+  longitude: 77.960958
+}
+]
+Detection confidence score: 0.4865312874317169
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+DONE... All information displayed!
+\end{lstlisting}
+
+\section*{Extending the project}
+
+You can extend the project by using the following offerings from GCP:
+
+\begin{itemize}
+    \item Use the Google Maps API to get the names of the landmark locations.
+    
+    \item Use Cloud SQL to store and retrieve image URLs.
+    
+    \item Use Google App Engine to deploy the application.
+\end{itemize}
+
+\section*{Deleting the project}
+
+If you discontinue development, delete the project from GCP to avoid incurring charges:
+
+\begin{lstlisting}[style=bash]
+$ gcloud projects delete PROJECT_ID
+\end{lstlisting}
+
+\hrule
+
+\begin{tcolorbox}[colback=gray!5, colframe=blue!50, title=\textbf{Note}]
+A modified and hopefully better version of this project is available at \url{https://github.com/sounix000/landmark-detection-gcp}.
+\end{tcolorbox}
+
+\end{document}

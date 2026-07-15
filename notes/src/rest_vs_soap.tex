@@ -1,0 +1,105 @@
+\documentclass[12pt]{article}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\geometry{margin=1in}
+
+% Define document metadata in the preamble
+\title{\bfseries Choosing between REST and SOAP}
+\author{Souvik Sarkar \\ \texttt{sounix000@gmail.com}} % Applied your signature author block
+\date{November 12, 2020}
+
+\begin{document}
+\maketitle % Generates your standard title, author, and email block
+
+\section{Overview}
+
+When designing a web service, you must carefully evaluate the choice between SOAP and REST. This guide explains their strengths, limitations, and use cases to help you make an informed decision.
+
+\subsection{SOAP Overview}
+
+SOAP (Simple Object Access Protocol) is a protocol for exchanging XML-based messages over a network. It uses Web Services Description Language (WSDL) to define:
+
+\begin{itemize}[leftmargin=1.5em]
+    \item Resources, operations, and procedure calls
+    \item Message structure, encoding, and encapsulation
+    \item Bindings with network transport protocols
+\end{itemize}
+
+SOAP APIs are often auto-generated using tools that create server-side and client-side code templates, but the resulting implementations can be challenging to develop and maintain.
+
+\subsubsection*{When to Choose SOAP}
+
+SOAP is suitable for:
+\begin{itemize}[leftmargin=1.5em]
+    \item \textbf{Enterprise-level security}: Supports WS-Security for encryption, authentication, and message integrity.
+    \item \textbf{Complex transactions}: Ensures reliability in distributed environments through features like ACID-compliant transactions.
+    \item \textbf{Strict contracts}: Enforces formal service definitions using WSDL, ensuring consistency and reliability.
+    \item \textbf{Stateful interactions}: Useful for cases requiring session management or multi-step workflows.
+    \item \textbf{Legacy systems}: Facilitates integration with older enterprise systems.
+\end{itemize}
+
+\subsubsection*{SOAP Limitations}
+
+\begin{itemize}[leftmargin=1.5em]
+    \item \textbf{Tight coupling}: Changes to the server often require updates to the client, reducing flexibility.
+    \item \textbf{XML-only payloads}: Mandatory use of XML increases message size and complexity.
+    \item \textbf{High overhead}: SOAP messages are verbose, requiring more bandwidth and processing power.
+    \item \textbf{Slower development}: Complex implementation results in longer development cycles.
+\end{itemize}
+
+\subsection{REST Overview}
+
+REST (Representational State Transfer) is an architectural style that leverages standard HTTP methods for stateless web service interactions. REST APIs:
+
+\begin{itemize}[leftmargin=1.5em]
+    \item Use URLs to represent resources.
+    \item Support multiple data formats, including JSON, XML, and HTML.
+    \item Implement HTTP methods such as \texttt{GET}, \texttt{POST}, \texttt{PUT}, \texttt{DELETE}, and \texttt{PATCH}.
+    \item Can mark responses as cacheable, reducing client-server interactions.
+\end{itemize}
+
+Tools and frameworks can generate REST APIs and documentation from application code, enabling rapid development.
+
+\subsubsection*{When to Choose REST}
+
+REST is ideal for:
+\begin{itemize}[leftmargin=1.5em]
+    \item \textbf{Public APIs}: Designed for widespread adoption and third-party integrations.
+    \item \textbf{Rapid development}: Simple and flexible, with fewer constraints than SOAP.
+    \item \textbf{Data format flexibility}: Supports lightweight formats like JSON, ideal for modern web and mobile applications.
+    \item \textbf{Scalability and caching}: Statelessness and response caching improve performance and scalability.
+    \item \textbf{Broad adoption}: REST is widely supported by tools, frameworks, and a large developer community.
+\end{itemize}
+
+\subsubsection*{REST Limitations}
+
+\begin{itemize}[leftmargin=1.5em]
+    \item \textbf{Security challenges}: Requires additional measures (e.g., HTTPS, token-based authentication) to ensure security.
+    \item \textbf{Limited operations}: Restricts interactions to standard HTTP methods, which may not cover all use cases.
+    \item \textbf{Scalability complexities}: Point-to-point communication can complicate scaling with multiple clients.
+    \item \textbf{Versioning difficulties}: Major schema changes can break clients if not managed properly.
+\end{itemize}
+
+\subsection{Decision Guide}
+
+\begin{itemize}[leftmargin=1.5em]
+    \item Use \textbf{SOAP} for secure, reliable, and stateful operations, especially in enterprise environments or when working with legacy systems.
+    \item Use \textbf{REST} for simple, scalable, and fast APIs that support modern web or mobile applications and prioritize flexibility.
+\end{itemize}
+
+\begin{tcolorbox}[colback=green!5!white,colframe=green!40!black,title=Tip]
+Choose REST for most modern web services unless your requirements specifically align with SOAP’s strengths, such as strict contracts or enterprise-grade security.
+\end{tcolorbox}
+
+\subsection{Other Considerations}
+
+\begin{itemize}[leftmargin=1.5em]
+    \item Assess your team's expertise with SOAP or REST.
+    \item Plan for future maintenance, including versioning strategies for the APIs.
+\end{itemize}
+
+\end{document}

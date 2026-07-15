@@ -1,0 +1,119 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{hyperref}
+\usepackage{tcolorbox}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!60!black,
+  urlcolor=blue!60!black,
+  citecolor=blue!60!black
+}
+
+\title{\textbf{A Necessary Condition for Mersenne Primes}}
+\author{Souvik Sarkar \\ \texttt{sounix000@gmail.com}}
+\date{May 7, 2026}
+
+\begin{document}
+\maketitle
+
+\section*{Introduction}
+
+Mersenne primes are prime numbers of the form $2^p - 1$ where $p$ is also prime. Named after the French monk Marin Mersenne (1588–1648), these primes have fascinated mathematicians for centuries due to their connection with perfect numbers and their computational importance in modern cryptography.
+
+The search for Mersenne primes is among the most extensive computational efforts in number theory. As of 2025, only $51$ Mersenne primes are known, the largest being
+\[
+2^{136279841} - 1,
+\]
+discovered through the Great Internet Mersenne Prime Search (GIMPS).
+
+A natural question arises: what conditions must $p$ satisfy for $2^p - 1$ to be prime? While the complete answer remains open, we can establish a simple and powerful \emph{necessary condition} that rules out infinitely many non-prime exponents immediately.
+
+\section*{Theorem}
+
+\begin{tcolorbox}[colback=blue!3!white, colframe=blue!60!black, title=\textbf{Main Theorem}]
+Let $n \in \mathbb{N}$ with $n>1$. If $n$ is \emph{not} prime, then the number $2^n - 1$ is \emph{not} prime.
+\end{tcolorbox}
+
+\noindent
+Primes of the form $2^p - 1$ (where $p$ is also prime) are called \textbf{Mersenne primes}. The above theorem provides a \emph{necessary} but not a \emph{sufficient} condition for Mersenne primality.
+
+\section*{Proof}
+
+Assume $n$ is composite. Then there exist $a,b \in \mathbb{N}$ such that
+\[
+n = a b, \qquad 1 < a < n, \quad 1 < b < n.
+\]
+We will show that $2^n - 1$ is composite by expressing it as a non-trivial product.
+
+\subsection*{Factorization identity}
+
+Since $n = a b$, we have
+\[
+2^n - 1 = 2^{a b} - 1 = (2^b)^a - 1.
+\]
+Using the standard factorization
+\[
+x^a - 1 = (x-1)(x^{a-1} + x^{a-2} + \dots + x + 1),
+\]
+with $x = 2^b$, we obtain
+\[
+2^n - 1 = (2^b - 1)\bigl(2^{b(a-1)} + 2^{b(a-2)} + \dots + 2^b + 1\bigr).
+\]
+
+\subsection*{Defining the factors}
+
+Let
+\[
+x = 2^b - 1, \qquad
+y = \sum_{k=0}^{a-1} 2^{b k}.
+\]
+Then
+\[
+2^n - 1 = x \cdot y.
+\]
+The first factor $x = 2^b - 1$ is at least $3$, since $b \ge 2$.  
+The second factor $y$ is a geometric series with $a$ positive terms:
+\[
+y = 1 + 2^b + 2^{2b} + \dots + 2^{b(a-1)}.
+\]
+
+\subsection*{Non-triviality of the factors}
+
+We check that both $x$ and $y$ lie strictly between $1$ and $2^n - 1$.
+
+\paragraph{For $x$:}
+Since $b>1$,
+\[
+x = 2^b - 1 \ge 3 > 1.
+\]
+Also $b < n \Rightarrow 2^b < 2^n$, hence $x < 2^n - 1$.
+
+\paragraph{For $y$:}
+Because $y$ has at least two positive terms,
+\[
+y \ge 1 + 2^b \ge 5 > 1.
+\]
+And clearly $y < 2^n - 1$, since $y$ is only part of the full geometric sum that forms $2^n - 1$.
+
+Therefore,
+\[
+1 < x < 2^n - 1, \qquad 1 < y < 2^n - 1,
+\]
+so $2^n - 1 = x \cdot y$ is composite.
+
+\section*{Conclusion}
+
+\begin{tcolorbox}[colback=gray!5!white, colframe=black!40!gray]
+If $n$ is not prime, then $2^n - 1$ cannot be prime.  
+Hence every Mersenne prime $2^p - 1$ must have $p$ itself prime.
+\end{tcolorbox}
+
+\bigskip
+\noindent
+This elegant argument captures the deep link between the exponent's primality and the structure of powers of two. While it rules out all composite exponents, the mystery of which \emph{prime} $p$ yield Mersenne primes remains an open frontier.
+
+\end{document}
