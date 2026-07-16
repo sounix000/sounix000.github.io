@@ -1,14 +1,11 @@
 project:
   type: website
   output-dir: docs
-  render:
-    - "*.qmd"
-    - "posts/**"
-    - "!OLD/"
   resources:
     - favicon.ico
     - images/**
     - resume/souvik_sarkar_resume.pdf
+    - "!OLD/**"
 
 website:
   description: "Website of Souvik Sarkar"

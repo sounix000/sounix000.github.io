@@ -1,5 +1,12 @@
 [
   {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "Souvik Sarkar",
+    "section": "",
+    "text": "A math-minded, code-literate technical writer documenting system software with clarity and precision."
+  },
+  {
     "objectID": "software.html",
     "href": "software.html",
     "title": "Software",
@@ -63,95 +70,95 @@
     "text": "Automatically running the modified script using GitHub Actions\nUsing GitHub Actions, set up a CI pipeline such that each push or pull request to the project’s GitHub repository triggers the tests to run on BrowserStack.\n\nCreate a .gitignore file to prevent the environment secrets from getting pushed to a remote repository on GitHub:\necho \".env\" &gt;&gt; .gitignore\nCreate a GitHub repository named browserstack_automation for the project and push the local project to the remote repository:\ngit init\ngit add --all\ngit commit -m \"first commit\"\ngit branch -M main\ngit remote add origin git@github.com:&lt;username&gt;/browserstack_automation.git\ngit push -u origin main\nIn your repository on GitHub, navigate to Settings → Secrets (left navigation pane) → Actions → New repository secret.\nAdd your BrowserStack secrets that are available in the .env file of your project directory:\n\nName: BROWSERSTACK_USERNAME, Value: &lt;your_browserstack_username&gt;\nName: BROWSERSTACK_ACCESS_KEY, Value: &lt;your_browserstack_access_key&gt;\n\nIn the repository root, create a .github/workflows/browserstack_actions.yml file that defines the GitHub Actions workflow:\nname: 'BrowserStack GH Actions Test'\non: [push, pull_request]\njobs:\n  ubuntu-job:\n    name: 'BrowserStack Test on Ubuntu'\n    runs-on: ubuntu-latest\n    steps:\n      - name: 'BrowserStack Env Setup'\n        uses: browserstack/github-actions/setup-env@master\n        with:\n          username: ${{ secrets.BROWSERSTACK_USERNAME }}\n          access-key: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}\n\n      - name: 'BrowserStack Local Tunnel Setup'\n        uses: browserstack/github-actions/setup-local@master\n        with:\n          local-testing: start\n          local-identifier: random\n\n      - name: 'Checkout the repository'\n        uses: actions/checkout@v2\n\n      - name: 'Setting up the runner'\n        run: bash set_up.sh\n\n      - name: 'Running test on BrowserStack'\n        run: python3 browserstack_script.py\n\n      - name: 'BrowserStackLocal Stop'\n        uses: browserstack/github-actions/setup-local@master\n        with:\n          local-testing: stop\nTo test the GitHub Actions workflow, make a minor modification in the project and push the changes to GitHub:\ngit add &lt;modified_file&gt;\ngit commit -m \"Testing GitHub Actions\"\ngit push\nIn your GitHub repository, navigate to Actions → &lt;your_GitHub_Actions_job&gt; and observe the job logs.\n\n\n\n\n\n\nNote\n\n\n\nOne of the common reasons of failure for the browserstack_actions.yml workflow is the following error: ModuleNotFoundError: No module named 'dotenv'.\n\n\n\nDotenv error in GitHub Actions\n\n\nThe failure happens due to a known bug. The bug is not easily reproducible, and currently has no known solutions that are universally applicable.\n\n\nIn your BrowserStack dashboard, select the GitHub Actions build from the All Builds drop-down list on the left navigation pane, and observe the test status.\n\n\n\n\n\n\n\nNote\n\n\n\nA modified and hopefully better version of this project is available on GitHub."
   },
   {
-    "objectID": "posts/mersenne-prime-sieve/index.html",
-    "href": "posts/mersenne-prime-sieve/index.html",
-    "title": "A necessary condition for Mersenne primes",
+    "objectID": "posts/browserstack-doc-analysis/index.html",
+    "href": "posts/browserstack-doc-analysis/index.html",
+    "title": "A brief analysis of BrowserStack’s documentation",
     "section": "",
-    "text": "Mersenne primes are prime numbers of the form \\(2^p - 1\\) where \\(p\\) is also prime. Named after the French monk Marin Mersenne (1588–1648), these primes have fascinated mathematicians for centuries due to their connection with perfect numbers and their computational importance in modern cryptography.\nThe search for Mersenne primes is among the most extensive computational efforts in number theory. As of October 2024, \\(52\\) Mersenne primes are known, the largest being\n\\[2^{136279841} - 1,\\]\ndiscovered through the Great Internet Mersenne Prime Search (GIMPS).\nA natural question arises: what conditions must \\(p\\) satisfy for \\(2^p - 1\\) to be prime? While the complete answer remains open, we can establish a simple and powerful necessary condition that rules out infinitely many non-prime exponents immediately."
+    "text": "Based on my 30-minute analysis of BrowserStack’s documentation and comparing with a competitor’s documentation, I don’t find anything that I strongly dislike. However, as a technical writer trained to pay attention to details, I have the following nitpicks."
   },
   {
-    "objectID": "posts/mersenne-prime-sieve/index.html#what-are-mersenne-primes",
-    "href": "posts/mersenne-prime-sieve/index.html#what-are-mersenne-primes",
-    "title": "A necessary condition for Mersenne primes",
+    "objectID": "posts/browserstack-doc-analysis/index.html#principles-of-minimalism-are-not-followed",
+    "href": "posts/browserstack-doc-analysis/index.html#principles-of-minimalism-are-not-followed",
+    "title": "A brief analysis of BrowserStack’s documentation",
+    "section": "1. Principles of minimalism are not followed",
+    "text": "1. Principles of minimalism are not followed\nFor example, in Getting started → Python → Prerequisites, the first bullet point is verbose.\nExisting sentence:\n\nYou need to have BrowserStack Username and Access key, which you can find in your account settings. If you have not created an account yet, you can sign up for a Free Trial or purchase a plan.\n\nSuggested sentence:\n\nNote your BrowserStack Username and Access key from the account settings. Unregistered users can sign up for a trial account or purchase a plan.\n\nThe suggestion also demonstrates restructuring of sentences to emphasize the user’s actions, and brings more clarity."
+  },
+  {
+    "objectID": "posts/browserstack-doc-analysis/index.html#section-headings-are-not-in-gerund-form",
+    "href": "posts/browserstack-doc-analysis/index.html#section-headings-are-not-in-gerund-form",
+    "title": "A brief analysis of BrowserStack’s documentation",
+    "section": "2. Section headings are not in gerund form",
+    "text": "2. Section headings are not in gerund form\nFor example, in Getting started → Python → Run your first test:\n\nExisting heading: “Run your first test”\nSuggested heading: “Running your first test”\n\nGerund forms of phrases are appropriate for highlighting a process, which might contain several steps. For the steps, we can use action-oriented sentences in simple present tense, such as “Create a sample test code file”."
+  },
+  {
+    "objectID": "posts/browserstack-doc-analysis/index.html#admonitions-are-misused",
+    "href": "posts/browserstack-doc-analysis/index.html#admonitions-are-misused",
+    "title": "A brief analysis of BrowserStack’s documentation",
+    "section": "3. Admonitions are misused",
+    "text": "3. Admonitions are misused\nFor example:\n\nThe following Warning should ideally be a Caution, because the user needs to be mindful about adding the driver.quit() statement at the end of the code.\n“Protip” is not a standard admonition. Instead, use Tip.\n\n\n\n\n\n\n\nWarning\n\n\n\nThe driver.quit() statement is required, otherwise the test continues to execute, leading to a timeout.\n\n\n\n\n\n\n\n\nTip\n\n\n\nYou can use our capability builder and select from a wide range of custom capabilities that BrowserStack supports."
+  },
+  {
+    "objectID": "posts/browserstack-doc-analysis/index.html#some-unnecessary-images",
+    "href": "posts/browserstack-doc-analysis/index.html#some-unnecessary-images",
+    "title": "A brief analysis of BrowserStack’s documentation",
+    "section": "4. Some unnecessary images",
+    "text": "4. Some unnecessary images\nImages could have been used more sparingly to avoid maintenance problems. This is even more important for images that represent products such as GitHub, which are beyond BrowserStack’s control.\nIn addition, images without appropriate alt text hamper accessibility and SEO."
+  },
+  {
+    "objectID": "posts/browserstack-doc-analysis/index.html#doc-site-uiux-can-be-improved",
+    "href": "posts/browserstack-doc-analysis/index.html#doc-site-uiux-can-be-improved",
+    "title": "A brief analysis of BrowserStack’s documentation",
+    "section": "5. Doc site UI/UX can be improved",
+    "text": "5. Doc site UI/UX can be improved\nModern documentation websites adopt a three-column approach: documentation suite navigation on the left, content in the middle, and current page ToC on the right. BrowserStack’s documentation website mostly leaves the right column blank. As a result, the left navigation panel looks more crowded and needs frequent scrolling.\n\n\n\nBrowserStack documentation site\n\n\nFor comparison, here’s LambdaTest’s documentation site, which puts the right-hand column to good use with an on-page table of contents:\n\n\n\nLambdaTest documentation site"
+  },
+  {
+    "objectID": "posts/browserstack-doc-analysis/index.html#general-comments",
+    "href": "posts/browserstack-doc-analysis/index.html#general-comments",
+    "title": "A brief analysis of BrowserStack’s documentation",
+    "section": "6. General comments",
+    "text": "6. General comments\n\nSome navigation links within the text/content are broken, especially the ones that navigate to different sections within the same article.\nIn lots of occasions, the writing style deviates significantly from Google’s documentation style guide. In fact, a seasoned writer can easily identify the documents contributed by developers, testers, product managers, or customer support. While this is not a big problem, the documentation experience can certainly be made more consistent."
+  },
+  {
+    "objectID": "posts/browserstack-doc-analysis/index.html#bonus",
+    "href": "posts/browserstack-doc-analysis/index.html#bonus",
+    "title": "A brief analysis of BrowserStack’s documentation",
+    "section": "7. Bonus",
+    "text": "7. Bonus\nModern test environments, especially in enterprise situations, are mostly containers running on clusters. If the onboarding docs describe procedures using containers, the onboarding experience and the documentation becomes more standardized and maintainable."
+  },
+  {
+    "objectID": "posts/count-triangles-pentagon-star/index.html",
+    "href": "posts/count-triangles-pentagon-star/index.html",
+    "title": "Count the triangles in a five-sided star",
     "section": "",
-    "text": "Mersenne primes are prime numbers of the form \\(2^p - 1\\) where \\(p\\) is also prime. Named after the French monk Marin Mersenne (1588–1648), these primes have fascinated mathematicians for centuries due to their connection with perfect numbers and their computational importance in modern cryptography.\nThe search for Mersenne primes is among the most extensive computational efforts in number theory. As of October 2024, \\(52\\) Mersenne primes are known, the largest being\n\\[2^{136279841} - 1,\\]\ndiscovered through the Great Internet Mersenne Prime Search (GIMPS).\nA natural question arises: what conditions must \\(p\\) satisfy for \\(2^p - 1\\) to be prime? While the complete answer remains open, we can establish a simple and powerful necessary condition that rules out infinitely many non-prime exponents immediately."
+    "text": "Count the number of distinct triangles formed when a regular pentagram is drawn inside a regular pentagon by connecting every second vertex (i.e., draw the five-pointed star formed by skipping one vertex each time).\nThe figure consists of a regular pentagon with its five vertices connected every second vertex, producing the familiar five-pointed star (pentagram) whose intersecting diagonals create five interior intersection points."
   },
   {
-    "objectID": "posts/mersenne-prime-sieve/index.html#theorem",
-    "href": "posts/mersenne-prime-sieve/index.html#theorem",
-    "title": "A necessary condition for Mersenne primes",
-    "section": "Theorem",
-    "text": "Theorem\n\n\n\n\n\n\nNoteTheorem\n\n\n\nLet \\(n \\in \\mathbb{N}\\) with \\(n &gt; 1\\). If \\(n\\) is not prime, then the number \\(2^n - 1\\) is not prime.\n\n\nPrimes of the form \\(2^p - 1\\) (where \\(p\\) is also prime) are called Mersenne primes. The theorem above provides a necessary but not a sufficient condition for Mersenne primality."
+    "objectID": "posts/count-triangles-pentagon-star/index.html#problem",
+    "href": "posts/count-triangles-pentagon-star/index.html#problem",
+    "title": "Count the triangles in a five-sided star",
+    "section": "",
+    "text": "Count the number of distinct triangles formed when a regular pentagram is drawn inside a regular pentagon by connecting every second vertex (i.e., draw the five-pointed star formed by skipping one vertex each time).\nThe figure consists of a regular pentagon with its five vertices connected every second vertex, producing the familiar five-pointed star (pentagram) whose intersecting diagonals create five interior intersection points."
   },
   {
-    "objectID": "posts/mersenne-prime-sieve/index.html#proof",
-    "href": "posts/mersenne-prime-sieve/index.html#proof",
-    "title": "A necessary condition for Mersenne primes",
-    "section": "Proof",
-    "text": "Proof\nAssume \\(n\\) is composite. Then there exist \\(a, b \\in \\mathbb{N}\\) such that\n\\[n = ab, \\qquad 1 &lt; a &lt; n, \\qquad 1 &lt; b &lt; n.\\]\nWe show \\(2^n - 1\\) is composite by expressing it as a non-trivial product.\n\nFactorization identity\nSince \\(n = ab\\),\n\\[2^n - 1 = 2^{ab} - 1 = (2^b)^a - 1.\\]\nUsing the standard factorization \\(x^a - 1 = (x-1)(x^{a-1} + x^{a-2} + \\cdots + x + 1)\\) with \\(x = 2^b\\):\n\\[2^n - 1 = (2^b - 1)\\left(2^{b(a-1)} + 2^{b(a-2)} + \\cdots + 2^b + 1\\right).\\]\n\n\nDefining the factors\nLet\n\\[x = 2^b - 1, \\qquad y = \\sum_{k=0}^{a-1} 2^{bk}.\\]\nThen \\(2^n - 1 = x \\cdot y\\). The first factor \\(x = 2^b - 1\\) is at least \\(3\\), since \\(b \\geq 2\\). The second factor \\(y\\) is a geometric series with \\(a\\) positive terms:\n\\[y = 1 + 2^b + 2^{2b} + \\cdots + 2^{b(a-1)}.\\]\n\n\nNon-triviality of the factors\nWe check that both \\(x\\) and \\(y\\) lie strictly between \\(1\\) and \\(2^n - 1\\).\n\nFor \\(x\\): since \\(b &gt; 1\\), \\(x = 2^b - 1 \\geq 3 &gt; 1\\). Also \\(b &lt; n \\Rightarrow 2^b &lt; 2^n\\), hence \\(x &lt; 2^n - 1\\).\nFor \\(y\\): because \\(y\\) has at least two positive terms, \\(y \\geq 1 + 2^b \\geq 5 &gt; 1\\). And clearly \\(y &lt; 2^n - 1\\), since \\(y\\) is only part of the full geometric sum that forms \\(2^n - 1\\).\n\nTherefore\n\\[1 &lt; x &lt; 2^n - 1, \\qquad 1 &lt; y &lt; 2^n - 1,\\]\nso \\(2^n - 1 = x \\cdot y\\) is composite."
+    "objectID": "posts/count-triangles-pentagon-star/index.html#strategy",
+    "href": "posts/count-triangles-pentagon-star/index.html#strategy",
+    "title": "Count the triangles in a five-sided star",
+    "section": "Strategy",
+    "text": "Strategy\nOutline of the counting method:\n\nClassify triangles by the types of their vertices: whether a vertex lies on the outer pentagon (“perimeter vertex”) or at an intersection point formed by the pentagram (“internal point”).\nUse the \\(5\\)-fold rotational symmetry to count representatives of each class and multiply appropriately; verify there is no double counting.\nWhere necessary, examine local configurations around one vertex/edge and propagate by symmetry."
   },
   {
-    "objectID": "posts/mersenne-prime-sieve/index.html#conclusion",
-    "href": "posts/mersenne-prime-sieve/index.html#conclusion",
-    "title": "A necessary condition for Mersenne primes",
+    "objectID": "posts/count-triangles-pentagon-star/index.html#solution",
+    "href": "posts/count-triangles-pentagon-star/index.html#solution",
+    "title": "Count the triangles in a five-sided star",
+    "section": "Solution",
+    "text": "Solution\nWe proceed by enumerating triangle types.\nType I: three perimeter vertices. Choose any \\(3\\) of the \\(5\\) outer vertices. This gives\n\\[\\binom{5}{3} = 10\\]\ntriangles.\nType II: two perimeter vertices and one internal intersection. Consider an outer edge as a potential base. For each outer edge there are a fixed finite number of internal intersection points that together with that base produce triangles contained in the figure. A local inspection (or symmetry argument) shows there are \\(3\\) distinct interior-point choices per edge that yield distinct internal triangles, and counting over the \\(5\\) edges gives\n\\[5 \\times 3 = 15\\]\ntriangles of this type.\nType III: one perimeter vertex and two internal intersections. Around each outer vertex, the two nearby intersection points formed by the star lines create exactly one triangle together with that vertex (by symmetry and direct inspection). Hence there are\n\\[5\\]\ntriangles of this type.\nType IV: three internal intersection points. Some triangles are formed solely by three intersection points of the star’s diagonals. By symmetry and explicit counting of admissible intersection-triples one finds\n\\[5\\]\nsuch triangles.\n\n\n\n\n\n\nImportantTotal count\n\n\n\nSumming the above counts yields the total number of distinct triangles formed:\n\\[10 + 15 + 5 + 5 = 35.\\]"
+  },
+  {
+    "objectID": "posts/count-triangles-pentagon-star/index.html#conclusion",
+    "href": "posts/count-triangles-pentagon-star/index.html#conclusion",
+    "title": "Count the triangles in a five-sided star",
     "section": "Conclusion",
-    "text": "Conclusion\n\n\n\n\n\n\nTipCorollary\n\n\n\nIf \\(n\\) is not prime, then \\(2^n - 1\\) cannot be prime. Hence every Mersenne prime \\(2^p - 1\\) must have \\(p\\) itself prime.\n\n\nThis elegant argument captures the deep link between the exponent’s primality and the structure of powers of two. While it rules out all composite exponents, the mystery of which prime \\(p\\) yield Mersenne primes remains an open frontier."
-  },
-  {
-    "objectID": "posts/joy-of-useless-pursuits/index.html",
-    "href": "posts/joy-of-useless-pursuits/index.html",
-    "title": "The joy of useless pursuits: why ancient wisdom will outlast AI",
-    "section": "",
-    "text": "The irony of the fact that this image is generated by an AI, although the prompt is by the author!\nThere’s something deeply revealing about watching a mathematician’s eyes light up when they discuss AI. While lawyers panic and consultants scramble to prove their continued relevance, the pure theorist leans forward with genuine excitement: Finally, a research assistant that never gets tired of my questions!\nThis split reaction tells us everything we need to know about who will thrive when artificial minds reshape our world. The answer isn’t what Silicon Valley prophets would have us believe."
-  },
-  {
-    "objectID": "posts/joy-of-useless-pursuits/index.html#the-beautiful-futility-of-pure-thought",
-    "href": "posts/joy-of-useless-pursuits/index.html#the-beautiful-futility-of-pure-thought",
-    "title": "The joy of useless pursuits: why ancient wisdom will outlast AI",
-    "section": "The beautiful futility of pure thought",
-    "text": "The beautiful futility of pure thought\nImagine walking through the corridors of École Normale Supérieure in Paris, where young minds wrestle with mathematical abstractions that have no immediate use, no clear path to profit, no obvious benefit to humanity’s material condition. These students are doing something our productivity-obsessed age considers almost scandalous: they’re thinking for the pure joy of it.\nWhen AI arrives to handle the world’s practical problems, these “impractical” souls will simply continue their work, now aided by silicon minds that can crunch numbers while leaving the deeper mysteries intact. They were never competing with machines because they were never doing mechanical work. They were always doing something fundamentally different: experiencing wonder.\n\nThe crisis that’s coming — and it is coming — will not be economic in the traditional sense. It will be existential. What happens to a species that has spent centuries defining human worth through economic utility when that utility vanishes overnight?"
-  },
-  {
-    "objectID": "posts/joy-of-useless-pursuits/index.html#the-terrible-honesty-of-obsolescence",
-    "href": "posts/joy-of-useless-pursuits/index.html#the-terrible-honesty-of-obsolescence",
-    "title": "The joy of useless pursuits: why ancient wisdom will outlast AI",
-    "section": "The terrible honesty of obsolescence",
-    "text": "The terrible honesty of obsolescence\nEvery profession tells itself a story about its irreplaceable value. Lawyers speak of nuanced judgment, consultants of strategic insight, and managers of human leadership. But AI is offering us a terrible honesty: much of what we’ve called skilled work was always pattern recognition dressed up in professional clothing.\nThe panic spreading through corner offices and conference rooms isn’t really about unemployment. It’s about identity collapse. These people built their sense of self around being better than others at economically valuable tasks. AI isn’t just taking their jobs; it’s revealing that their jobs were already mechanical — the mechanism just happened to be running inside their skulls instead of on silicon chips.\nMeanwhile, in small rooms around the world, people who society has always considered slightly mad continue their work undisturbed. The number theorist exploring prime distributions, the poet playing with language, the philosopher questioning the nature of consciousness — they greet our artificial future with curiosity rather than dread because they never confused their value with their productivity."
-  },
-  {
-    "objectID": "posts/joy-of-useless-pursuits/index.html#the-fraud-of-subsidized-serenity",
-    "href": "posts/joy-of-useless-pursuits/index.html#the-fraud-of-subsidized-serenity",
-    "title": "The joy of useless pursuits: why ancient wisdom will outlast AI",
-    "section": "The fraud of subsidized serenity",
-    "text": "The fraud of subsidized serenity\nWe often point to Scandinavian happiness as a model for post-work society, but this misses something crucial. Although home to serious philosophy, literature, and math, Nordic contentment is built on oil wealth and resource extraction. Similarly, Swiss philosophical tranquility rests on centuries of banking profits. These societies haven’t transcended economics — they’ve simply been wealthy enough to afford the illusion of transcendence.\nWhen AI disrupts the economic foundations that fund their social safety nets, when oil becomes worthless and algorithms handle financial services, these carefully constructed paradises may crumble faster than anyone expects. Their happiness was always contingent, always dependent on the very economic systems they appeared to have moved beyond.\n\nTrue resilience lies elsewhere — in those places where intellectual fire has burned bright even in material darkness."
-  },
-  {
-    "objectID": "posts/joy-of-useless-pursuits/index.html#the-underground-rivers-of-wisdom",
-    "href": "posts/joy-of-useless-pursuits/index.html#the-underground-rivers-of-wisdom",
-    "title": "The joy of useless pursuits: why ancient wisdom will outlast AI",
-    "section": "The underground rivers of wisdom",
-    "text": "The underground rivers of wisdom\nThere’s a reason mathematics flourished in ancient India despite economic hardship, why poetry survived centuries of Persian upheaval, why Jewish scholarship thrived in ghettos across Europe. These traditions understood something we’ve forgotten: that the pursuit of truth and beauty needs no external justification.\nWalk into the Chennai Mathematical Institute, where brilliant minds work with minimal resources but maximum passion. Visit the institutes of Eastern Europe, where scholars produced world-changing insights while their governments collapsed around them. These are laboratories of a different kind of human development — one that doesn’t depend on venture capital or government subsidies, but on something deeper and more durable.\n\nThe people in these traditions don’t pursue knowledge because it might lead to patents or profits. They pursue it because the alternative — a life without wonder — is unimaginable."
-  },
-  {
-    "objectID": "posts/joy-of-useless-pursuits/index.html#the-great-returning",
-    "href": "posts/joy-of-useless-pursuits/index.html#the-great-returning",
-    "title": "The joy of useless pursuits: why ancient wisdom will outlast AI",
-    "section": "The great returning",
-    "text": "The great returning\nWhat’s about to happen may not be progress in the way we usually understand it, but rather a great returning. The civilizations poised to thrive in the AI age are not those rising now through industrial might, but those that were once great because they understood what makes humans human.\nAncient Athens didn’t fund philosophy because it generated economic growth. The Islamic Golden Age didn’t support mathematics because it improved trade efficiency. Vedic India didn’t develop complex philosophical systems to boost agricultural output. These civilizations invested in human intellectual and spiritual development because they recognized it as intrinsically valuable.\nThe industrial age convinced us to forget this wisdom. We learned to develop human potential instrumentally — education to create workers, research to generate competitive advantage, and even happiness policies to boost productivity. But when AI eliminates the economic rationale for human development, these instrumental approaches lose their foundation.\n\nSocieties that never lost sight of why human consciousness matters — beyond its economic utility — will find themselves not scrambling to create meaning, but simply continuing to pursue what they always valued."
-  },
-  {
-    "objectID": "posts/joy-of-useless-pursuits/index.html#the-physics-of-wonder",
-    "href": "posts/joy-of-useless-pursuits/index.html#the-physics-of-wonder",
-    "title": "The joy of useless pursuits: why ancient wisdom will outlast AI",
-    "section": "The physics of wonder",
-    "text": "The physics of wonder\nHere’s what AI optimists and pessimists both miss: Artificial Intelligence isn’t humanity’s replacement, but its liberation. Not from work — that’s the shallow reading — but from the illusion that our value lies in our usefulness.\nPicture an AI tutor working with a child to rediscover the quadratic formula. There’s no rush, no economic pressure, no competition with other students. The AI provides just enough guidance to keep the child in that magical space between confusion and insight. When understanding finally dawns, the joy on that child’s face is purely human — the delight of a conscious mind encountering truth for the first time.\nThis is what we’re moving toward: a world where learning becomes play, where research becomes art, where the ancient human love of pattern and beauty can flourish without apologizing for its uselessness.\nThe civilizations ready for this transition are not those with the most advanced technology, but those that have maintained their appreciation for what the Greeks called theoria — the contemplation of truth for its own sake."
-  },
-  {
-    "objectID": "posts/joy-of-useless-pursuits/index.html#the-deepest-economics",
-    "href": "posts/joy-of-useless-pursuits/index.html#the-deepest-economics",
-    "title": "The joy of useless pursuits: why ancient wisdom will outlast AI",
-    "section": "The deepest economics",
-    "text": "The deepest economics\nThere’s a beautiful irony waiting to unfold. The countries that prioritize happiness, health, and intellectual contribution for their own sake — rather than as inputs to economic output — may find themselves not just spiritually richer, but materially more resilient as well.\n\nThese three elements form the true foundation of any economy: flourishing consciousness, vital bodies, creative minds. We’ve spent centuries treating them as byproducts of economic activity, when in fact they are its source.\n\nWhen the age of artificial intelligence fully arrives, the societies that remember this truth will discover something remarkable: they were preparing for the future all along, not by racing toward it, but by preserving what was always most valuable about being human.\nThe future belongs not to those who can compete with machines, but to those who remember why consciousness itself is worth celebrating. In our rush toward artificial minds, the deepest victory may belong to those who never forgot the irreplaceable miracle of the natural ones we already possess.\n\nAs humans, the return to useless pursuits might be our only true superpower."
+    "text": "Conclusion\nBy classifying triangles according to vertex types and exploiting the pentagon’s symmetry, one deduces that the pentagon with its inscribed pentagram contains exactly \\(35\\) distinct triangles."
   },
   {
     "objectID": "posts/google-cloud-vision-api/index.html",
@@ -217,6 +224,132 @@
     "text": "Deleting the project\nIf you discontinue development, delete the project from GCP to avoid incurring charges:\ngcloud projects delete PROJECT_ID\n\n\n\n\n\n\nNote\n\n\n\nA modified and hopefully better version of this project is available on GitHub."
   },
   {
+    "objectID": "posts/fixing-software-documentation/index.html",
+    "href": "posts/fixing-software-documentation/index.html",
+    "title": "An opinionated approach to software documentation",
+    "section": "",
+    "text": "Product documentation is often treated as an afterthought — a necessary evil that gets patched together after development is complete. Companies invest heavily in sophisticated tools and comprehensive user surveys, desperately trying to understand why their documentation doesn’t resonate with users. Yet they’re often looking in the wrong place.\nThe real problem isn’t in the tools or the feedback mechanisms. It’s a fundamental mismatch between what different stakeholders understand about the product and what ultimately gets delivered as documentation. This creates a dangerous disconnect between product philosophy and documentation philosophy."
+  },
+  {
+    "objectID": "posts/fixing-software-documentation/index.html#the-hidden-disconnect",
+    "href": "posts/fixing-software-documentation/index.html#the-hidden-disconnect",
+    "title": "An opinionated approach to software documentation",
+    "section": "",
+    "text": "Product documentation is often treated as an afterthought — a necessary evil that gets patched together after development is complete. Companies invest heavily in sophisticated tools and comprehensive user surveys, desperately trying to understand why their documentation doesn’t resonate with users. Yet they’re often looking in the wrong place.\nThe real problem isn’t in the tools or the feedback mechanisms. It’s a fundamental mismatch between what different stakeholders understand about the product and what ultimately gets delivered as documentation. This creates a dangerous disconnect between product philosophy and documentation philosophy."
+  },
+  {
+    "objectID": "posts/fixing-software-documentation/index.html#misaligned-mental-models",
+    "href": "posts/fixing-software-documentation/index.html#misaligned-mental-models",
+    "title": "An opinionated approach to software documentation",
+    "section": "Misaligned mental models",
+    "text": "Misaligned mental models\nEvery software product involves three distinct categories of stakeholders:\n\nVisionaries: product managers, CTOs, marketers who see the big picture and market positioning\nBuilders: designers, software engineers, product architects who understand the technical implementation\nUsers: testers/QA, solution architects, support engineers, technical writers who experience the product from the end-user perspective\n\nWhen these groups operate in silos, their different mental models never align. The documentation reflects only fragments of understanding, leaving users confused and frustrated."
+  },
+  {
+    "objectID": "posts/fixing-software-documentation/index.html#a-systematic-solution-framework",
+    "href": "posts/fixing-software-documentation/index.html#a-systematic-solution-framework",
+    "title": "An opinionated approach to software documentation",
+    "section": "A systematic solution framework",
+    "text": "A systematic solution framework\nHere’s a suggested approach to bridge this gap — for any feature requiring documentation, gather independent responses from your product manager, engineer, tester, and technical writer on the following aspects.\n\nContext + problem\n\nWhat problem does this feature solve?\nWhy did this problem occur?\nWhat happens if it remains unsolved?\nWhat benefits emerge when it’s solved?\n\n\n\nSolution + deployment\n\nHow do use cases differ across target personas?\nHow is the feature similar to or different from offerings by competitors?\nWhat are the feature’s use cases?\nWhat workflows does the feature enable?\nWhat outcomes should users expect?\nWhat are the UI/UX implications?\nWhat dependencies exist?\nWhat are the performance and security implications?\nHow does it integrate with other features and industry-standard products?\n\n\n\nPitfalls + troubleshooting\n\nWhen should this feature NOT be used?\nWhat happens with inappropriate usage?\nWhat precautions are necessary?\nHow and when to disable/re-enable the feature?\nWhat does this feature break? What breaks this feature?\nWhat rollback options exist for production systems?"
+  },
+  {
+    "objectID": "posts/fixing-software-documentation/index.html#why-this-approach-works",
+    "href": "posts/fixing-software-documentation/index.html#why-this-approach-works",
+    "title": "An opinionated approach to software documentation",
+    "section": "Why this approach works",
+    "text": "Why this approach works\nWhen you collect these responses, you might discover fascinating discrepancies. The product manager might emphasize business outcomes that the engineer hasn’t considered. The tester might identify edge cases that the product manager didn’t anticipate. The technical writer might spot workflow gaps that everyone else missed.\nThese discrepancies aren’t problems — they’re opportunities. By surfacing and reconciling these different perspectives, you create a shared understanding that naturally leads to better documentation."
+  },
+  {
+    "objectID": "posts/fixing-software-documentation/index.html#the-organic-emergence-of-quality",
+    "href": "posts/fixing-software-documentation/index.html#the-organic-emergence-of-quality",
+    "title": "An opinionated approach to software documentation",
+    "section": "The organic emergence of quality",
+    "text": "The organic emergence of quality\nWhen everyone truly understands the product from multiple angles, something remarkable happens. Form, clarity, flow, and fit emerge organically. You don’t need to force good documentation — it becomes the natural expression of shared understanding.\nThe technical communication to your target audiences becomes:\n\nUnified — consistent messaging across all touchpoints\nComprehensive — covering all necessary aspects and edge cases\nGenuinely helpful — actually solving user problems\n\nMore importantly, your documentation finally aligns with your product philosophy, creating a coherent experience that users can trust and navigate successfully."
+  },
+  {
+    "objectID": "posts/fixing-software-documentation/index.html#taking-action",
+    "href": "posts/fixing-software-documentation/index.html#taking-action",
+    "title": "An opinionated approach to software documentation",
+    "section": "Taking action",
+    "text": "Taking action\nEvery feature branch should have a file where those questions are answered by anyone who is in a position to answer them. When the team huddles for a sprint review or goes back to the drawing board to rethink the product, they will have a series of timestamped reference points that’s more readable than code commits, and act as a single source of high-level truth that everyone in the team understands.\nIf you’re in a position to implement this approach, start small. Pick one feature in your next release and run this exercise. You’ll be surprised by what you discover about your own product — and how much better your documentation becomes when everyone is truly on the same page. The investment in alignment pays dividends far beyond documentation. It creates better products, clearer communication, and more satisfied users."
+  },
+  {
+    "objectID": "posts/rest-vs-soap/index.html",
+    "href": "posts/rest-vs-soap/index.html",
+    "title": "Choosing between REST and SOAP",
+    "section": "",
+    "text": "When designing a web service, you must carefully evaluate the choice between SOAP and REST. This guide covers their strengths, limitations, and use cases to help you make an informed decision."
+  },
+  {
+    "objectID": "posts/rest-vs-soap/index.html#soap",
+    "href": "posts/rest-vs-soap/index.html#soap",
+    "title": "Choosing between REST and SOAP",
+    "section": "SOAP",
+    "text": "SOAP\nSOAP (Simple Object Access Protocol) is a protocol for exchanging XML-based messages over a network. It uses Web Services Description Language (WSDL) to define:\n\nResources, operations, and procedure calls\nMessage structure, encoding, and encapsulation\nBindings with network transport protocols\n\nSOAP APIs are often auto-generated using tools that create server-side and client-side code templates, but the resulting implementations can be challenging to develop and maintain.\n\nWhen to choose SOAP\nSOAP is suitable for:\n\nEnterprise-level security: supports WS-Security for encryption, authentication, and message integrity\nComplex transactions: ensures reliability in distributed environments through features like ACID-compliant transactions\nStrict contracts: enforces formal service definitions using WSDL, ensuring consistency and reliability\nStateful interactions: useful for cases requiring session management or multi-step workflows\nLegacy systems: facilitates integration with older enterprise systems\n\n\n\nSOAP limitations\n\nTight coupling: changes to the server often require updates to the client, reducing flexibility\nXML-only payloads: mandatory use of XML increases message size and complexity\nHigh overhead: SOAP messages are verbose, requiring more bandwidth and processing power\nSlower development: complex implementation results in longer development cycles"
+  },
+  {
+    "objectID": "posts/rest-vs-soap/index.html#rest",
+    "href": "posts/rest-vs-soap/index.html#rest",
+    "title": "Choosing between REST and SOAP",
+    "section": "REST",
+    "text": "REST\nREST (Representational State Transfer) is an architectural style that leverages standard HTTP methods for stateless web service interactions. REST APIs:\n\nUse URLs to represent resources\nSupport multiple data formats, including JSON, XML, and HTML\nImplement HTTP methods such as GET, POST, PUT, DELETE, and PATCH\nCan mark responses as cacheable, reducing client-server interactions\n\nTools and frameworks can generate REST APIs and documentation from application code, enabling rapid development.\n\nWhen to choose REST\nREST is ideal for:\n\nPublic APIs: designed for widespread adoption and third-party integrations\nRapid development: simple and flexible, with fewer constraints than SOAP\nData format flexibility: supports lightweight formats like JSON, ideal for modern web and mobile applications\nScalability and caching: statelessness and response caching improve performance and scalability\nBroad adoption: widely supported by tools, frameworks, and a large developer community\n\n\n\nREST limitations\n\nSecurity challenges: requires additional measures (HTTPS, token-based authentication) to ensure security\nLimited operations: restricted to standard HTTP methods, which may not cover all use cases\nScalability complexities: point-to-point communication can complicate scaling with multiple clients\nVersioning difficulties: major schema changes can break clients if not managed properly"
+  },
+  {
+    "objectID": "posts/rest-vs-soap/index.html#decision-guide",
+    "href": "posts/rest-vs-soap/index.html#decision-guide",
+    "title": "Choosing between REST and SOAP",
+    "section": "Decision guide",
+    "text": "Decision guide\n\n\n\n\n\n\n\n\n\nSOAP\nREST\n\n\n\n\nBest for\nSecure, reliable, stateful operations — enterprise or legacy systems\nSimple, scalable, fast APIs for modern web/mobile apps\n\n\nPayload\nXML only\nJSON, XML, HTML\n\n\nCoupling\nTight\nLoose\n\n\nState\nStateful support\nStateless\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nChoose REST for most modern web services unless your requirements specifically align with SOAP’s strengths, such as strict contracts or enterprise-grade security."
+  },
+  {
+    "objectID": "posts/rest-vs-soap/index.html#other-considerations",
+    "href": "posts/rest-vs-soap/index.html#other-considerations",
+    "title": "Choosing between REST and SOAP",
+    "section": "Other considerations",
+    "text": "Other considerations\n\nAssess your team’s expertise with SOAP or REST.\nPlan for future maintenance, including versioning strategies for the APIs."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Curiosity | Imagination | Rigor",
+    "section": "",
+    "text": "A necessary condition for Mersenne primes\n\n\n\nmathematics\n\n\n\nA clean proof that composite exponents can never yield a Mersenne prime.\n\n\n\n\n\nMay 7, 2026\n\n3 min\n\n\n\n\n\n\n\n\n\n\n\nFirst to call 50: winning strategy using backward induction\n\n\n\nmathematics\n\n\n\nSolving a number-calling game with backward induction and modular arithmetic.\n\n\n\n\n\nApr 13, 2026\n\n5 min\n\n\n\n\n\n\n\n\n\n\n\nCounting unordered pairs: three perspectives on C(n, 2)\n\n\n\nmathematics\n\n\n\nThree different proofs of C(n,2), from a checkerboard table to overcounting and dividing.\n\n\n\n\n\nMar 18, 2026\n\n6 min\n\n\n\n\n\n\n\n\n\n\n\nCount the triangles in a five-sided star\n\n\n\nmathematics\n\n\n\nCounting all 35 triangles hidden inside a pentagon and its inscribed pentagram.\n\n\n\n\n\nFeb 9, 2026\n\n2 min\n\n\n\n\n\n\n\n\n\n\n\nThe joy of useless pursuits: why ancient wisdom will outlast AI\n\n\n\nmiscellaneous\n\n\n\nWhy civilizations that value knowledge for its own sake are best placed to survive AI.\n\n\n\n\n\nJul 12, 2024\n\n7 min\n\n\n\n\n\n\n\n\n\n\n\nAn opinionated approach to software documentation\n\n\n\ndocumentation\n\n\n\nWhy documentation fails when stakeholders never align, and a framework to fix it.\n\n\n\n\n\nFeb 10, 2023\n\n4 min\n\n\n\n\n\n\n\n\n\n\n\nDebugging pods in a Kubernetes cluster\n\n\n\nsoftware\n\n\n\nA field guide to diagnosing pod status, logs, and crashes in a Kubernetes cluster.\n\n\n\n\n\nFeb 6, 2023\n\n4 min\n\n\n\n\n\n\n\n\n\n\n\nA brief analysis of BrowserStack’s documentation\n\n\n\ndocumentation\n\n\n\nA technical writer’s nitpicks on BrowserStack’s documentation, from admonitions to IA.\n\n\n\n\n\nOct 27, 2022\n\n3 min\n\n\n\n\n\n\n\n\n\n\n\nTest automation using Selenium, BrowserStack, and GitHub\n\n\n\nsoftware\n\n\n\nAutomating browser tests with Selenium, BrowserStack, and GitHub Actions CI.\n\n\n\n\n\nOct 24, 2022\n\n11 min\n\n\n\n\n\n\n\n\n\n\n\nHow to not lose in tic-tac-toe\n\n\n\nmiscellaneous\n\n\n\nSimple strategies to never lose a game of tic-tac-toe.\n\n\n\n\n\nNov 16, 2020\n\n3 min\n\n\n\n\n\n\n\n\n\n\n\nLandmark detection using Google Cloud and Vision API\n\n\n\nsoftware\n\n\n\nA hands-on tutorial for landmark detection using Google Cloud Storage and Vision API.\n\n\n\n\n\nNov 14, 2020\n\n7 min\n\n\n\n\n\n\n\n\n\n\n\nChoosing between REST and SOAP\n\n\n\nsoftware\n\n\n\nA practical decision guide for choosing between SOAP and REST web services.\n\n\n\n\n\nNov 12, 2020\n\n3 min\n\n\n\n\n\n\n\n\n\n\n\nReviewing a Java code snippet\n\n\n\nsoftware\n\n\n\nReviewing and refactoring a Java string-frequency counter for clarity and efficiency.\n\n\n\n\n\nNov 9, 2020\n\n4 min\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "posts/mersenne-prime-sieve/index.html",
+    "href": "posts/mersenne-prime-sieve/index.html",
+    "title": "A necessary condition for Mersenne primes",
+    "section": "",
+    "text": "Mersenne primes are prime numbers of the form \\(2^p - 1\\) where \\(p\\) is also prime. Named after the French monk Marin Mersenne (1588–1648), these primes have fascinated mathematicians for centuries due to their connection with perfect numbers and their computational importance in modern cryptography.\nThe search for Mersenne primes is among the most extensive computational efforts in number theory. As of October 2024, \\(52\\) Mersenne primes are known, the largest being\n\\[2^{136279841} - 1,\\]\ndiscovered through the Great Internet Mersenne Prime Search (GIMPS).\nA natural question arises: what conditions must \\(p\\) satisfy for \\(2^p - 1\\) to be prime? While the complete answer remains open, we can establish a simple and powerful necessary condition that rules out infinitely many non-prime exponents immediately."
+  },
+  {
+    "objectID": "posts/mersenne-prime-sieve/index.html#what-are-mersenne-primes",
+    "href": "posts/mersenne-prime-sieve/index.html#what-are-mersenne-primes",
+    "title": "A necessary condition for Mersenne primes",
+    "section": "",
+    "text": "Mersenne primes are prime numbers of the form \\(2^p - 1\\) where \\(p\\) is also prime. Named after the French monk Marin Mersenne (1588–1648), these primes have fascinated mathematicians for centuries due to their connection with perfect numbers and their computational importance in modern cryptography.\nThe search for Mersenne primes is among the most extensive computational efforts in number theory. As of October 2024, \\(52\\) Mersenne primes are known, the largest being\n\\[2^{136279841} - 1,\\]\ndiscovered through the Great Internet Mersenne Prime Search (GIMPS).\nA natural question arises: what conditions must \\(p\\) satisfy for \\(2^p - 1\\) to be prime? While the complete answer remains open, we can establish a simple and powerful necessary condition that rules out infinitely many non-prime exponents immediately."
+  },
+  {
+    "objectID": "posts/mersenne-prime-sieve/index.html#theorem",
+    "href": "posts/mersenne-prime-sieve/index.html#theorem",
+    "title": "A necessary condition for Mersenne primes",
+    "section": "Theorem",
+    "text": "Theorem\n\n\n\n\n\n\nNoteTheorem\n\n\n\nLet \\(n \\in \\mathbb{N}\\) with \\(n &gt; 1\\). If \\(n\\) is not prime, then the number \\(2^n - 1\\) is not prime.\n\n\nPrimes of the form \\(2^p - 1\\) (where \\(p\\) is also prime) are called Mersenne primes. The theorem above provides a necessary but not a sufficient condition for Mersenne primality."
+  },
+  {
+    "objectID": "posts/mersenne-prime-sieve/index.html#proof",
+    "href": "posts/mersenne-prime-sieve/index.html#proof",
+    "title": "A necessary condition for Mersenne primes",
+    "section": "Proof",
+    "text": "Proof\nAssume \\(n\\) is composite. Then there exist \\(a, b \\in \\mathbb{N}\\) such that\n\\[n = ab, \\qquad 1 &lt; a &lt; n, \\qquad 1 &lt; b &lt; n.\\]\nWe show \\(2^n - 1\\) is composite by expressing it as a non-trivial product.\n\nFactorization identity\nSince \\(n = ab\\),\n\\[2^n - 1 = 2^{ab} - 1 = (2^b)^a - 1.\\]\nUsing the standard factorization \\(x^a - 1 = (x-1)(x^{a-1} + x^{a-2} + \\cdots + x + 1)\\) with \\(x = 2^b\\):\n\\[2^n - 1 = (2^b - 1)\\left(2^{b(a-1)} + 2^{b(a-2)} + \\cdots + 2^b + 1\\right).\\]\n\n\nDefining the factors\nLet\n\\[x = 2^b - 1, \\qquad y = \\sum_{k=0}^{a-1} 2^{bk}.\\]\nThen \\(2^n - 1 = x \\cdot y\\). The first factor \\(x = 2^b - 1\\) is at least \\(3\\), since \\(b \\geq 2\\). The second factor \\(y\\) is a geometric series with \\(a\\) positive terms:\n\\[y = 1 + 2^b + 2^{2b} + \\cdots + 2^{b(a-1)}.\\]\n\n\nNon-triviality of the factors\nWe check that both \\(x\\) and \\(y\\) lie strictly between \\(1\\) and \\(2^n - 1\\).\n\nFor \\(x\\): since \\(b &gt; 1\\), \\(x = 2^b - 1 \\geq 3 &gt; 1\\). Also \\(b &lt; n \\Rightarrow 2^b &lt; 2^n\\), hence \\(x &lt; 2^n - 1\\).\nFor \\(y\\): because \\(y\\) has at least two positive terms, \\(y \\geq 1 + 2^b \\geq 5 &gt; 1\\). And clearly \\(y &lt; 2^n - 1\\), since \\(y\\) is only part of the full geometric sum that forms \\(2^n - 1\\).\n\nTherefore\n\\[1 &lt; x &lt; 2^n - 1, \\qquad 1 &lt; y &lt; 2^n - 1,\\]\nso \\(2^n - 1 = x \\cdot y\\) is composite."
+  },
+  {
+    "objectID": "posts/mersenne-prime-sieve/index.html#conclusion",
+    "href": "posts/mersenne-prime-sieve/index.html#conclusion",
+    "title": "A necessary condition for Mersenne primes",
+    "section": "Conclusion",
+    "text": "Conclusion\n\n\n\n\n\n\nTipCorollary\n\n\n\nIf \\(n\\) is not prime, then \\(2^n - 1\\) cannot be prime. Hence every Mersenne prime \\(2^p - 1\\) must have \\(p\\) itself prime.\n\n\nThis elegant argument captures the deep link between the exponent’s primality and the structure of powers of two. While it rules out all composite exponents, the mystery of which prime \\(p\\) yield Mersenne primes remains an open frontier."
+  },
+  {
     "objectID": "posts/first-to-call-fifty/index.html",
     "href": "posts/first-to-call-fifty/index.html",
     "title": "First to call 50: winning strategy using backward induction",
@@ -280,6 +413,27 @@
     "text": "Conclusion\nThe first player wins with perfect play by starting at \\(6\\) and then repeatedly adding \\(11\\) (after the opponent moves), following the sequence \\(6, 17, 28, 39, 50\\). The winning positions are exactly those congruent to \\(6 \\pmod{11}\\).\n\n\n\n\n\n\nNoteGeneralization\n\n\n\nThe same backward-induction method generalizes: if on each move a player may add between \\(1\\) and \\(M\\), and the target is \\(T\\), then winning positions are those congruent to \\(r \\pmod{M+1}\\) where \\(r\\) is the smallest positive integer such that \\(T \\equiv r \\pmod{M+1}\\) and that is reachable from a legal initial move."
   },
   {
+    "objectID": "posts/java-code-review/index.html",
+    "href": "posts/java-code-review/index.html",
+    "title": "Reviewing a Java code snippet",
+    "section": "",
+    "text": "For this section, I assumed that the method in the code sample is part of a class NeedlesInHaystack.\n\n\nThis class provides functionality to search for multiple needle strings within a single haystack string and outputs the frequency of each needle’s occurrence.\n\n\n\nType: public static\nParameters:\n\nString haystack — the text within which to search for the needles\nString[] needles — an array of strings representing the words (needles) to be counted in the haystack\n\nReturns: void (prints results to the console)\nUsage: prints the number of times each string in the needles array appears in the haystack string\n\n\n\n\nString haystack = \"Google Cloud provides APIs to use Google's ML/AI capabilities.\";\nString[] needles = {\"Google\", \"API\", \"documentation\", \"AWS\", \"ML/AI\"};\nnew NeedlesInHaystack().findNeedles(haystack, needles);\nOutput:\nGoogle: 2\nAPI: 0\ndocumentation: 0\nAWS: 0\nML/AI: 1"
+  },
+  {
+    "objectID": "posts/java-code-review/index.html#api-reference",
+    "href": "posts/java-code-review/index.html#api-reference",
+    "title": "Reviewing a Java code snippet",
+    "section": "",
+    "text": "For this section, I assumed that the method in the code sample is part of a class NeedlesInHaystack.\n\n\nThis class provides functionality to search for multiple needle strings within a single haystack string and outputs the frequency of each needle’s occurrence.\n\n\n\nType: public static\nParameters:\n\nString haystack — the text within which to search for the needles\nString[] needles — an array of strings representing the words (needles) to be counted in the haystack\n\nReturns: void (prints results to the console)\nUsage: prints the number of times each string in the needles array appears in the haystack string\n\n\n\n\nString haystack = \"Google Cloud provides APIs to use Google's ML/AI capabilities.\";\nString[] needles = {\"Google\", \"API\", \"documentation\", \"AWS\", \"ML/AI\"};\nnew NeedlesInHaystack().findNeedles(haystack, needles);\nOutput:\nGoogle: 2\nAPI: 0\ndocumentation: 0\nAWS: 0\nML/AI: 1"
+  },
+  {
+    "objectID": "posts/java-code-review/index.html#suggestions-for-code-improvement",
+    "href": "posts/java-code-review/index.html#suggestions-for-code-improvement",
+    "title": "Reviewing a Java code snippet",
+    "section": "Suggestions for code improvement",
+    "text": "Suggestions for code improvement\nAfter reviewing the code sample, I have the following suggestions for improvement:\n\nLimit the number of needles. The current code restricts the length of the needles array to five. If this is a strict requirement, modify the message in the print statement within the if block to “Use a maximum of five words!”. This provides clearer guidance than “Too many…”.\nAssign needles.length to a variable. Store needles.length in a variable to eliminate repeated evaluation of the same expression. This also improves memory efficiency.\nOptimize haystack.split(). Move the split statement outside of the loop — the words array does not change with each iteration, so splitting the haystack only once is more efficient.\nImprove readability. In the third for loop, use k as the iterator variable, as i and j are already in use in nearby loops.\nConsider using a HashMap. To store the frequency of each needle, a HashMap provides a more flexible and efficient way to handle the counting, especially if you want to return key-value pairs or add further functionality later.\n\n\nSuggested code\nHere is the revised code, incorporating the suggested improvements for efficiency and clarity:\npublic class NeedlesInHaystack {\n    public static void findNeedles(String haystack, String[] needles) {\n        // Store the length of the needles array in a variable\n        int needlesLength = needles.length;\n\n        // Split the haystack string once\n        String[] words = haystack.split(\"[ \\\"'\\t\\n\\b\\f\\r]\", 0);\n\n        // Create an array to store the frequency counts\n        int[] countArray = new int[needlesLength];\n\n        // Iterate through the needles and count their occurrences\n        for (int i = 0; i &lt; needlesLength; i++) {\n            for (int j = 0; j &lt; words.length; j++) {\n                if (words[j].compareTo(needles[i]) == 0) {\n                    countArray[i]++;\n                }\n            }\n        }\n\n        // Print the results\n        for (int k = 0; k &lt; needlesLength; k++) {\n            System.out.println(needles[k] + \": \" + countArray[k]);\n        }\n    }\n\n    public static void main(String[] args) {\n        // Hard-coded values for demonstration\n        // Ideally, values should be received from standard input\n        String haystack = \"Google Cloud provides APIs to use Google's ML/AI capabilities.\";\n        String[] needles = {\"Google\", \"API\", \"documentation\", \"AWS\", \"ML/AI\"};\n        findNeedles(haystack, needles);\n    }\n}\n\n\nSample output\nGoogle: 2\nAPI: 0\ndocumentation: 0\nAWS: 0\nML/AI: 1"
+  },
+  {
     "objectID": "posts/counting-unordered-pairs/index.html",
     "href": "posts/counting-unordered-pairs/index.html",
     "title": "Counting unordered pairs: three perspectives on C(n, 2)",
@@ -336,116 +490,60 @@
     "text": "Conclusion\n\n\n\n\n\n\nNoteSummary\n\n\n\nThe number of unordered pairs of distinct elements drawn from an \\(n\\)-element set is \\(\\binom{n}{2} = \\dfrac{n(n-1)}{2}\\).\nWe proved this three ways:\n\nConcrete table (\\(n = 5\\)): count check marks in the upper triangle.\nRow-by-row sum: row \\(T_k\\) contributes \\(n - k\\) pairs; summing yields \\(n^2 - \\frac{n(n+1)}{2} = \\frac{n(n-1)}{2}\\).\nDivision principle: \\(n(n-1)\\) ordered pairs, each unordered pair counted twice, so divide by \\(2\\).\n\nThe three viewpoints — enumerate carefully, sum a pattern, overcount and divide — are the standard combinatorial moves and recur throughout the subject.\n\n\n\n\n\n\n\n\nTipWhere this quantity shows up\n\n\n\nThe number \\(\\binom{n}{2}\\) counts:\n\nthe edges of the complete graph \\(K_n\\) on \\(n\\) vertices\nthe handshakes exchanged when \\(n\\) people each shake hands with every other person once\nthe number of \\(2\\)-element subsets of an \\(n\\)-set\nthe \\(n\\)-th triangular number \\(T_{n-1} = 1 + 2 + \\cdots + (n-1)\\)\n\n\n\n\n\n\n\n\n\nTipGeneralization\n\n\n\nThe third approach extends immediately: the number of unordered \\(r\\)-subsets of an \\(n\\)-set is\n\\[\\binom{n}{r} = \\frac{n(n-1)(n-2)\\cdots(n-r+1)}{r!},\\]\nobtained by counting ordered \\(r\\)-tuples of distinct elements (\\(n(n-1)\\cdots(n-r+1)\\) of them) and dividing by the number of orderings of each \\(r\\)-subset (\\(r!\\)). For \\(r = 2\\) this recovers \\(\\frac{n(n-1)}{2}\\)."
   },
   {
-    "objectID": "posts/browserstack-doc-analysis/index.html",
-    "href": "posts/browserstack-doc-analysis/index.html",
-    "title": "A brief analysis of BrowserStack’s documentation",
+    "objectID": "posts/joy-of-useless-pursuits/index.html",
+    "href": "posts/joy-of-useless-pursuits/index.html",
+    "title": "The joy of useless pursuits: why ancient wisdom will outlast AI",
     "section": "",
-    "text": "Based on my 30-minute analysis of BrowserStack’s documentation and comparing with a competitor’s documentation, I don’t find anything that I strongly dislike. However, as a technical writer trained to pay attention to details, I have the following nitpicks."
+    "text": "The irony of the fact that this image is generated by an AI, although the prompt is by the author!\nThere’s something deeply revealing about watching a mathematician’s eyes light up when they discuss AI. While lawyers panic and consultants scramble to prove their continued relevance, the pure theorist leans forward with genuine excitement: Finally, a research assistant that never gets tired of my questions!\nThis split reaction tells us everything we need to know about who will thrive when artificial minds reshape our world. The answer isn’t what Silicon Valley prophets would have us believe."
   },
   {
-    "objectID": "posts/browserstack-doc-analysis/index.html#principles-of-minimalism-are-not-followed",
-    "href": "posts/browserstack-doc-analysis/index.html#principles-of-minimalism-are-not-followed",
-    "title": "A brief analysis of BrowserStack’s documentation",
-    "section": "1. Principles of minimalism are not followed",
-    "text": "1. Principles of minimalism are not followed\nFor example, in Getting started → Python → Prerequisites, the first bullet point is verbose.\nExisting sentence:\n\nYou need to have BrowserStack Username and Access key, which you can find in your account settings. If you have not created an account yet, you can sign up for a Free Trial or purchase a plan.\n\nSuggested sentence:\n\nNote your BrowserStack Username and Access key from the account settings. Unregistered users can sign up for a trial account or purchase a plan.\n\nThe suggestion also demonstrates restructuring of sentences to emphasize the user’s actions, and brings more clarity."
+    "objectID": "posts/joy-of-useless-pursuits/index.html#the-beautiful-futility-of-pure-thought",
+    "href": "posts/joy-of-useless-pursuits/index.html#the-beautiful-futility-of-pure-thought",
+    "title": "The joy of useless pursuits: why ancient wisdom will outlast AI",
+    "section": "The beautiful futility of pure thought",
+    "text": "The beautiful futility of pure thought\nImagine walking through the corridors of École Normale Supérieure in Paris, where young minds wrestle with mathematical abstractions that have no immediate use, no clear path to profit, no obvious benefit to humanity’s material condition. These students are doing something our productivity-obsessed age considers almost scandalous: they’re thinking for the pure joy of it.\nWhen AI arrives to handle the world’s practical problems, these “impractical” souls will simply continue their work, now aided by silicon minds that can crunch numbers while leaving the deeper mysteries intact. They were never competing with machines because they were never doing mechanical work. They were always doing something fundamentally different: experiencing wonder.\n\nThe crisis that’s coming — and it is coming — will not be economic in the traditional sense. It will be existential. What happens to a species that has spent centuries defining human worth through economic utility when that utility vanishes overnight?"
   },
   {
-    "objectID": "posts/browserstack-doc-analysis/index.html#section-headings-are-not-in-gerund-form",
-    "href": "posts/browserstack-doc-analysis/index.html#section-headings-are-not-in-gerund-form",
-    "title": "A brief analysis of BrowserStack’s documentation",
-    "section": "2. Section headings are not in gerund form",
-    "text": "2. Section headings are not in gerund form\nFor example, in Getting started → Python → Run your first test:\n\nExisting heading: “Run your first test”\nSuggested heading: “Running your first test”\n\nGerund forms of phrases are appropriate for highlighting a process, which might contain several steps. For the steps, we can use action-oriented sentences in simple present tense, such as “Create a sample test code file”."
+    "objectID": "posts/joy-of-useless-pursuits/index.html#the-terrible-honesty-of-obsolescence",
+    "href": "posts/joy-of-useless-pursuits/index.html#the-terrible-honesty-of-obsolescence",
+    "title": "The joy of useless pursuits: why ancient wisdom will outlast AI",
+    "section": "The terrible honesty of obsolescence",
+    "text": "The terrible honesty of obsolescence\nEvery profession tells itself a story about its irreplaceable value. Lawyers speak of nuanced judgment, consultants of strategic insight, and managers of human leadership. But AI is offering us a terrible honesty: much of what we’ve called skilled work was always pattern recognition dressed up in professional clothing.\nThe panic spreading through corner offices and conference rooms isn’t really about unemployment. It’s about identity collapse. These people built their sense of self around being better than others at economically valuable tasks. AI isn’t just taking their jobs; it’s revealing that their jobs were already mechanical — the mechanism just happened to be running inside their skulls instead of on silicon chips.\nMeanwhile, in small rooms around the world, people who society has always considered slightly mad continue their work undisturbed. The number theorist exploring prime distributions, the poet playing with language, the philosopher questioning the nature of consciousness — they greet our artificial future with curiosity rather than dread because they never confused their value with their productivity."
   },
   {
-    "objectID": "posts/browserstack-doc-analysis/index.html#admonitions-are-misused",
-    "href": "posts/browserstack-doc-analysis/index.html#admonitions-are-misused",
-    "title": "A brief analysis of BrowserStack’s documentation",
-    "section": "3. Admonitions are misused",
-    "text": "3. Admonitions are misused\nFor example:\n\nThe following Warning should ideally be a Caution, because the user needs to be mindful about adding the driver.quit() statement at the end of the code.\n“Protip” is not a standard admonition. Instead, use Tip.\n\n\n\n\n\n\n\nWarning\n\n\n\nThe driver.quit() statement is required, otherwise the test continues to execute, leading to a timeout.\n\n\n\n\n\n\n\n\nTip\n\n\n\nYou can use our capability builder and select from a wide range of custom capabilities that BrowserStack supports."
+    "objectID": "posts/joy-of-useless-pursuits/index.html#the-fraud-of-subsidized-serenity",
+    "href": "posts/joy-of-useless-pursuits/index.html#the-fraud-of-subsidized-serenity",
+    "title": "The joy of useless pursuits: why ancient wisdom will outlast AI",
+    "section": "The fraud of subsidized serenity",
+    "text": "The fraud of subsidized serenity\nWe often point to Scandinavian happiness as a model for post-work society, but this misses something crucial. Although home to serious philosophy, literature, and math, Nordic contentment is built on oil wealth and resource extraction. Similarly, Swiss philosophical tranquility rests on centuries of banking profits. These societies haven’t transcended economics — they’ve simply been wealthy enough to afford the illusion of transcendence.\nWhen AI disrupts the economic foundations that fund their social safety nets, when oil becomes worthless and algorithms handle financial services, these carefully constructed paradises may crumble faster than anyone expects. Their happiness was always contingent, always dependent on the very economic systems they appeared to have moved beyond.\n\nTrue resilience lies elsewhere — in those places where intellectual fire has burned bright even in material darkness."
   },
   {
-    "objectID": "posts/browserstack-doc-analysis/index.html#some-unnecessary-images",
-    "href": "posts/browserstack-doc-analysis/index.html#some-unnecessary-images",
-    "title": "A brief analysis of BrowserStack’s documentation",
-    "section": "4. Some unnecessary images",
-    "text": "4. Some unnecessary images\nImages could have been used more sparingly to avoid maintenance problems. This is even more important for images that represent products such as GitHub, which are beyond BrowserStack’s control.\nIn addition, images without appropriate alt text hamper accessibility and SEO."
+    "objectID": "posts/joy-of-useless-pursuits/index.html#the-underground-rivers-of-wisdom",
+    "href": "posts/joy-of-useless-pursuits/index.html#the-underground-rivers-of-wisdom",
+    "title": "The joy of useless pursuits: why ancient wisdom will outlast AI",
+    "section": "The underground rivers of wisdom",
+    "text": "The underground rivers of wisdom\nThere’s a reason mathematics flourished in ancient India despite economic hardship, why poetry survived centuries of Persian upheaval, why Jewish scholarship thrived in ghettos across Europe. These traditions understood something we’ve forgotten: that the pursuit of truth and beauty needs no external justification.\nWalk into the Chennai Mathematical Institute, where brilliant minds work with minimal resources but maximum passion. Visit the institutes of Eastern Europe, where scholars produced world-changing insights while their governments collapsed around them. These are laboratories of a different kind of human development — one that doesn’t depend on venture capital or government subsidies, but on something deeper and more durable.\n\nThe people in these traditions don’t pursue knowledge because it might lead to patents or profits. They pursue it because the alternative — a life without wonder — is unimaginable."
   },
   {
-    "objectID": "posts/browserstack-doc-analysis/index.html#doc-site-uiux-can-be-improved",
-    "href": "posts/browserstack-doc-analysis/index.html#doc-site-uiux-can-be-improved",
-    "title": "A brief analysis of BrowserStack’s documentation",
-    "section": "5. Doc site UI/UX can be improved",
-    "text": "5. Doc site UI/UX can be improved\nModern documentation websites adopt a three-column approach: documentation suite navigation on the left, content in the middle, and current page ToC on the right. BrowserStack’s documentation website mostly leaves the right column blank. As a result, the left navigation panel looks more crowded and needs frequent scrolling.\n\n\n\nBrowserStack documentation site\n\n\nFor comparison, here’s LambdaTest’s documentation site, which puts the right-hand column to good use with an on-page table of contents:\n\n\n\nLambdaTest documentation site"
+    "objectID": "posts/joy-of-useless-pursuits/index.html#the-great-returning",
+    "href": "posts/joy-of-useless-pursuits/index.html#the-great-returning",
+    "title": "The joy of useless pursuits: why ancient wisdom will outlast AI",
+    "section": "The great returning",
+    "text": "The great returning\nWhat’s about to happen may not be progress in the way we usually understand it, but rather a great returning. The civilizations poised to thrive in the AI age are not those rising now through industrial might, but those that were once great because they understood what makes humans human.\nAncient Athens didn’t fund philosophy because it generated economic growth. The Islamic Golden Age didn’t support mathematics because it improved trade efficiency. Vedic India didn’t develop complex philosophical systems to boost agricultural output. These civilizations invested in human intellectual and spiritual development because they recognized it as intrinsically valuable.\nThe industrial age convinced us to forget this wisdom. We learned to develop human potential instrumentally — education to create workers, research to generate competitive advantage, and even happiness policies to boost productivity. But when AI eliminates the economic rationale for human development, these instrumental approaches lose their foundation.\n\nSocieties that never lost sight of why human consciousness matters — beyond its economic utility — will find themselves not scrambling to create meaning, but simply continuing to pursue what they always valued."
   },
   {
-    "objectID": "posts/browserstack-doc-analysis/index.html#general-comments",
-    "href": "posts/browserstack-doc-analysis/index.html#general-comments",
-    "title": "A brief analysis of BrowserStack’s documentation",
-    "section": "6. General comments",
-    "text": "6. General comments\n\nSome navigation links within the text/content are broken, especially the ones that navigate to different sections within the same article.\nIn lots of occasions, the writing style deviates significantly from Google’s documentation style guide. In fact, a seasoned writer can easily identify the documents contributed by developers, testers, product managers, or customer support. While this is not a big problem, the documentation experience can certainly be made more consistent."
+    "objectID": "posts/joy-of-useless-pursuits/index.html#the-physics-of-wonder",
+    "href": "posts/joy-of-useless-pursuits/index.html#the-physics-of-wonder",
+    "title": "The joy of useless pursuits: why ancient wisdom will outlast AI",
+    "section": "The physics of wonder",
+    "text": "The physics of wonder\nHere’s what AI optimists and pessimists both miss: Artificial Intelligence isn’t humanity’s replacement, but its liberation. Not from work — that’s the shallow reading — but from the illusion that our value lies in our usefulness.\nPicture an AI tutor working with a child to rediscover the quadratic formula. There’s no rush, no economic pressure, no competition with other students. The AI provides just enough guidance to keep the child in that magical space between confusion and insight. When understanding finally dawns, the joy on that child’s face is purely human — the delight of a conscious mind encountering truth for the first time.\nThis is what we’re moving toward: a world where learning becomes play, where research becomes art, where the ancient human love of pattern and beauty can flourish without apologizing for its uselessness.\nThe civilizations ready for this transition are not those with the most advanced technology, but those that have maintained their appreciation for what the Greeks called theoria — the contemplation of truth for its own sake."
   },
   {
-    "objectID": "posts/browserstack-doc-analysis/index.html#bonus",
-    "href": "posts/browserstack-doc-analysis/index.html#bonus",
-    "title": "A brief analysis of BrowserStack’s documentation",
-    "section": "7. Bonus",
-    "text": "7. Bonus\nModern test environments, especially in enterprise situations, are mostly containers running on clusters. If the onboarding docs describe procedures using containers, the onboarding experience and the documentation becomes more standardized and maintainable."
-  },
-  {
-    "objectID": "documentation.html",
-    "href": "documentation.html",
-    "title": "Documentation",
-    "section": "",
-    "text": "Open source technical documentation:\n\nSUSE Linux Enterprise - Modular Documentation\nSUSE Linux Enterprise - Legacy Documentation\nSUSE Linux Enterprise - Compliance Documentation\nRed Hat OpenShift - CI/CD Pipelines Documentation\nFusionCharts - Weather Dashboard using Vue.js"
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "Souvik Sarkar",
-    "section": "",
-    "text": "A math-minded, code-literate technical writer documenting system software with clarity and precision."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Curiosity | Imagination | Rigor",
-    "section": "",
-    "text": "A necessary condition for Mersenne primes\n\n\n\nmathematics\n\n\n\nA clean proof that composite exponents can never yield a Mersenne prime.\n\n\n\n\n\nMay 7, 2026\n\n3 min\n\n\n\n\n\n\n\n\n\n\n\nFirst to call 50: winning strategy using backward induction\n\n\n\nmathematics\n\n\n\nSolving a number-calling game with backward induction and modular arithmetic.\n\n\n\n\n\nApr 13, 2026\n\n5 min\n\n\n\n\n\n\n\n\n\n\n\nCounting unordered pairs: three perspectives on C(n, 2)\n\n\n\nmathematics\n\n\n\nThree different proofs of C(n,2), from a checkerboard table to overcounting and dividing.\n\n\n\n\n\nMar 18, 2026\n\n6 min\n\n\n\n\n\n\n\n\n\n\n\nCount the triangles in a five-sided star\n\n\n\nmathematics\n\n\n\nCounting all 35 triangles hidden inside a pentagon and its inscribed pentagram.\n\n\n\n\n\nFeb 9, 2026\n\n2 min\n\n\n\n\n\n\n\n\n\n\n\nThe joy of useless pursuits: why ancient wisdom will outlast AI\n\n\n\nmiscellaneous\n\n\n\nWhy civilizations that value knowledge for its own sake are best placed to survive AI.\n\n\n\n\n\nJul 12, 2024\n\n7 min\n\n\n\n\n\n\n\n\n\n\n\nAn opinionated approach to software documentation\n\n\n\ndocumentation\n\n\n\nWhy documentation fails when stakeholders never align, and a framework to fix it.\n\n\n\n\n\nFeb 10, 2023\n\n4 min\n\n\n\n\n\n\n\n\n\n\n\nDebugging pods in a Kubernetes cluster\n\n\n\nsoftware\n\n\n\nA field guide to diagnosing pod status, logs, and crashes in a Kubernetes cluster.\n\n\n\n\n\nFeb 6, 2023\n\n4 min\n\n\n\n\n\n\n\n\n\n\n\nA brief analysis of BrowserStack’s documentation\n\n\n\ndocumentation\n\n\n\nA technical writer’s nitpicks on BrowserStack’s documentation, from admonitions to IA.\n\n\n\n\n\nOct 27, 2022\n\n3 min\n\n\n\n\n\n\n\n\n\n\n\nTest automation using Selenium, BrowserStack, and GitHub\n\n\n\nsoftware\n\n\n\nAutomating browser tests with Selenium, BrowserStack, and GitHub Actions CI.\n\n\n\n\n\nOct 24, 2022\n\n11 min\n\n\n\n\n\n\n\n\n\n\n\nHow to not lose in tic-tac-toe\n\n\n\nmiscellaneous\n\n\n\nSimple strategies to never lose a game of tic-tac-toe.\n\n\n\n\n\nNov 16, 2020\n\n3 min\n\n\n\n\n\n\n\n\n\n\n\nLandmark detection using Google Cloud and Vision API\n\n\n\nsoftware\n\n\n\nA hands-on tutorial for landmark detection using Google Cloud Storage and Vision API.\n\n\n\n\n\nNov 14, 2020\n\n7 min\n\n\n\n\n\n\n\n\n\n\n\nChoosing between REST and SOAP\n\n\n\nsoftware\n\n\n\nA practical decision guide for choosing between SOAP and REST web services.\n\n\n\n\n\nNov 12, 2020\n\n3 min\n\n\n\n\n\n\n\n\n\n\n\nReviewing a Java code snippet\n\n\n\nsoftware\n\n\n\nReviewing and refactoring a Java string-frequency counter for clarity and efficiency.\n\n\n\n\n\nNov 9, 2020\n\n4 min\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "posts/count-triangles-pentagon-star/index.html",
-    "href": "posts/count-triangles-pentagon-star/index.html",
-    "title": "Count the triangles in a five-sided star",
-    "section": "",
-    "text": "Count the number of distinct triangles formed when a regular pentagram is drawn inside a regular pentagon by connecting every second vertex (i.e., draw the five-pointed star formed by skipping one vertex each time).\nThe figure consists of a regular pentagon with its five vertices connected every second vertex, producing the familiar five-pointed star (pentagram) whose intersecting diagonals create five interior intersection points."
-  },
-  {
-    "objectID": "posts/count-triangles-pentagon-star/index.html#problem",
-    "href": "posts/count-triangles-pentagon-star/index.html#problem",
-    "title": "Count the triangles in a five-sided star",
-    "section": "",
-    "text": "Count the number of distinct triangles formed when a regular pentagram is drawn inside a regular pentagon by connecting every second vertex (i.e., draw the five-pointed star formed by skipping one vertex each time).\nThe figure consists of a regular pentagon with its five vertices connected every second vertex, producing the familiar five-pointed star (pentagram) whose intersecting diagonals create five interior intersection points."
-  },
-  {
-    "objectID": "posts/count-triangles-pentagon-star/index.html#strategy",
-    "href": "posts/count-triangles-pentagon-star/index.html#strategy",
-    "title": "Count the triangles in a five-sided star",
-    "section": "Strategy",
-    "text": "Strategy\nOutline of the counting method:\n\nClassify triangles by the types of their vertices: whether a vertex lies on the outer pentagon (“perimeter vertex”) or at an intersection point formed by the pentagram (“internal point”).\nUse the \\(5\\)-fold rotational symmetry to count representatives of each class and multiply appropriately; verify there is no double counting.\nWhere necessary, examine local configurations around one vertex/edge and propagate by symmetry."
-  },
-  {
-    "objectID": "posts/count-triangles-pentagon-star/index.html#solution",
-    "href": "posts/count-triangles-pentagon-star/index.html#solution",
-    "title": "Count the triangles in a five-sided star",
-    "section": "Solution",
-    "text": "Solution\nWe proceed by enumerating triangle types.\nType I: three perimeter vertices. Choose any \\(3\\) of the \\(5\\) outer vertices. This gives\n\\[\\binom{5}{3} = 10\\]\ntriangles.\nType II: two perimeter vertices and one internal intersection. Consider an outer edge as a potential base. For each outer edge there are a fixed finite number of internal intersection points that together with that base produce triangles contained in the figure. A local inspection (or symmetry argument) shows there are \\(3\\) distinct interior-point choices per edge that yield distinct internal triangles, and counting over the \\(5\\) edges gives\n\\[5 \\times 3 = 15\\]\ntriangles of this type.\nType III: one perimeter vertex and two internal intersections. Around each outer vertex, the two nearby intersection points formed by the star lines create exactly one triangle together with that vertex (by symmetry and direct inspection). Hence there are\n\\[5\\]\ntriangles of this type.\nType IV: three internal intersection points. Some triangles are formed solely by three intersection points of the star’s diagonals. By symmetry and explicit counting of admissible intersection-triples one finds\n\\[5\\]\nsuch triangles.\n\n\n\n\n\n\nImportantTotal count\n\n\n\nSumming the above counts yields the total number of distinct triangles formed:\n\\[10 + 15 + 5 + 5 = 35.\\]"
-  },
-  {
-    "objectID": "posts/count-triangles-pentagon-star/index.html#conclusion",
-    "href": "posts/count-triangles-pentagon-star/index.html#conclusion",
-    "title": "Count the triangles in a five-sided star",
-    "section": "Conclusion",
-    "text": "Conclusion\nBy classifying triangles according to vertex types and exploiting the pentagon’s symmetry, one deduces that the pentagon with its inscribed pentagram contains exactly \\(35\\) distinct triangles."
+    "objectID": "posts/joy-of-useless-pursuits/index.html#the-deepest-economics",
+    "href": "posts/joy-of-useless-pursuits/index.html#the-deepest-economics",
+    "title": "The joy of useless pursuits: why ancient wisdom will outlast AI",
+    "section": "The deepest economics",
+    "text": "The deepest economics\nThere’s a beautiful irony waiting to unfold. The countries that prioritize happiness, health, and intellectual contribution for their own sake — rather than as inputs to economic output — may find themselves not just spiritually richer, but materially more resilient as well.\n\nThese three elements form the true foundation of any economy: flourishing consciousness, vital bodies, creative minds. We’ve spent centuries treating them as byproducts of economic activity, when in fact they are its source.\n\nWhen the age of artificial intelligence fully arrives, the societies that remember this truth will discover something remarkable: they were preparing for the future all along, not by racing toward it, but by preserving what was always most valuable about being human.\nThe future belongs not to those who can compete with machines, but to those who remember why consciousness itself is worth celebrating. In our rush toward artificial minds, the deepest victory may belong to those who never forgot the irreplaceable miracle of the natural ones we already possess.\n\nAs humans, the return to useless pursuits might be our only true superpower."
   },
   {
     "objectID": "posts/debugging-pods-kubernetes/index.html",
@@ -474,111 +572,6 @@
     "title": "Debugging pods in a Kubernetes cluster",
     "section": "Debugging pods in a Kubernetes cluster",
     "text": "Debugging pods in a Kubernetes cluster\nThe following sections describe common debugging techniques. Use these techniques sequentially or combine them based on your specific scenario.\n\n1. What does pod status tell you?\nBegin debugging by checking the status of your pods.\nTo list all pods:\nkubectl get pods\nTo list pods in a specific namespace:\nkubectl get pods --namespace=&lt;namespace-name&gt;\nExample:\nkubectl get pods --namespace=default\nExpected output:\nNAME                                READY   STATUS             RESTARTS   AGE\nhello-node-7b87cd5f68-2wp4m        1/1     Running            0          21m\nnginx-deployment-66b6c48dd5-8k4h2  0/1     Pending            0          5m\nredis-master-58db8984f-xp4c8       0/1     ImagePullBackOff   0          2m\n\n\n\n\n\n\nTip\n\n\n\nIf a pod is stuck in Pending status, check cluster resource availability by running the following command:\nkubectl describe node &lt;node-name&gt;\n\n\nFor a graphical interface, use the Kubernetes dashboard:\n\nOpen the Kubernetes dashboard.\nNavigate to the Pods section.\nSelect a pod to view its details.\n\n\n\n\nPods in a Kubernetes dashboard\n\n\n\n\n2. What do the logs reveal?\nLogs help identify what a container is doing or why it failed.\nTo view logs from all containers in a pod:\nkubectl logs &lt;pod-name&gt; --all-containers=true\nTo view logs from a specific container:\nkubectl logs &lt;pod-name&gt; -c &lt;container-name&gt;\n\n\n\n\n\n\nNote\n\n\n\nFor pods with a single container, omit the container name.\n\n\nExample:\nkubectl logs hello-node-7b87cd5f68-2wp4m\nExpected output:\nI0715 06:51:04.198447       1 log.go:195] Started HTTP server on port 8080\nI0715 06:51:04.198572       1 log.go:195] Started UDP server on port 8081\n\n\n\n\n\n\nTip\n\n\n\nFor pods in CrashLoopBackOff status, check logs with the --previous flag to see the last container’s logs before it crashed:\nkubectl logs &lt;pod-name&gt; --previous\n\n\n\n\n3. How do you inspect inside a container?\nInspect container state by running shell commands directly inside it.\nSyntax:\nkubectl exec &lt;pod-name&gt; -c &lt;container-name&gt; -- &lt;command&gt;\n\n\n\n\n\n\nNote\n\n\n\nIf not specified, commands run in the first container of the pod.\n\n\nCheck container environment variables:\nkubectl exec nginx-deployment-66b6c48dd5-8k4h2 -- env\nExpected output:\nPATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\nHOSTNAME=nginx-deployment-66b6c48dd5-8k4h2\nNGINX_VERSION=1.21.1\nNJS_VERSION=0.6.1\nPKG_RELEASE=1~buster\nHOME=/root\nVerify network connectivity:\nkubectl exec nginx-deployment-66b6c48dd5-8k4h2 -- curl -I localhost:80\nExpected output:\nHTTP/1.1 200 OK\nServer: nginx/1.21.1\nDate: Tue, 14 Jan 2025 10:15:23 GMT\nContent-Type: text/html\nContent-Length: 612\nConnection: keep-alive\nCheck running processes:\nkubectl exec nginx-deployment-66b6c48dd5-8k4h2 -- ps aux\nExpected output:\nUSER    PID  %CPU  %MEM   VSZ   RSS TTY STAT START TIME COMMAND\nroot      1   0.0   0.1 10640  5548 ?   Ss   10:00 0:00 nginx: master process\nnginx    31   0.0   0.1 11088  5164 ?   S    10:00 0:00 nginx: worker process\n\n\n\n\n\n\nTip\n\n\n\nFor containers that crash immediately, create a copy of the pod with a sleep command:\nkubectl debug &lt;pod-name&gt; --copy-to=&lt;pod-name&gt;-debug --container=&lt;container-name&gt; -- sleep 1d\n\n\n\n\n4. When should you use ephemeral containers?\nEphemeral containers let you attach debugging tools to running pods without modifying the original containers. They are especially useful when a container’s image lacks a shell or debugging utilities.\nTo create an ephemeral debug container:\nkubectl debug &lt;pod-name&gt; -it --image=&lt;debug-image&gt;\nDebug networking issues using netshoot:\nkubectl debug nginx-deployment-66b6c48dd5-8k4h2 -it --image=nicolaka/netshoot\nExpected output:\nDefaulting debug container name to debugger-nx8j2.\nIf you don't see a command prompt, try pressing enter.\n~ # dig kubernetes.default.svc.cluster.local\n~ # curl -v telnet://nginx-service:80\n~ # tcpdump -i any port 80\nAnalyze memory usage with tools:\nkubectl debug redis-master-58db8984f-xp4c8 -it --image=ubuntu\nExpected output:\nDefaulting debug container name to debugger-7xj4d.\nIf you don't see a command prompt, try pressing enter.\nroot@redis-master-58db8984f-xp4c8:/# apt-get update\nroot@redis-master-58db8984f-xp4c8:/# apt-get install -y procps\nroot@redis-master-58db8984f-xp4c8:/# top\n...Memory usage details...\n\n\n\n\n\n\nTip\n\n\n\nFor pods with ImagePullBackOff status, verify the image name and registry credentials. Check image pull secrets using:\nkubectl get pod &lt;pod-name&gt; -o=jsonpath='{.spec.imagePullSecrets[0].name}'"
-  },
-  {
-    "objectID": "posts/fixing-software-documentation/index.html",
-    "href": "posts/fixing-software-documentation/index.html",
-    "title": "An opinionated approach to software documentation",
-    "section": "",
-    "text": "Product documentation is often treated as an afterthought — a necessary evil that gets patched together after development is complete. Companies invest heavily in sophisticated tools and comprehensive user surveys, desperately trying to understand why their documentation doesn’t resonate with users. Yet they’re often looking in the wrong place.\nThe real problem isn’t in the tools or the feedback mechanisms. It’s a fundamental mismatch between what different stakeholders understand about the product and what ultimately gets delivered as documentation. This creates a dangerous disconnect between product philosophy and documentation philosophy."
-  },
-  {
-    "objectID": "posts/fixing-software-documentation/index.html#the-hidden-disconnect",
-    "href": "posts/fixing-software-documentation/index.html#the-hidden-disconnect",
-    "title": "An opinionated approach to software documentation",
-    "section": "",
-    "text": "Product documentation is often treated as an afterthought — a necessary evil that gets patched together after development is complete. Companies invest heavily in sophisticated tools and comprehensive user surveys, desperately trying to understand why their documentation doesn’t resonate with users. Yet they’re often looking in the wrong place.\nThe real problem isn’t in the tools or the feedback mechanisms. It’s a fundamental mismatch between what different stakeholders understand about the product and what ultimately gets delivered as documentation. This creates a dangerous disconnect between product philosophy and documentation philosophy."
-  },
-  {
-    "objectID": "posts/fixing-software-documentation/index.html#misaligned-mental-models",
-    "href": "posts/fixing-software-documentation/index.html#misaligned-mental-models",
-    "title": "An opinionated approach to software documentation",
-    "section": "Misaligned mental models",
-    "text": "Misaligned mental models\nEvery software product involves three distinct categories of stakeholders:\n\nVisionaries: product managers, CTOs, marketers who see the big picture and market positioning\nBuilders: designers, software engineers, product architects who understand the technical implementation\nUsers: testers/QA, solution architects, support engineers, technical writers who experience the product from the end-user perspective\n\nWhen these groups operate in silos, their different mental models never align. The documentation reflects only fragments of understanding, leaving users confused and frustrated."
-  },
-  {
-    "objectID": "posts/fixing-software-documentation/index.html#a-systematic-solution-framework",
-    "href": "posts/fixing-software-documentation/index.html#a-systematic-solution-framework",
-    "title": "An opinionated approach to software documentation",
-    "section": "A systematic solution framework",
-    "text": "A systematic solution framework\nHere’s a suggested approach to bridge this gap — for any feature requiring documentation, gather independent responses from your product manager, engineer, tester, and technical writer on the following aspects.\n\nContext + problem\n\nWhat problem does this feature solve?\nWhy did this problem occur?\nWhat happens if it remains unsolved?\nWhat benefits emerge when it’s solved?\n\n\n\nSolution + deployment\n\nHow do use cases differ across target personas?\nHow is the feature similar to or different from offerings by competitors?\nWhat are the feature’s use cases?\nWhat workflows does the feature enable?\nWhat outcomes should users expect?\nWhat are the UI/UX implications?\nWhat dependencies exist?\nWhat are the performance and security implications?\nHow does it integrate with other features and industry-standard products?\n\n\n\nPitfalls + troubleshooting\n\nWhen should this feature NOT be used?\nWhat happens with inappropriate usage?\nWhat precautions are necessary?\nHow and when to disable/re-enable the feature?\nWhat does this feature break? What breaks this feature?\nWhat rollback options exist for production systems?"
-  },
-  {
-    "objectID": "posts/fixing-software-documentation/index.html#why-this-approach-works",
-    "href": "posts/fixing-software-documentation/index.html#why-this-approach-works",
-    "title": "An opinionated approach to software documentation",
-    "section": "Why this approach works",
-    "text": "Why this approach works\nWhen you collect these responses, you might discover fascinating discrepancies. The product manager might emphasize business outcomes that the engineer hasn’t considered. The tester might identify edge cases that the product manager didn’t anticipate. The technical writer might spot workflow gaps that everyone else missed.\nThese discrepancies aren’t problems — they’re opportunities. By surfacing and reconciling these different perspectives, you create a shared understanding that naturally leads to better documentation."
-  },
-  {
-    "objectID": "posts/fixing-software-documentation/index.html#the-organic-emergence-of-quality",
-    "href": "posts/fixing-software-documentation/index.html#the-organic-emergence-of-quality",
-    "title": "An opinionated approach to software documentation",
-    "section": "The organic emergence of quality",
-    "text": "The organic emergence of quality\nWhen everyone truly understands the product from multiple angles, something remarkable happens. Form, clarity, flow, and fit emerge organically. You don’t need to force good documentation — it becomes the natural expression of shared understanding.\nThe technical communication to your target audiences becomes:\n\nUnified — consistent messaging across all touchpoints\nComprehensive — covering all necessary aspects and edge cases\nGenuinely helpful — actually solving user problems\n\nMore importantly, your documentation finally aligns with your product philosophy, creating a coherent experience that users can trust and navigate successfully."
-  },
-  {
-    "objectID": "posts/fixing-software-documentation/index.html#taking-action",
-    "href": "posts/fixing-software-documentation/index.html#taking-action",
-    "title": "An opinionated approach to software documentation",
-    "section": "Taking action",
-    "text": "Taking action\nEvery feature branch should have a file where those questions are answered by anyone who is in a position to answer them. When the team huddles for a sprint review or goes back to the drawing board to rethink the product, they will have a series of timestamped reference points that’s more readable than code commits, and act as a single source of high-level truth that everyone in the team understands.\nIf you’re in a position to implement this approach, start small. Pick one feature in your next release and run this exercise. You’ll be surprised by what you discover about your own product — and how much better your documentation becomes when everyone is truly on the same page. The investment in alignment pays dividends far beyond documentation. It creates better products, clearer communication, and more satisfied users."
-  },
-  {
-    "objectID": "posts/java-code-review/index.html",
-    "href": "posts/java-code-review/index.html",
-    "title": "Reviewing a Java code snippet",
-    "section": "",
-    "text": "For this section, I assumed that the method in the code sample is part of a class NeedlesInHaystack.\n\n\nThis class provides functionality to search for multiple needle strings within a single haystack string and outputs the frequency of each needle’s occurrence.\n\n\n\nType: public static\nParameters:\n\nString haystack — the text within which to search for the needles\nString[] needles — an array of strings representing the words (needles) to be counted in the haystack\n\nReturns: void (prints results to the console)\nUsage: prints the number of times each string in the needles array appears in the haystack string\n\n\n\n\nString haystack = \"Google Cloud provides APIs to use Google's ML/AI capabilities.\";\nString[] needles = {\"Google\", \"API\", \"documentation\", \"AWS\", \"ML/AI\"};\nnew NeedlesInHaystack().findNeedles(haystack, needles);\nOutput:\nGoogle: 2\nAPI: 0\ndocumentation: 0\nAWS: 0\nML/AI: 1"
-  },
-  {
-    "objectID": "posts/java-code-review/index.html#api-reference",
-    "href": "posts/java-code-review/index.html#api-reference",
-    "title": "Reviewing a Java code snippet",
-    "section": "",
-    "text": "For this section, I assumed that the method in the code sample is part of a class NeedlesInHaystack.\n\n\nThis class provides functionality to search for multiple needle strings within a single haystack string and outputs the frequency of each needle’s occurrence.\n\n\n\nType: public static\nParameters:\n\nString haystack — the text within which to search for the needles\nString[] needles — an array of strings representing the words (needles) to be counted in the haystack\n\nReturns: void (prints results to the console)\nUsage: prints the number of times each string in the needles array appears in the haystack string\n\n\n\n\nString haystack = \"Google Cloud provides APIs to use Google's ML/AI capabilities.\";\nString[] needles = {\"Google\", \"API\", \"documentation\", \"AWS\", \"ML/AI\"};\nnew NeedlesInHaystack().findNeedles(haystack, needles);\nOutput:\nGoogle: 2\nAPI: 0\ndocumentation: 0\nAWS: 0\nML/AI: 1"
-  },
-  {
-    "objectID": "posts/java-code-review/index.html#suggestions-for-code-improvement",
-    "href": "posts/java-code-review/index.html#suggestions-for-code-improvement",
-    "title": "Reviewing a Java code snippet",
-    "section": "Suggestions for code improvement",
-    "text": "Suggestions for code improvement\nAfter reviewing the code sample, I have the following suggestions for improvement:\n\nLimit the number of needles. The current code restricts the length of the needles array to five. If this is a strict requirement, modify the message in the print statement within the if block to “Use a maximum of five words!”. This provides clearer guidance than “Too many…”.\nAssign needles.length to a variable. Store needles.length in a variable to eliminate repeated evaluation of the same expression. This also improves memory efficiency.\nOptimize haystack.split(). Move the split statement outside of the loop — the words array does not change with each iteration, so splitting the haystack only once is more efficient.\nImprove readability. In the third for loop, use k as the iterator variable, as i and j are already in use in nearby loops.\nConsider using a HashMap. To store the frequency of each needle, a HashMap provides a more flexible and efficient way to handle the counting, especially if you want to return key-value pairs or add further functionality later.\n\n\nSuggested code\nHere is the revised code, incorporating the suggested improvements for efficiency and clarity:\npublic class NeedlesInHaystack {\n    public static void findNeedles(String haystack, String[] needles) {\n        // Store the length of the needles array in a variable\n        int needlesLength = needles.length;\n\n        // Split the haystack string once\n        String[] words = haystack.split(\"[ \\\"'\\t\\n\\b\\f\\r]\", 0);\n\n        // Create an array to store the frequency counts\n        int[] countArray = new int[needlesLength];\n\n        // Iterate through the needles and count their occurrences\n        for (int i = 0; i &lt; needlesLength; i++) {\n            for (int j = 0; j &lt; words.length; j++) {\n                if (words[j].compareTo(needles[i]) == 0) {\n                    countArray[i]++;\n                }\n            }\n        }\n\n        // Print the results\n        for (int k = 0; k &lt; needlesLength; k++) {\n            System.out.println(needles[k] + \": \" + countArray[k]);\n        }\n    }\n\n    public static void main(String[] args) {\n        // Hard-coded values for demonstration\n        // Ideally, values should be received from standard input\n        String haystack = \"Google Cloud provides APIs to use Google's ML/AI capabilities.\";\n        String[] needles = {\"Google\", \"API\", \"documentation\", \"AWS\", \"ML/AI\"};\n        findNeedles(haystack, needles);\n    }\n}\n\n\nSample output\nGoogle: 2\nAPI: 0\ndocumentation: 0\nAWS: 0\nML/AI: 1"
-  },
-  {
-    "objectID": "posts/rest-vs-soap/index.html",
-    "href": "posts/rest-vs-soap/index.html",
-    "title": "Choosing between REST and SOAP",
-    "section": "",
-    "text": "When designing a web service, you must carefully evaluate the choice between SOAP and REST. This guide covers their strengths, limitations, and use cases to help you make an informed decision."
-  },
-  {
-    "objectID": "posts/rest-vs-soap/index.html#soap",
-    "href": "posts/rest-vs-soap/index.html#soap",
-    "title": "Choosing between REST and SOAP",
-    "section": "SOAP",
-    "text": "SOAP\nSOAP (Simple Object Access Protocol) is a protocol for exchanging XML-based messages over a network. It uses Web Services Description Language (WSDL) to define:\n\nResources, operations, and procedure calls\nMessage structure, encoding, and encapsulation\nBindings with network transport protocols\n\nSOAP APIs are often auto-generated using tools that create server-side and client-side code templates, but the resulting implementations can be challenging to develop and maintain.\n\nWhen to choose SOAP\nSOAP is suitable for:\n\nEnterprise-level security: supports WS-Security for encryption, authentication, and message integrity\nComplex transactions: ensures reliability in distributed environments through features like ACID-compliant transactions\nStrict contracts: enforces formal service definitions using WSDL, ensuring consistency and reliability\nStateful interactions: useful for cases requiring session management or multi-step workflows\nLegacy systems: facilitates integration with older enterprise systems\n\n\n\nSOAP limitations\n\nTight coupling: changes to the server often require updates to the client, reducing flexibility\nXML-only payloads: mandatory use of XML increases message size and complexity\nHigh overhead: SOAP messages are verbose, requiring more bandwidth and processing power\nSlower development: complex implementation results in longer development cycles"
-  },
-  {
-    "objectID": "posts/rest-vs-soap/index.html#rest",
-    "href": "posts/rest-vs-soap/index.html#rest",
-    "title": "Choosing between REST and SOAP",
-    "section": "REST",
-    "text": "REST\nREST (Representational State Transfer) is an architectural style that leverages standard HTTP methods for stateless web service interactions. REST APIs:\n\nUse URLs to represent resources\nSupport multiple data formats, including JSON, XML, and HTML\nImplement HTTP methods such as GET, POST, PUT, DELETE, and PATCH\nCan mark responses as cacheable, reducing client-server interactions\n\nTools and frameworks can generate REST APIs and documentation from application code, enabling rapid development.\n\nWhen to choose REST\nREST is ideal for:\n\nPublic APIs: designed for widespread adoption and third-party integrations\nRapid development: simple and flexible, with fewer constraints than SOAP\nData format flexibility: supports lightweight formats like JSON, ideal for modern web and mobile applications\nScalability and caching: statelessness and response caching improve performance and scalability\nBroad adoption: widely supported by tools, frameworks, and a large developer community\n\n\n\nREST limitations\n\nSecurity challenges: requires additional measures (HTTPS, token-based authentication) to ensure security\nLimited operations: restricted to standard HTTP methods, which may not cover all use cases\nScalability complexities: point-to-point communication can complicate scaling with multiple clients\nVersioning difficulties: major schema changes can break clients if not managed properly"
-  },
-  {
-    "objectID": "posts/rest-vs-soap/index.html#decision-guide",
-    "href": "posts/rest-vs-soap/index.html#decision-guide",
-    "title": "Choosing between REST and SOAP",
-    "section": "Decision guide",
-    "text": "Decision guide\n\n\n\n\n\n\n\n\n\nSOAP\nREST\n\n\n\n\nBest for\nSecure, reliable, stateful operations — enterprise or legacy systems\nSimple, scalable, fast APIs for modern web/mobile apps\n\n\nPayload\nXML only\nJSON, XML, HTML\n\n\nCoupling\nTight\nLoose\n\n\nState\nStateful support\nStateless\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nChoose REST for most modern web services unless your requirements specifically align with SOAP’s strengths, such as strict contracts or enterprise-grade security."
-  },
-  {
-    "objectID": "posts/rest-vs-soap/index.html#other-considerations",
-    "href": "posts/rest-vs-soap/index.html#other-considerations",
-    "title": "Choosing between REST and SOAP",
-    "section": "Other considerations",
-    "text": "Other considerations\n\nAssess your team’s expertise with SOAP or REST.\nPlan for future maintenance, including versioning strategies for the APIs."
   },
   {
     "objectID": "posts/tic-tac-toe/index.html",
@@ -614,5 +607,12 @@
     "title": "How to not lose in tic-tac-toe",
     "section": "Example",
     "text": "Example\nIn the \\(i\\)-th move of a sample game, your opponent places their symbol as \\(X_i\\), and you place your symbol as \\(O_i\\). From the figure, you can understand the game’s progression and outcome.\n\n\n\n\n\nIf a 3x3 grid is too simple for you, try a 4x4 or 5x5 grid. But always stay alert and anticipate your opponent’s next two moves. Most importantly, have fun playing tic-tac-toe!"
+  },
+  {
+    "objectID": "documentation.html",
+    "href": "documentation.html",
+    "title": "Documentation",
+    "section": "",
+    "text": "Open source technical documentation:\n\nSUSE Linux Enterprise - Modular Documentation\nSUSE Linux Enterprise - Legacy Documentation\nSUSE Linux Enterprise - Compliance Documentation\nRed Hat OpenShift - CI/CD Pipelines Documentation\nFusionCharts - Weather Dashboard using Vue.js"
   }
 ]
