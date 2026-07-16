@@ -2,70 +2,70 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://cuimri.com/software.html</loc>
-    <lastmod>2026-07-10T04:06:25.466Z</lastmod>
-  </url>
-  <url>
-    <loc>https://cuimri.com/index.html</loc>
-    <lastmod>2026-07-10T04:06:25.454Z</lastmod>
-  </url>
-  <url>
-    <loc>https://cuimri.com/posts/java-code-review/index.html</loc>
-    <lastmod>2026-07-10T04:06:25.460Z</lastmod>
-  </url>
-  <url>
-    <loc>https://cuimri.com/posts/google-cloud-vision-api/index.html</loc>
-    <lastmod>2026-07-10T04:06:25.460Z</lastmod>
-  </url>
-  <url>
-    <loc>https://cuimri.com/posts/counting-unordered-pairs/index.html</loc>
-    <lastmod>2026-07-10T04:06:25.457Z</lastmod>
-  </url>
-  <url>
-    <loc>https://cuimri.com/posts/rest-vs-soap/index.html</loc>
-    <lastmod>2026-07-10T04:06:25.462Z</lastmod>
-  </url>
-  <url>
-    <loc>https://cuimri.com/posts/mersenne-prime-sieve/index.html</loc>
-    <lastmod>2026-07-10T04:06:25.461Z</lastmod>
-  </url>
-  <url>
-    <loc>https://cuimri.com/posts/joy-of-useless-pursuits/index.html</loc>
-    <lastmod>2026-07-10T04:06:25.461Z</lastmod>
-  </url>
-  <url>
-    <loc>https://cuimri.com/posts/count-triangles-pentagon-star/index.html</loc>
-    <lastmod>2026-07-10T04:06:25.456Z</lastmod>
-  </url>
-  <url>
-    <loc>https://cuimri.com/posts/first-to-call-fifty/index.html</loc>
-    <lastmod>2026-07-10T04:06:25.459Z</lastmod>
-  </url>
-  <url>
-    <loc>https://cuimri.com/posts/debugging-pods-kubernetes/index.html</loc>
-    <lastmod>2026-07-10T04:06:25.458Z</lastmod>
-  </url>
-  <url>
-    <loc>https://cuimri.com/posts/browserstack-doc-analysis/index.html</loc>
-    <lastmod>2026-07-10T04:06:25.456Z</lastmod>
-  </url>
-  <url>
-    <loc>https://cuimri.com/posts/tic-tac-toe/index.html</loc>
-    <lastmod>2026-07-10T04:06:25.465Z</lastmod>
+    <lastmod>2026-07-09T11:48:52.684Z</lastmod>
   </url>
   <url>
     <loc>https://cuimri.com/posts/test-automation-selenium/index.html</loc>
-    <lastmod>2026-07-10T04:06:25.463Z</lastmod>
+    <lastmod>2026-07-09T10:53:18.943Z</lastmod>
   </url>
   <url>
-    <loc>https://cuimri.com/posts/fixing-software-documentation/index.html</loc>
-    <lastmod>2026-07-10T04:06:25.459Z</lastmod>
+    <loc>https://cuimri.com/posts/mersenne-prime-sieve/index.html</loc>
+    <lastmod>2026-07-09T11:17:51.581Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cuimri.com/posts/joy-of-useless-pursuits/index.html</loc>
+    <lastmod>2026-07-09T10:48:34.047Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cuimri.com/posts/google-cloud-vision-api/index.html</loc>
+    <lastmod>2026-07-09T11:21:47.060Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cuimri.com/posts/first-to-call-fifty/index.html</loc>
+    <lastmod>2026-07-09T11:17:51.585Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cuimri.com/posts/counting-unordered-pairs/index.html</loc>
+    <lastmod>2026-07-09T17:30:30.733Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cuimri.com/posts/browserstack-doc-analysis/index.html</loc>
+    <lastmod>2026-07-09T10:53:18.943Z</lastmod>
   </url>
   <url>
     <loc>https://cuimri.com/documentation.html</loc>
-    <lastmod>2026-07-10T04:06:25.449Z</lastmod>
+    <lastmod>2026-07-09T10:21:37.108Z</lastmod>
   </url>
   <url>
     <loc>https://cuimri.com/about.html</loc>
     <lastmod>2026-07-16T09:19:01.636Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cuimri.com/index.html</loc>
+    <lastmod>2026-07-09T10:08:17.854Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cuimri.com/posts/count-triangles-pentagon-star/index.html</loc>
+    <lastmod>2026-07-09T11:14:25.147Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cuimri.com/posts/debugging-pods-kubernetes/index.html</loc>
+    <lastmod>2026-07-09T10:53:18.943Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cuimri.com/posts/fixing-software-documentation/index.html</loc>
+    <lastmod>2026-07-09T11:21:09.728Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cuimri.com/posts/java-code-review/index.html</loc>
+    <lastmod>2026-07-09T11:17:51.585Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cuimri.com/posts/rest-vs-soap/index.html</loc>
+    <lastmod>2026-07-09T11:21:00.320Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cuimri.com/posts/tic-tac-toe/index.html</loc>
+    <lastmod>2026-07-09T10:51:59.138Z</lastmod>
   </url>
 </urlset>
