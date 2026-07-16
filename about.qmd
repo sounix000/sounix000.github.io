@@ -4,9 +4,12 @@ image: images/logo.png
 about:
   template: jolla
   links:
-    - icon: file-pdf
-      text: Resume
-      href: resume/souvik_sarkar_resume.pdf
+    # - icon: file-pdf
+    #   text: Resume
+    #   href: resume/souvik_sarkar_resume.pdf
+    - icon: linkedin
+      text: LinkedIn
+      href: https://www.linkedin.com/in/sounix000
     - icon: envelope
       text: Email
       href: mailto:sounix000@gmail.com
