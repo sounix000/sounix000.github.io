@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/verified-not-true/index.html",
       "/posts/mersenne-prime-sieve/index.html",
       "/posts/first-to-call-fifty/index.html",
       "/posts/counting-unordered-pairs/index.html",

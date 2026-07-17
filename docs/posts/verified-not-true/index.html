@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Souvik Sarkar">
+<meta name="dcterms.date" content="2026-07-17">
+<meta name="description" content="On the widening gap between a system that checks out and one that’s actually right, now that proof itself is getting cheap.">
+
+<title>Verified, not true – Curiosity | Imagination | Rigor</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-34d578f5c66cc91f3a0d6b67e9812be3.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-a3703a0dc74fdf50fbc673dfac110324.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-34d578f5c66cc91f3a0d6b67e9812be3.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-244e0d2bc5ce123e691410b81c737f74.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-7bf016ea2634e7340ec439802e6e093a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-244e0d2bc5ce123e691410b81c737f74.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script>
+(function () {
+  // Bootstrap's compiled CSS already ships a full [data-bs-theme=dark]
+  // companion; Quarto's own light/dark theme split + toggle button
+  // don't reliably set that attribute when a `brand` theme layer is
+  // present, so drive it directly from the OS/browser preference.
+  var query = window.matchMedia("(prefers-color-scheme: dark)");
+  function applyColorMode(e) {
+    document.documentElement.setAttribute("data-bs-theme", e.matches ? "dark" : "light");
+  }
+  applyColorMode(query);
+  query.addEventListener("change", applyColorMode);
+})();
+</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="Verified, not true – Curiosity | Imagination | Rigor">
+<meta property="og:description" content="On the widening gap between a system that checks out and one that’s actually right, now that proof itself is getting cheap.">
+<meta property="og:image" content="https://cuimri.com/posts/verified-not-true/images/cover.png">
+<meta property="og:site_name" content="Curiosity | Imagination | Rigor">
+<meta property="og:image:height" content="630">
+<meta property="og:image:width" content="1200">
+</head>
+
+<body class="floating nav-fixed slimcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../images/logo.png" alt="" class="navbar-logo light-content">
+    <img src="../../images/logo.png" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Curiosity | Imagination | Rigor</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../software.html"> 
+<span class="menu-text">Software</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../documentation.html"> 
+<span class="menu-text">Documentation</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="../../index.xml"> <i class="bi bi-rss" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Verified, not true</h1>
+                  <div>
+        <div class="description">
+          On the widening gap between a system that checks out and one that’s actually right, now that proof itself is getting cheap.
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">miscellaneous</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Souvik Sarkar </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">July 17, 2026</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#two-questions-we-used-to-answer-with-one-word" id="toc-two-questions-we-used-to-answer-with-one-word" class="nav-link active" data-scroll-target="#two-questions-we-used-to-answer-with-one-word">Two questions we used to answer with one word</a></li>
+  <li><a href="#where-the-checking-stops" id="toc-where-the-checking-stops" class="nav-link" data-scroll-target="#where-the-checking-stops">Where the checking stops</a></li>
+  <li><a href="#the-uselessness-that-wasnt" id="toc-the-uselessness-that-wasnt" class="nav-link" data-scroll-target="#the-uselessness-that-wasnt">The uselessness that wasn’t</a></li>
+  <li><a href="#when-the-badge-is-cheap-faking-the-badge-is-cheaper" id="toc-when-the-badge-is-cheap-faking-the-badge-is-cheaper" class="nav-link" data-scroll-target="#when-the-badge-is-cheap-faking-the-badge-is-cheaper">When the badge is cheap, faking the badge is cheaper</a></li>
+  <li><a href="#the-mind-that-used-to-be-safe" id="toc-the-mind-that-used-to-be-safe" class="nav-link" data-scroll-target="#the-mind-that-used-to-be-safe">The mind that used to be safe</a></li>
+  <li><a href="#bifurcation-and-its-limits" id="toc-bifurcation-and-its-limits" class="nav-link" data-scroll-target="#bifurcation-and-its-limits">Bifurcation, and its limits</a></li>
+  <li><a href="#the-spiral-and-whether-its-inescapable" id="toc-the-spiral-and-whether-its-inescapable" class="nav-link" data-scroll-target="#the-spiral-and-whether-its-inescapable">The spiral, and whether it’s inescapable</a></li>
+  <li><a href="#whats-actually-worth-training" id="toc-whats-actually-worth-training" class="nav-link" data-scroll-target="#whats-actually-worth-training">What’s actually worth training</a></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content">
+
+
+
+
+
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/cover.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></p>
+</figure>
+</div>
+<p>A proof used to be expensive. You’d spend an afternoon, a week, sometimes a career, and at the end you had a small number of sentences you could stand behind completely. That scarcity was itself informative — if someone had bothered to prove something, it probably mattered enough to justify the cost. Machines are removing that signal. A language model can now produce a working implementation, a full test suite, and increasingly a machine-checked proof of correctness, in the time it takes to read this sentence. Proof is becoming ambient. And ambient proof turns out to answer a much smaller question than we’ve been giving it credit for — which matters if you’ve spent the last few years reassuring yourself that the judgment calls are what’s safe and the grunt work is what’s disappearing. That reassurance is worth less than it sounds.</p>
+<section id="two-questions-we-used-to-answer-with-one-word" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="two-questions-we-used-to-answer-with-one-word">Two questions we used to answer with one word</h2>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>Boehm wrote this before anyone trusted a compiler by default. It reads now like a prophecy about a much bigger kind of building.</p>
+</div></div><p>Barry Boehm gave software engineering its cleanest vocabulary for this in 1979, and it has aged better than almost anything else from that decade <span class="citation" data-cites="boehm1979">(<a href="#ref-boehm1979" role="doc-biblioref">Boehm 1979</a>)</span>: <strong>verification</strong> asks <em>are we building the product right?</em> <strong>Validation</strong> asks <em>are we building the right product?</em> For most of software’s history the two lived in one head. A programmer implicitly validated while verifying, because both were slow enough that a single person could hold the whole loop — spec to output — in mind at once. Not anymore. Verification, cheap and mechanical, now ships instantly. Validation still needs a mind that can hold the artifact next to the world and notice when the two have drifted apart. Everything below is really one argument, restated from a few angles: verification is being automated faster than anything else in software’s history; validation is not, and the reasons it isn’t are more interesting, and less comforting, than “not yet.”</p>
+</section>
+<section id="where-the-checking-stops" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="where-the-checking-stops">Where the checking stops</h2>
+<p>Start with the obvious rebuttal: build a verifier for the verifiers. Prove the spec satisfies a meta-spec, prove the meta-spec satisfies a meta-meta-spec, and recurse until AI is checking AI checking AI, with no person needed anywhere in the loop. This works about as well as writing an interpreter in the language it interprets — an old and genuinely useful trick, and one that always needs a host system underneath, willing to just run without being asked to justify itself. Push the recursion as far as you like and you still land on something taken as given rather than derived — an axiom, a root spec, a foundational choice about what “correct” even means here.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>Turtles all the way down, except eventually you run out of turtles and have to stand on something.</p>
+</div></div><p>This isn’t just a practical shrug of a limitation. It rhymes with something Gödel actually proved, in 1931: a sufficiently expressive formal system can’t establish its own consistency using only its own resources <span class="citation" data-cites="godel1931">(<a href="#ref-godel1931" role="doc-biblioref">Gödel 1931</a>)</span>.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> The analogy isn’t exact — a spec isn’t an axiomatic system, and “was this the right thing to build” isn’t the same question as “is this system consistent.” But the shape carries over. Nothing inside a verification stack, however many layers deep, can certify that its own foundation was the right one to have picked. Somebody, or something, outside the stack has to decide the axiom is good, and the only court that ever rules on that is how the world responds afterward — which hasn’t happened yet, and so can’t be checked in advance by anyone, of any kind.</p>
+</section>
+<section id="the-uselessness-that-wasnt" class="level2">
+<h2 class="anchored" data-anchor-id="the-uselessness-that-wasnt">The uselessness that wasn’t</h2>
+<p>Here’s a reason not to grieve this too quickly. In 1940, G. H. Hardy wrote an entire book in praise of mathematics that would never be useful, and he named number theory — his own field — as the clean case of it. His actual line: “No one has yet discovered any warlike purpose to be served by the theory of numbers or relativity, and it seems very unlikely that anyone will do so for many years” <span class="citation" data-cites="hardy1940">(<a href="#ref-hardy1940" role="doc-biblioref">Hardy 1940</a>)</span>. Thirty-eight years later, RSA was built from the very number theory he was pointing at — modular exponentiation, and the difficulty of factoring, resting on a pattern Fermat had noted in a 1640 letter and Euler generalized in 1763<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> <span class="citation" data-cites="rsa1978">(<a href="#ref-rsa1978" role="doc-biblioref">Rivest et al. 1978</a>)</span>. It’s still, in one form or another, why your browser is willing to trust your bank. Hardy wasn’t wrong about war. He just hadn’t thought of banking, and the lag was longer than his own career. George Boole worked out a two-valued algebra for logic in 1854 with no application in mind at all. Claude Shannon’s 1937 master’s thesis showed it could design a switching circuit, and that thesis is arguably the founding document of every digital computer built since <span class="citation" data-cites="shannon1938">(<a href="#ref-shannon1938" role="doc-biblioref">Shannon 1938</a>)</span>. Non-Euclidean geometry sat as an elegant curiosity for the better part of a century before Einstein needed its machinery to write down general relativity.</p>
+<p>Abraham Flexner made the argument explicit in 1939: research aimed at application is usually worse at producing application than research aimed at nothing but the truth of the matter <span class="citation" data-cites="flexner1939">(<a href="#ref-flexner1939" role="doc-biblioref">Flexner 1939</a>)</span>. Utility, it turns out, isn’t a target you can aim at directly — it behaves more like a shadow some structures cast later, unpredictably, and rarely onto the person who built them. Which means confident claims that a given line of thought “will never matter” are exactly the wrong kind of claim to make with confidence. The honest epistemic state is closer to: we can’t know, and betting heavily against it has an unusually bad track record.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/timeline.png" class="img-fluid figure-img" style="width:90.0%"></p>
+<figcaption>Insight and application, several centuries apart — approximate dates, real gaps.</figcaption>
+</figure>
+</div>
+</section>
+<section id="when-the-badge-is-cheap-faking-the-badge-is-cheaper" class="level2">
+<h2 class="anchored" data-anchor-id="when-the-badge-is-cheap-faking-the-badge-is-cheaper">When the badge is cheap, faking the badge is cheaper</h2>
+<p>Cheap verification creates a second problem that has nothing to do with logic. When a trust signal is expensive to produce, it is usually honest, because faking it costs about as much as earning it. When it becomes cheap, faking it gets cheaper than earning it — and George Akerlof gave this collapse a name in 1970, “the market for lemons”: once buyers can’t distinguish a good product from a bad one, and sellers know it, the market fills with bad ones and the good ones exit <span class="citation" data-cites="akerlof1970">(<a href="#ref-akerlof1970" role="doc-biblioref">Akerlof 1970</a>)</span>. Mortgage-backed securities carried AAA ratings right up until 2008, because the agencies rating them were paid by the people issuing them, and the rating had quietly stopped tracking the risk it claimed to measure.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
+<p>“Formally verified” is well on its way to becoming that kind of badge — for software, for AI-generated specs, eventually for hardware. A verification chain is only as honest as every party who fed something into it, and an actor with an interest in a backdoor, or a vendor with an interest in shipping fast, doesn’t need to break the proof. They just need the proof to be checking the wrong artifact, quietly, with no one’s incentive aligned to notice. The historical versions of this failure — the ratings agencies, audited books that weren’t, safety certifications issued without the safety — tend to get fixed the same way: not with more verification, but with someone whose job is to distrust the verification and go check by hand. That job doesn’t shrink as verification gets cheaper; if anything it gets scarcer and more necessary, precisely because fewer people are trained to do it once the badge starts looking sufficient on its own.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/trust-chain.png" class="img-fluid figure-img" style="width:85.0%"></p>
+<figcaption>A verification chain is solid at every mechanical link. The weak link is the one nothing inside the chain can check.</figcaption>
+</figure>
+</div>
+</section>
+<section id="the-mind-that-used-to-be-safe" class="level2">
+<h2 class="anchored" data-anchor-id="the-mind-that-used-to-be-safe">The mind that used to be safe</h2>
+<p>Distrusting the badge and checking by hand is itself a judgment call, which raises the obvious next question: is that kind of judgment actually safe from all this, or just safe so far? For decades, the safest job in an automating economy was tacit judgment, precisely because it resisted being written down. Michael Polanyi named this in 1966 — “we can know more than we can tell” — and the observation quietly protected an entire tier of skilled and professional work: if you couldn’t articulate the rule, a machine couldn’t be handed the rule, so the work stayed safe by default <span class="citation" data-cites="polanyi1966">(<a href="#ref-polanyi1966" role="doc-biblioref">Polanyi 1966</a>)</span>. Hans Moravec noticed the mirror-image fact from the robotics side: the reasoning that looks hard to us — chess, arithmetic, formal proof — turns out to be cheap for a machine, while the sensorimotor competence a toddler gets for free, grasping an odd-shaped object, walking on gravel, is punishingly difficult to engineer <span class="citation" data-cites="moravec1988">(<a href="#ref-moravec1988" role="doc-biblioref">Moravec 1988</a>)</span>. Between those two observations sat a comfortable assumption: cognition-heavy judgment is safe because it’s tacit, physical work is safe because it’s embodied, and machines would eat only the codified middle.</p>
+<p>Large language models are the technology that has disturbed that assumption the most, and the most broadly, because they’re unusually good at the tacit, pattern-soaked reasoning Polanyi’s paradox was supposed to protect. It isn’t even the first dent: recognizing a face was Polanyi’s own textbook example of something we know without being able to say how, and convolutional networks got good at that a decade before anyone had heard of a transformer. What’s different now is the range — not one narrow perceptual skill, but judgment itself, at the width of ordinary language. Whether the same thing happens to Moravec’s other flank, physical competence, is a live and separate question, and serious people are betting the model side of that gap closes soon: the recent push toward world models trained on video and self-supervised prediction — the kind of program researchers like Yann LeCun have argued is necessary beyond language alone — is aimed at just that. But understanding physics inside a model and operating reliably in someone’s actual kitchen are different problems, and the distance between them has historically been paid for in capital, certification, and years, not cleverness.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> A mind can get the physics right and still need a decade to get the body cheap, certified, and trusted. That decade is real, even if it isn’t forever.</p>
+</section>
+<section id="bifurcation-and-its-limits" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="bifurcation-and-its-limits">Bifurcation, and its limits</h2>
+<p>The standard economic story about automation is bifurcation, not elimination. David Autor’s account of labor-market polarization is the clean version: automation hollows out routine work in the middle of the skill distribution while increasing demand at both ends — low-skill work that resists codification, and high-skill work built around exception-handling and accountability <span class="citation" data-cites="autor2015 autorlevymurnane2003">(<a href="#ref-autor2015" role="doc-biblioref">Autor 2015</a>; <a href="#ref-autorlevymurnane2003" role="doc-biblioref">Autor et al. 2003</a>)</span>. ATMs didn’t remove bank employees; they removed routine transactions and pushed the remaining humans toward advisory work. Autopilot didn’t remove pilots; it removed routine flying and left them the accountable party for the moments autopilot can’t parse. If that pattern holds, the base layer of writing and checking software commoditizes hard, and a smaller, better-paid tier persists around <em>auditing the auditors</em> and holding liability when a “verified” system fails anyway.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>A string quartet takes the same number of musician-hours to perform today as it did in Mozart’s time — no productivity gain, ever — while a recording of that same quartet costs almost nothing to reproduce. That gap, not any change in the quartet, is the whole mechanism.</p>
+</div></div><p>There’s a companion mechanism that pushes the scarce tier’s price up even as its size shrinks: William Baumol’s cost disease, first diagnosed in the performing arts in 1966 <span class="citation" data-cites="baumolbowen1966">(<a href="#ref-baumolbowen1966" role="doc-biblioref">Baumol and Bowen 1966</a>)</span>. Sectors that resist productivity gains get relatively more expensive over time, not because they improve, but because everything around them gets cheaper. If judgment resists automation while implementation gets nearly free, judgment’s relative price should rise — a small number of people doing it very well could be paid handsomely for a service that took a village a generation ago.</p>
+<p>But cost disease is not a friendly force, and it runs the other way through the very sectors a displaced worker actually needs. Housing is constrained by land and zoning, not labor. Healthcare is constrained by licensing and physical presence. Both resist the price collapse AI brings to everything automatable, and Baumol’s logic says they get relatively more expensive just as automatable prices fall around them. The uncomfortable version of the forecast isn’t “engineers get replaced by cheaper engineers.” It’s nominal wages falling across a wide swath of newly automatable work while rent, healthcare, and food hold their price or rise — because cost disease does not check whether the patient can afford the treatment.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/polarization-baumol.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Two stylized shapes, not measured data: task demand hollowing out the middle of the skill distribution, and the necessities that resist automation pulling away in price from everything that doesn’t.</figcaption>
+</figure>
+</div>
+</section>
+<section id="the-spiral-and-whether-its-inescapable" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="the-spiral-and-whether-its-inescapable">The spiral, and whether it’s inescapable</h2>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>The same essay predicted a 15-hour work week by about now, on the logic that productivity gains this large would simply be shared out as leisure <span class="citation" data-cites="keynes1930">(<a href="#ref-keynes1930" role="doc-biblioref">Keynes 1930</a>)</span>. He was right about the productivity. He didn’t guess who’d end up keeping the difference.</p>
+</div></div><p>John Maynard Keynes coined “technological unemployment” in 1930 and called it a temporary phase of maladjustment — workers displaced faster than new work could be invented for them, but only for a while <span class="citation" data-cites="keynes1930">(<a href="#ref-keynes1930" role="doc-biblioref">Keynes 1930</a>)</span>. The standard rebuttal to automation panic has leaned on that word, <em>temporary</em>, ever since: every past wave destroyed narrow, specific tasks and left people a comparative advantage at whatever job hadn’t been invented yet, because that job still needed general human cognition a machine didn’t have. Daniel Susskind’s case for why this time may not rhyme is worth taking seriously rather than waved off as alarmism <span class="citation" data-cites="susskind2020">(<a href="#ref-susskind2020" role="doc-biblioref">Susskind 2020</a>)</span>: if the automation is general rather than narrow, it can fill new job categories nearly as fast as they’re invented, removing the very lag that made every prior transition survivable. Agriculture to manufacturing to services each took the better part of a century, long enough for a generation to retrain, relocate, and adjust its expectations. Compress that into a handful of years and the mechanisms that absorbed the shock before don’t get the time they need to operate, whether or not they’d eventually work in principle.</p>
+<p>Mass displacement from cognitively automatable work pushing into physical labor, bidding those wages down too, cutting purchasing power and therefore demand, is a coherent mechanism, not a fringe worry — and the Baumol point above makes it sharper, not softer, since the squeeze concentrates on necessities rather than spreading evenly. What keeps it from being a certainty is that it isn’t purely a law of economics; it’s contingent on two things nobody can currently measure with confidence. One is the actual speed at which general capability closes the remaining gaps, cognitive and physical both. The other is whether the institutional machinery built for exactly this kind of shock — unemployment insurance, progressive taxation, the scale of discretionary intervention used in 2008 and 2020 — gets deployed fast and large enough, which is a question about political will under polarization, not about whether the tools exist.</p>
+<p>There is one narrower, more durable mechanism worth naming on its own: liability doesn’t dissolve just because verification got cheap. Someone still has to be the named, accountable party when an AI-verified system fails in the world — a licensed engineer, a signing officer, an insurer pricing the risk — and that role gets compensated for bearing the accountability, almost independent of how much of the underlying thinking a machine actually did. It’s a thinner floor than a skilled profession used to stand on. But it’s a real one, and it’s the part of this whole picture I’d bet on holding.</p>
+</section>
+<section id="whats-actually-worth-training" class="level2">
+<h2 class="anchored" data-anchor-id="whats-actually-worth-training">What’s actually worth training</h2>
+<p>None of this resolves into “learn to code” or “learn to verify,” because both of those are the layer being eaten. What’s left is narrower and harder to market: the capacity to hold a formal artifact — a spec, a proof, a model, a badge — next to the reality it claims to represent, and notice the moment the two have quietly come apart. This was never going to be rewarded automatically, the way a licensed profession was rewarded across the twentieth century, whether or not you loved the work. It ran, always, on a small number of people who’d have trained themselves anyway, for the plain pleasure of getting the model right, market or no market underneath them. What’s changed isn’t whether that’s worth having. It’s how much is now riding on whether anyone still does.</p>
+<blockquote class="blockquote">
+<p>A proof will always check out. Whether it was proving the right thing is the one question nothing currently being built can answer for you.</p>
+</blockquote>
+
+
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-akerlof1970" class="csl-entry" role="listitem">
+Akerlof, George A. 1970. <span>“The Market for "Lemons": Quality Uncertainty and the Market Mechanism.”</span> <em>Quarterly Journal of Economics</em> 84 (3): 488–500.
+</div>
+<div id="ref-autor2015" class="csl-entry" role="listitem">
+Autor, David H. 2015. <span>“Why Are There Still so Many Jobs? The History and Future of Workplace Automation.”</span> <em>Journal of Economic Perspectives</em> 29 (3): 3–30.
+</div>
+<div id="ref-autorlevymurnane2003" class="csl-entry" role="listitem">
+Autor, David H., Frank Levy, and Richard J. Murnane. 2003. <span>“The Skill Content of Recent Technological Change: An Empirical Exploration.”</span> <em>Quarterly Journal of Economics</em> 118 (4): 1279–333.
+</div>
+<div id="ref-baumolbowen1966" class="csl-entry" role="listitem">
+Baumol, William J., and William G. Bowen. 1966. <em>Performing Arts: The Economic Dilemma</em>. Twentieth Century Fund.
+</div>
+<div id="ref-boehm1979" class="csl-entry" role="listitem">
+Boehm, Barry W. 1979. <span>“Guidelines for Verifying and Validating Software Requirements and Design Specifications.”</span> In <em>Proceedings of Euro IFIP 79</em>, edited by P. A. Samet. North-Holland.
+</div>
+<div id="ref-flexner1939" class="csl-entry" role="listitem">
+Flexner, Abraham. 1939. <span>“The Usefulness of Useless Knowledge.”</span> <em>Harper’s Magazine</em>.
+</div>
+<div id="ref-godel1931" class="csl-entry" role="listitem">
+Gödel, Kurt. 1931. <span>“<span>Ü</span>ber Formal Unentscheidbare s<span>ä</span>tze Der Principia Mathematica Und Verwandter Systeme i.”</span> <em>Monatshefte f<span>ü</span>r Mathematik Und Physik</em> 38: 173–98.
+</div>
+<div id="ref-hardy1940" class="csl-entry" role="listitem">
+Hardy, G. H. 1940. <em>A Mathematician’s Apology</em>. Cambridge University Press.
+</div>
+<div id="ref-keynes1930" class="csl-entry" role="listitem">
+Keynes, John Maynard. 1930. <span>“Economic Possibilities for Our Grandchildren.”</span> In <em>Essays in Persuasion</em>.
+</div>
+<div id="ref-moravec1988" class="csl-entry" role="listitem">
+Moravec, Hans. 1988. <em>Mind Children: The Future of Robot and Human Intelligence</em>. Harvard University Press.
+</div>
+<div id="ref-polanyi1966" class="csl-entry" role="listitem">
+Polanyi, Michael. 1966. <em>The Tacit Dimension</em>. University of Chicago Press.
+</div>
+<div id="ref-rsa1978" class="csl-entry" role="listitem">
+Rivest, R. L., A. Shamir, and L. Adleman. 1978. <span>“A Method for Obtaining Digital Signatures and Public-Key Cryptosystems.”</span> <em>Communications of the ACM</em> 21 (2): 120–26.
+</div>
+<div id="ref-shannon1938" class="csl-entry" role="listitem">
+Shannon, Claude E. 1938. <span>“A Symbolic Analysis of Relay and Switching Circuits.”</span> <em>Transactions of the American Institute of Electrical Engineers</em> 57 (12): 713–23.
+</div>
+<div id="ref-susskind2020" class="csl-entry" role="listitem">
+Susskind, Daniel. 2020. <em>A World Without Work: Technology, Automation, and How We Should Respond</em>. Metropolitan Books.
+</div>
+</div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Strictly, this is Gödel’s <em>second</em> incompleteness theorem; the first, related but distinct, establishes that any such system contains true statements it cannot prove.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Fermat stated the underlying observation in a 1640 letter without a general proof; Euler supplied the generalization in 1763 that RSA’s correctness argument actually leans on. The seed insight is still Fermat’s.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>The investors who saw the 2008 collapse coming and profited from it — Michael Burry’s trade being the most famous — made their money by refusing to trust the AAA badge and reading the underlying loan tapes themselves.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>Public self-driving demonstrations go back roughly a decade; as of this writing, commercial robotaxi service is still geographically limited and closely regulated rather than available on ordinary roads everywhere. The lag has run through insurance law and long-tail edge cases, not through the driving-policy models.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/cuimri\.com");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<input type="hidden" id="giscus-base-theme" value="preferred_color_scheme">
+<input type="hidden" id="giscus-alt-theme" value="preferred_color_scheme">
+<script>
+  function loadGiscus() {
+    // Function to get the theme based on body class
+    const getTheme = () => {
+      let baseTheme = document.getElementById('giscus-base-theme').value;
+      let altTheme = document.getElementById('giscus-alt-theme').value;
+      return document.body.classList.contains('quarto-dark') ? altTheme : baseTheme;
+    };
+    const script = document.createElement("script");
+    script.src = "https://giscus.app/client.js";
+    script.async = true;
+    script.dataset.repo = "sounix000/sounix000.github.io";
+    script.dataset.repoId = "R_kgDORBEQrA";
+    script.dataset.category = "General";
+    script.dataset.categoryId = "DIC_kwDORBEQrM4C_ZUY";
+    script.dataset.mapping = "pathname";
+    script.dataset.reactionsEnabled = "1";
+    script.dataset.emitMetadata = "0";
+    script.dataset.inputPosition = "top";
+    script.dataset.theme = getTheme();
+    script.dataset.lang = "en";
+    script.crossOrigin = "anonymous";
+    // Append the script to the desired div instead of at the end of the body
+    document.getElementById("quarto-content").appendChild(script);
+  }
+  loadGiscus();
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
