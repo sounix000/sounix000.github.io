@@ -312,7 +312,7 @@
     "href": "index.html",
     "title": "Curiosity | Imagination | Rigor",
     "section": "",
-    "text": "A necessary condition for Mersenne primes\n\n\n\nmathematics\n\n\n\nA clean proof that composite exponents can never yield a Mersenne prime.\n\n\n\n\n\nMay 7, 2026\n\n3 min\n\n\n\n\n\n\n\n\n\n\n\nFirst to call 50: winning strategy using backward induction\n\n\n\nmathematics\n\n\n\nSolving a number-calling game with backward induction and modular arithmetic.\n\n\n\n\n\nApr 13, 2026\n\n5 min\n\n\n\n\n\n\n\n\n\n\n\nCounting unordered pairs: three perspectives on C(n, 2)\n\n\n\nmathematics\n\n\n\nThree different proofs of C(n,2), from a checkerboard table to overcounting and dividing.\n\n\n\n\n\nMar 18, 2026\n\n6 min\n\n\n\n\n\n\n\n\n\n\n\nCount the triangles in a five-sided star\n\n\n\nmathematics\n\n\n\nCounting all 35 triangles hidden inside a pentagon and its inscribed pentagram.\n\n\n\n\n\nFeb 9, 2026\n\n2 min\n\n\n\n\n\n\n\n\n\n\n\nThe joy of useless pursuits: why ancient wisdom will outlast AI\n\n\n\nmiscellaneous\n\n\n\nWhy civilizations that value knowledge for its own sake are best placed to survive AI.\n\n\n\n\n\nJul 12, 2024\n\n7 min\n\n\n\n\n\n\n\n\n\n\n\nAn opinionated approach to software documentation\n\n\n\ndocumentation\n\n\n\nWhy documentation fails when stakeholders never align, and a framework to fix it.\n\n\n\n\n\nFeb 10, 2023\n\n4 min\n\n\n\n\n\n\n\n\n\n\n\nDebugging pods in a Kubernetes cluster\n\n\n\nsoftware\n\n\n\nA field guide to diagnosing pod status, logs, and crashes in a Kubernetes cluster.\n\n\n\n\n\nFeb 6, 2023\n\n4 min\n\n\n\n\n\n\n\n\n\n\n\nA brief analysis of BrowserStack’s documentation\n\n\n\ndocumentation\n\n\n\nA technical writer’s nitpicks on BrowserStack’s documentation, from admonitions to IA.\n\n\n\n\n\nOct 27, 2022\n\n3 min\n\n\n\n\n\n\n\n\n\n\n\nTest automation using Selenium, BrowserStack, and GitHub\n\n\n\nsoftware\n\n\n\nAutomating browser tests with Selenium, BrowserStack, and GitHub Actions CI.\n\n\n\n\n\nOct 24, 2022\n\n11 min\n\n\n\n\n\n\n\n\n\n\n\nHow to not lose in tic-tac-toe\n\n\n\nmiscellaneous\n\n\n\nSimple strategies to never lose a game of tic-tac-toe.\n\n\n\n\n\nNov 16, 2020\n\n3 min\n\n\n\n\n\n\n\n\n\n\n\nLandmark detection using Google Cloud and Vision API\n\n\n\nsoftware\n\n\n\nA hands-on tutorial for landmark detection using Google Cloud Storage and Vision API.\n\n\n\n\n\nNov 14, 2020\n\n7 min\n\n\n\n\n\n\n\n\n\n\n\nChoosing between REST and SOAP\n\n\n\nsoftware\n\n\n\nA practical decision guide for choosing between SOAP and REST web services.\n\n\n\n\n\nNov 12, 2020\n\n3 min\n\n\n\n\n\n\n\n\n\n\n\nReviewing a Java code snippet\n\n\n\nsoftware\n\n\n\nReviewing and refactoring a Java string-frequency counter for clarity and efficiency.\n\n\n\n\n\nNov 9, 2020\n\n4 min\n\n\n\n\nNo matching items"
+    "text": "A necessary condition for Mersenne primes\n\n\n\nmathematics\n\n\n\nA clean proof that composite exponents can never yield a Mersenne prime.\n\n\n\n\n\nMay 7, 2026\n\n3 min\n\n\n\n\n\n\n\n\n\n\n\nFirst to call 50: winning strategy using backward induction\n\n\n\nmathematics\n\n\n\nSolving a number-calling game with backward induction and modular arithmetic.\n\n\n\n\n\nApr 13, 2026\n\n5 min\n\n\n\n\n\n\n\n\n\n\n\nCounting unordered pairs: three perspectives on C(n, 2)\n\n\n\nmathematics\n\n\n\nThree different proofs of C(n,2), from a checkerboard table to overcounting and dividing.\n\n\n\n\n\nMar 18, 2026\n\n6 min\n\n\n\n\n\n\n\n\n\n\n\nCount the triangles in a five-sided star\n\n\n\nmathematics\n\n\n\nCounting all 35 triangles hidden inside a pentagon and its inscribed pentagram.\n\n\n\n\n\nFeb 9, 2026\n\n2 min\n\n\n\n\n\n\n\n\n\n\n\nThe joy of useless pursuits: why ancient wisdom will outlast AI\n\n\n\nmiscellaneous\n\n\n\nWhy civilizations that value knowledge for its own sake are best placed to survive AI.\n\n\n\n\n\nJul 12, 2024\n\n7 min\n\n\n\n\n\n\n\n\n\n\n\nAn opinionated approach to software documentation\n\n\n\ndocumentation\n\n\n\nWhy documentation fails when stakeholders never align, and a framework to fix it.\n\n\n\n\n\nFeb 10, 2023\n\n4 min\n\n\n\n\n\n\n\n\n\n\n\nDebugging pods in a Kubernetes cluster\n\n\n\nsoftware\n\n\n\nA field guide to diagnosing pod status, logs, and crashes in a Kubernetes cluster.\n\n\n\n\n\nFeb 6, 2023\n\n4 min\n\n\n\n\n\n\n\n\n\n\n\nA brief analysis of BrowserStack’s documentation\n\n\n\ndocumentation\n\n\n\nA technical writer’s nitpicks on BrowserStack’s documentation, from admonitions to IA.\n\n\n\n\n\nOct 27, 2022\n\n3 min\n\n\n\n\n\n\n\n\n\n\n\nTest automation using Selenium, BrowserStack, and GitHub\n\n\n\nsoftware\n\n\n\nAutomating browser tests with Selenium, BrowserStack, and GitHub Actions CI.\n\n\n\n\n\nOct 24, 2022\n\n11 min\n\n\n\n\n\n\n\n\n\n\n\nAdapted excerpts from SICP’s introduction\n\n\n\nsoftware\n\n\n\nStarting the new year with Structure and Interpretation of Computer Programs, and notes from its introduction.\n\n\n\n\n\nJan 4, 2021\n\n5 min\n\n\n\n\n\n\n\n\n\n\n\nHow to not lose in tic-tac-toe\n\n\n\nmiscellaneous\n\n\n\nSimple strategies to never lose a game of tic-tac-toe.\n\n\n\n\n\nNov 16, 2020\n\n3 min\n\n\n\n\n\n\n\n\n\n\n\nLandmark detection using Google Cloud and Vision API\n\n\n\nsoftware\n\n\n\nA hands-on tutorial for landmark detection using Google Cloud Storage and Vision API.\n\n\n\n\n\nNov 14, 2020\n\n7 min\n\n\n\n\n\n\n\n\n\n\n\nChoosing between REST and SOAP\n\n\n\nsoftware\n\n\n\nA practical decision guide for choosing between SOAP and REST web services.\n\n\n\n\n\nNov 12, 2020\n\n3 min\n\n\n\n\n\n\n\n\n\n\n\nReviewing a Java code snippet\n\n\n\nsoftware\n\n\n\nReviewing and refactoring a Java string-frequency counter for clarity and efficiency.\n\n\n\n\n\nNov 9, 2020\n\n4 min\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/mersenne-prime-sieve/index.html",
@@ -614,5 +614,96 @@
     "title": "Documentation",
     "section": "",
     "text": "Open source technical documentation:\n\nSUSE Linux Enterprise - Modular Documentation\nSUSE Linux Enterprise - Legacy Documentation\nSUSE Linux Enterprise - Compliance Documentation\nRed Hat OpenShift - CI/CD Pipelines Documentation\nFusionCharts - Weather Dashboard using Vue.js"
+  },
+  {
+    "objectID": "posts/sicp-intro-programming/index.html",
+    "href": "posts/sicp-intro-programming/index.html",
+    "title": "Adapted excerpts from SICP’s introduction",
+    "section": "",
+    "text": "The end of 2020 left a strange kind of empty calendar behind it. No commute, no travel, evenings that used to disappear into other people’s plans now just sitting there, unclaimed. I’d been meaning to work through Structure and Interpretation of Computer Programs for years, always deferring it for something more “immediately useful.” With nothing left to defer it for, I finally opened it on New Year’s Day.\nI didn’t get past the introduction in the first sitting, and that was fine. Abelson and Sussman spend their opening pages not on syntax but on what programming is, and it’s dense enough that I kept stopping to write things down. What follows are the lines I underlined, adapted into my own words, with the intention of returning to them as I move through the rest of the book over the coming weeks."
+  },
+  {
+    "objectID": "posts/sicp-intro-programming/index.html#responsibility",
+    "href": "posts/sicp-intro-programming/index.html#responsibility",
+    "title": "Adapted excerpts from SICP’s introduction",
+    "section": "Responsibility",
+    "text": "Responsibility\nWe are not really “responsible” for the successful, error-free, perfect use of our programs. We are responsible for creating them, for setting them off in a direction. The same, I think, can be said about our responsibility toward our own mind — we shape it and send it off, but we don’t get to dictate every outcome downstream."
+  },
+  {
+    "objectID": "posts/sicp-intro-programming/index.html#on-large-problems",
+    "href": "posts/sicp-intro-programming/index.html#on-large-problems",
+    "title": "Adapted excerpts from SICP’s introduction",
+    "section": "On large problems",
+    "text": "On large problems\nAn assault on a large problem is carried out through a succession of programs, most of which spring into existence along the way, unplanned. It doesn’t matter what these programs are about or which applications they end up serving. What matters is how well they perform and how smoothly they combine with other programs, in the creation of still greater ones. The programmer’s task is to pursue both perfection of plan and adequacy of collection — the individual piece has to be right, and the pieces have to fit."
+  },
+  {
+    "objectID": "posts/sicp-intro-programming/index.html#programming-as-a-model",
+    "href": "posts/sicp-intro-programming/index.html#programming-as-a-model",
+    "title": "Adapted excerpts from SICP’s introduction",
+    "section": "Programming as a model",
+    "text": "Programming as a model\nThere’s a chain here worth sitting with: human mind ↔︎ collection of computer programs ↔︎ computers. Every program is a model hatched in the mind of some real or mental process, and like any model it evolves as our understanding of that process improves. The program is never the thing itself — it’s a working sketch we keep redrawing."
+  },
+  {
+    "objectID": "posts/sicp-intro-programming/index.html#program-truth",
+    "href": "posts/sicp-intro-programming/index.html#program-truth",
+    "title": "Adapted excerpts from SICP’s introduction",
+    "section": "Program truth",
+    "text": "Program truth\nWe become convinced of a program’s truth the same way we become convinced of anything symbolic: through argument. If a program’s function can be stated in the language of predicate calculus, the proof methods of logic become available to make that argument rigorous rather than persuasive."
+  },
+  {
+    "objectID": "posts/sicp-intro-programming/index.html#growth-of-programs",
+    "href": "posts/sicp-intro-programming/index.html#growth-of-programs",
+    "title": "Adapted excerpts from SICP’s introduction",
+    "section": "Growth of programs",
+    "text": "Growth of programs\nSince large programs grow out of small ones, it’s essential to build up an arsenal of standard structures and idioms. These constructions then combine into larger structures using organizational techniques of proven value. Nothing large is written from scratch; it’s assembled from pieces that have already earned their keep."
+  },
+  {
+    "objectID": "posts/sicp-intro-programming/index.html#hardware-and-programming",
+    "href": "posts/sicp-intro-programming/index.html#hardware-and-programming",
+    "title": "Adapted excerpts from SICP’s introduction",
+    "section": "Hardware and programming",
+    "text": "Hardware and programming\nEach leap in hardware invites more ambitious programming, new organizational principles, and a richer set of abstract models — and in the present moment, the traffic runs the other way too: new programming techniques are driving the exploitation of hardware. Probabilistic software for machine learning is the clearest example. The advance of SIMD processors, CPUs, and storage has moved in lockstep with the growth of machine learning and deep learning applications, each pushing the other forward."
+  },
+  {
+    "objectID": "posts/sicp-intro-programming/index.html#the-programmers-role",
+    "href": "posts/sicp-intro-programming/index.html#the-programmers-role",
+    "title": "Adapted excerpts from SICP’s introduction",
+    "section": "The programmer’s role",
+    "text": "The programmer’s role\nA programmer should acquire good algorithms and good idioms, and it’s their responsibility to keep examining and improving how those idioms perform. Knowing a technique isn’t the finish line; the finish line keeps moving as long as you keep looking at what you already know."
+  },
+  {
+    "objectID": "posts/sicp-intro-programming/index.html#software-and-ai",
+    "href": "posts/sicp-intro-programming/index.html#software-and-ai",
+    "title": "Adapted excerpts from SICP’s introduction",
+    "section": "Software and AI",
+    "text": "Software and AI\nThe core concerns of software engineering and of artificial intelligence tend to converge as the systems under study grow larger. At small scale the two fields look like they’re asking different questions; at large scale, they turn out to be the same question asked from different starting points."
+  },
+  {
+    "objectID": "posts/sicp-intro-programming/index.html#the-nature-of-programming-languages",
+    "href": "posts/sicp-intro-programming/index.html#the-nature-of-programming-languages",
+    "title": "Adapted excerpts from SICP’s introduction",
+    "section": "The nature of programming languages",
+    "text": "The nature of programming languages\nA programming language is not just a way of getting a computer to perform operations. It’s a novel formal medium for expressing ideas about methodology.\n\nPrograms must be written for people to read, and only incidentally for machines to execute.\n\nIt’s the line I expect to come back to more than any other in this book."
+  },
+  {
+    "objectID": "posts/sicp-intro-programming/index.html#computation-and-mathematics",
+    "href": "posts/sicp-intro-programming/index.html#computation-and-mathematics",
+    "title": "Adapted excerpts from SICP’s introduction",
+    "section": "Computation and mathematics",
+    "text": "Computation and mathematics\nThe computer revolution is a revolution in how we think and in how we express what we think. Mathematics gives us a framework for dealing precisely with the notion of “what is.” Computation gives us a framework for dealing precisely with the notion of “how to.” Neither replaces the other; they answer different questions about the same reality."
+  },
+  {
+    "objectID": "posts/sicp-intro-programming/index.html#simplicity-and-modeling",
+    "href": "posts/sicp-intro-programming/index.html#simplicity-and-modeling",
+    "title": "Adapted excerpts from SICP’s introduction",
+    "section": "Simplicity and modeling",
+    "text": "Simplicity and modeling\nOne should avoid the complexities of control and instead concentrate on organizing the data to reflect the real structure of the world being modeled. If the data structure is right, the control tends to follow; if you’re fighting the control flow, it’s often the data that’s wrong."
+  },
+  {
+    "objectID": "posts/sicp-intro-programming/index.html#the-power-of-programming",
+    "href": "posts/sicp-intro-programming/index.html#the-power-of-programming",
+    "title": "Adapted excerpts from SICP’s introduction",
+    "section": "The power of programming",
+    "text": "The power of programming\n\nThe ability to write and modify programs provides a powerful medium in which exploring becomes a natural activity.\n\nThat, more than any specific technique, is the reason I wanted to start this book now, with an open evening and nowhere to be.\n\nI expect this will be the first of several posts as I make my way through SICP. There’s no better time for it than a year with this much room in it."
   }
 ]

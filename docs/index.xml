@@ -2272,6 +2272,89 @@ Note
   <media:content url="https://cuimri.com/posts/test-automation-selenium/images/browserstack_builds.png" medium="image" type="image/png" height="69" width="144"/>
 </item>
 <item>
+  <title>Adapted excerpts from SICP’s introduction</title>
+  <dc:creator>Souvik Sarkar</dc:creator>
+  <link>https://cuimri.com/posts/sicp-intro-programming/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://cuimri.com/posts/sicp-intro-programming/images/cover.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+</figure>
+</div>
+<p>The end of 2020 left a strange kind of empty calendar behind it. No commute, no travel, evenings that used to disappear into other people’s plans now just sitting there, unclaimed. I’d been meaning to work through <em>Structure and Interpretation of Computer Programs</em> for years, always deferring it for something more “immediately useful.” With nothing left to defer it for, I finally opened it on New Year’s Day.</p>
+<p>I didn’t get past the introduction in the first sitting, and that was fine. Abelson and Sussman spend their opening pages not on syntax but on what programming <em>is</em>, and it’s dense enough that I kept stopping to write things down. What follows are the lines I underlined, adapted into my own words, with the intention of returning to them as I move through the rest of the book over the coming weeks.</p>
+<section id="responsibility" class="level2">
+<h2 class="anchored" data-anchor-id="responsibility">Responsibility</h2>
+<p>We are not really “responsible” for the successful, error-free, perfect use of our programs. We are responsible for creating them, for setting them off in a direction. The same, I think, can be said about our responsibility toward our own mind — we shape it and send it off, but we don’t get to dictate every outcome downstream.</p>
+</section>
+<section id="on-large-problems" class="level2">
+<h2 class="anchored" data-anchor-id="on-large-problems">On large problems</h2>
+<p>An assault on a large problem is carried out through a succession of programs, most of which spring into existence along the way, unplanned. It doesn’t matter what these programs are about or which applications they end up serving. What matters is how well they perform and how smoothly they combine with other programs, in the creation of still greater ones. The programmer’s task is to pursue both <em>perfection of plan</em> and <em>adequacy of collection</em> — the individual piece has to be right, and the pieces have to fit.</p>
+</section>
+<section id="programming-as-a-model" class="level2">
+<h2 class="anchored" data-anchor-id="programming-as-a-model">Programming as a model</h2>
+<p>There’s a chain here worth sitting with: <em>human mind</em> ↔︎ <em>collection of computer programs</em> ↔︎ <em>computers</em>. Every program is a model hatched in the mind of some real or mental process, and like any model it evolves as our understanding of that process improves. The program is never the thing itself — it’s a working sketch we keep redrawing.</p>
+</section>
+<section id="program-truth" class="level2">
+<h2 class="anchored" data-anchor-id="program-truth">Program truth</h2>
+<p>We become convinced of a program’s truth the same way we become convinced of anything symbolic: through argument. If a program’s function can be stated in the language of predicate calculus, the proof methods of logic become available to make that argument rigorous rather than persuasive.</p>
+</section>
+<section id="growth-of-programs" class="level2">
+<h2 class="anchored" data-anchor-id="growth-of-programs">Growth of programs</h2>
+<p>Since large programs grow out of small ones, it’s essential to build up an arsenal of standard structures and idioms. These constructions then combine into larger structures using organizational techniques of proven value. Nothing large is written from scratch; it’s assembled from pieces that have already earned their keep.</p>
+</section>
+<section id="hardware-and-programming" class="level2">
+<h2 class="anchored" data-anchor-id="hardware-and-programming">Hardware and programming</h2>
+<p>Each leap in hardware invites more ambitious programming, new organizational principles, and a richer set of abstract models — and in the present moment, the traffic runs the other way too: new programming techniques are driving the exploitation of hardware. Probabilistic software for machine learning is the clearest example. The advance of SIMD processors, CPUs, and storage has moved in lockstep with the growth of machine learning and deep learning applications, each pushing the other forward.</p>
+</section>
+<section id="the-programmers-role" class="level2">
+<h2 class="anchored" data-anchor-id="the-programmers-role">The programmer’s role</h2>
+<p>A programmer should acquire good algorithms and good idioms, and it’s their responsibility to keep examining and improving how those idioms perform. Knowing a technique isn’t the finish line; the finish line keeps moving as long as you keep looking at what you already know.</p>
+</section>
+<section id="software-and-ai" class="level2">
+<h2 class="anchored" data-anchor-id="software-and-ai">Software and AI</h2>
+<p>The core concerns of software engineering and of artificial intelligence tend to converge as the systems under study grow larger. At small scale the two fields look like they’re asking different questions; at large scale, they turn out to be <em>the same question asked from different starting points</em>.</p>
+</section>
+<section id="the-nature-of-programming-languages" class="level2">
+<h2 class="anchored" data-anchor-id="the-nature-of-programming-languages">The nature of programming languages</h2>
+<p>A programming language is not just a way of getting a computer to perform operations. It’s a novel formal medium for expressing ideas about methodology.</p>
+<blockquote class="blockquote">
+<p>Programs must be written for people to read, and only incidentally for machines to execute.</p>
+</blockquote>
+<p>It’s the line I expect to come back to more than any other in this book.</p>
+</section>
+<section id="computation-and-mathematics" class="level2">
+<h2 class="anchored" data-anchor-id="computation-and-mathematics">Computation and mathematics</h2>
+<p>The computer revolution is a revolution in how we think and in how we express what we think. Mathematics gives us a framework for dealing precisely with the notion of “what is.” Computation gives us a framework for dealing precisely with the notion of “how to.” Neither replaces the other; they answer different questions about the same reality.</p>
+</section>
+<section id="simplicity-and-modeling" class="level2">
+<h2 class="anchored" data-anchor-id="simplicity-and-modeling">Simplicity and modeling</h2>
+<p>One should avoid the complexities of control and instead concentrate on organizing the data to reflect the real structure of the world being modeled. If the data structure is right, the control tends to follow; if you’re fighting the control flow, it’s often the data that’s wrong.</p>
+</section>
+<section id="the-power-of-programming" class="level2">
+<h2 class="anchored" data-anchor-id="the-power-of-programming">The power of programming</h2>
+<blockquote class="blockquote">
+<p>The ability to write and modify programs provides a powerful medium in which exploring becomes a natural activity.</p>
+</blockquote>
+<p>That, more than any specific technique, is the reason I wanted to start this book now, with an open evening and nowhere to be.</p>
+<hr>
+<p>I expect this will be the first of several posts as I make my way through SICP. There’s no better time for it than a year with this much room in it.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>software</category>
+  <guid>https://cuimri.com/posts/sicp-intro-programming/</guid>
+  <pubDate>Sun, 03 Jan 2021 18:30:00 GMT</pubDate>
+  <media:content url="https://cuimri.com/posts/sicp-intro-programming/images/cover.png" medium="image" type="image/png" height="76" width="144"/>
+</item>
+<item>
   <title>How to not lose in tic-tac-toe</title>
   <dc:creator>Souvik Sarkar</dc:creator>
   <link>https://cuimri.com/posts/tic-tac-toe/</link>

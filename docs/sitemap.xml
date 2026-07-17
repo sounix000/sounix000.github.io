@@ -34,7 +34,7 @@
   </url>
   <url>
     <loc>https://cuimri.com/index.html</loc>
-    <lastmod>2026-07-09T10:08:17.854Z</lastmod>
+    <lastmod>2026-07-10T04:06:25.454Z</lastmod>
   </url>
   <url>
     <loc>https://cuimri.com/posts/mersenne-prime-sieve/index.html</loc>
@@ -67,5 +67,9 @@
   <url>
     <loc>https://cuimri.com/documentation.html</loc>
     <lastmod>2026-07-09T10:21:37.108Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cuimri.com/posts/sicp-intro-programming/index.html</loc>
+    <lastmod>2026-07-17T11:08:16.466Z</lastmod>
   </url>
 </urlset>
