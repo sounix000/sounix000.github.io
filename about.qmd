@@ -16,4 +16,4 @@ about:
 
 ---
 
-I investigate with curiosity, hypothesize with imagination, and validate with rigor.
+I **investigate** with *curiosity*, **hypothesize** with *imagination*, and **validate** with *rigor*.
