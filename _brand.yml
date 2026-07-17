@@ -7,14 +7,3 @@ typography:
   base: STIX Two Text
   headings: STIX Two Text
   monospace: IBM Plex Mono
-
-# Chalkboard-green navbar + links, in place of Cosmo's default blue.
-# Headings intentionally stay the default heading color (not overridden).
-defaults:
-  bootstrap:
-    defaults:
-      navbar-bg: "#1F3D2B"
-      navbar-fg: "#F1EFE7"
-      link-color: "#1F6B44"
-      link-hover-color: "#164F32"
-      body-bg: "#FBF9F3"
