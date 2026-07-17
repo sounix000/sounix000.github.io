@@ -6,6 +6,11 @@ categories: [miscellaneous]
 image: images/cover.png
 bibliography: references.bib
 toc-location: left
+citation:
+  type: webpage
+  container-title: "Curiosity | Imagination | Rigor"
+  url: https://cuimri.com/posts/verified-not-true/
+  issued: 2026-07-17
 ---
 
 ![](images/cover.png){fig-align="center" width="65%"}
