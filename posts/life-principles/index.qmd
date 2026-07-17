@@ -1,10 +1,9 @@
 ---
 title: "Principles of my life"
 description: "A short list of personal rules across body, mind, work, money, and relationships."
-date: "2024-07-15"
+date: "2020-07-10"
 categories: [miscellaneous]
 image: images/cover.png
-draft: true
 ---
 
 A short list of rules I try to actually live by, grouped by the areas of life they govern.

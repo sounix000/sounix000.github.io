@@ -312,7 +312,7 @@
     "href": "index.html",
     "title": "Curiosity | Imagination | Rigor",
     "section": "",
-    "text": "Verified, not true\n\n\n\nmiscellaneous\n\n\n\nOn the widening gap between a system that checks out and one that’s actually right, now that proof itself is getting cheap.\n\n\n\n\n\nJul 17, 2026\n\n15 min\n\n\n\n\n\n\n\n\n\n\n\nA necessary condition for Mersenne primes\n\n\n\nmathematics\n\n\n\nA clean proof that composite exponents can never yield a Mersenne prime.\n\n\n\n\n\nMay 7, 2026\n\n3 min\n\n\n\n\n\n\n\n\n\n\n\nFirst to call 50: winning strategy using backward induction\n\n\n\nmathematics\n\n\n\nSolving a number-calling game with backward induction and modular arithmetic.\n\n\n\n\n\nApr 13, 2026\n\n5 min\n\n\n\n\n\n\n\n\n\n\n\nCounting unordered pairs: three perspectives on C(n, 2)\n\n\n\nmathematics\n\n\n\nThree different proofs of C(n,2), from a checkerboard table to overcounting and dividing.\n\n\n\n\n\nMar 18, 2026\n\n6 min\n\n\n\n\n\n\n\n\n\n\n\nCount the triangles in a five-sided star\n\n\n\nmathematics\n\n\n\nCounting all 35 triangles hidden inside a pentagon and its inscribed pentagram.\n\n\n\n\n\nFeb 9, 2026\n\n2 min\n\n\n\n\n\n\n\n\n\n\n\nThe joy of useless pursuits: why ancient wisdom will outlast AI\n\n\n\nmiscellaneous\n\n\n\nWhy civilizations that value knowledge for its own sake are best placed to survive AI.\n\n\n\n\n\nJul 12, 2024\n\n7 min\n\n\n\n\n\n\n\n\n\n\n\nAn opinionated approach to software documentation\n\n\n\ndocumentation\n\n\n\nWhy documentation fails when stakeholders never align, and a framework to fix it.\n\n\n\n\n\nFeb 10, 2023\n\n4 min\n\n\n\n\n\n\n\n\n\n\n\nDebugging pods in a Kubernetes cluster\n\n\n\nsoftware\n\n\n\nA field guide to diagnosing pod status, logs, and crashes in a Kubernetes cluster.\n\n\n\n\n\nFeb 6, 2023\n\n4 min\n\n\n\n\n\n\n\n\n\n\n\nA brief analysis of BrowserStack’s documentation\n\n\n\ndocumentation\n\n\n\nA technical writer’s nitpicks on BrowserStack’s documentation, from admonitions to IA.\n\n\n\n\n\nOct 27, 2022\n\n3 min\n\n\n\n\n\n\n\n\n\n\n\nTest automation using Selenium, BrowserStack, and GitHub\n\n\n\nsoftware\n\n\n\nAutomating browser tests with Selenium, BrowserStack, and GitHub Actions CI.\n\n\n\n\n\nOct 24, 2022\n\n11 min\n\n\n\n\n\n\n\n\n\n\n\nAdapted excerpts from SICP’s introduction\n\n\n\nsoftware\n\n\n\nStarting the new year with Structure and Interpretation of Computer Programs, and notes from its introduction.\n\n\n\n\n\nJan 4, 2021\n\n5 min\n\n\n\n\n\n\n\n\n\n\n\nHow to not lose in tic-tac-toe\n\n\n\nmiscellaneous\n\n\n\nSimple strategies to never lose a game of tic-tac-toe.\n\n\n\n\n\nNov 16, 2020\n\n3 min\n\n\n\n\n\n\n\n\n\n\n\nLandmark detection using Google Cloud and Vision API\n\n\n\nsoftware\n\n\n\nA hands-on tutorial for landmark detection using Google Cloud Storage and Vision API.\n\n\n\n\n\nNov 14, 2020\n\n7 min\n\n\n\n\n\n\n\n\n\n\n\nChoosing between REST and SOAP\n\n\n\nsoftware\n\n\n\nA practical decision guide for choosing between SOAP and REST web services.\n\n\n\n\n\nNov 12, 2020\n\n3 min\n\n\n\n\n\n\n\n\n\n\n\nReviewing a Java code snippet\n\n\n\nsoftware\n\n\n\nReviewing and refactoring a Java string-frequency counter for clarity and efficiency.\n\n\n\n\n\nNov 9, 2020\n\n4 min\n\n\n\n\nNo matching items"
+    "text": "Verified, not true\n\n\n\nmiscellaneous\n\n\n\nOn the widening gap between a system that checks out and one that’s actually right, now that proof itself is getting cheap.\n\n\n\n\n\nJul 17, 2026\n\n15 min\n\n\n\n\n\n\n\n\n\n\n\nA necessary condition for Mersenne primes\n\n\n\nmathematics\n\n\n\nA clean proof that composite exponents can never yield a Mersenne prime.\n\n\n\n\n\nMay 7, 2026\n\n3 min\n\n\n\n\n\n\n\n\n\n\n\nFirst to call 50: winning strategy using backward induction\n\n\n\nmathematics\n\n\n\nSolving a number-calling game with backward induction and modular arithmetic.\n\n\n\n\n\nApr 13, 2026\n\n5 min\n\n\n\n\n\n\n\n\n\n\n\nCounting unordered pairs: three perspectives on C(n, 2)\n\n\n\nmathematics\n\n\n\nThree different proofs of C(n,2), from a checkerboard table to overcounting and dividing.\n\n\n\n\n\nMar 18, 2026\n\n6 min\n\n\n\n\n\n\n\n\n\n\n\nCount the triangles in a five-sided star\n\n\n\nmathematics\n\n\n\nCounting all 35 triangles hidden inside a pentagon and its inscribed pentagram.\n\n\n\n\n\nFeb 9, 2026\n\n2 min\n\n\n\n\n\n\n\n\n\n\n\nThe joy of useless pursuits: why ancient wisdom will outlast AI\n\n\n\nmiscellaneous\n\n\n\nWhy civilizations that value knowledge for its own sake are best placed to survive AI.\n\n\n\n\n\nJul 12, 2024\n\n7 min\n\n\n\n\n\n\n\n\n\n\n\nAn opinionated approach to software documentation\n\n\n\ndocumentation\n\n\n\nWhy documentation fails when stakeholders never align, and a framework to fix it.\n\n\n\n\n\nFeb 10, 2023\n\n4 min\n\n\n\n\n\n\n\n\n\n\n\nDebugging pods in a Kubernetes cluster\n\n\n\nsoftware\n\n\n\nA field guide to diagnosing pod status, logs, and crashes in a Kubernetes cluster.\n\n\n\n\n\nFeb 6, 2023\n\n4 min\n\n\n\n\n\n\n\n\n\n\n\nA brief analysis of BrowserStack’s documentation\n\n\n\ndocumentation\n\n\n\nA technical writer’s nitpicks on BrowserStack’s documentation, from admonitions to IA.\n\n\n\n\n\nOct 27, 2022\n\n3 min\n\n\n\n\n\n\n\n\n\n\n\nTest automation using Selenium, BrowserStack, and GitHub\n\n\n\nsoftware\n\n\n\nAutomating browser tests with Selenium, BrowserStack, and GitHub Actions CI.\n\n\n\n\n\nOct 24, 2022\n\n11 min\n\n\n\n\n\n\n\n\n\n\n\nAdapted excerpts from SICP’s introduction\n\n\n\nsoftware\n\n\n\nStarting the new year with Structure and Interpretation of Computer Programs, and notes from its introduction.\n\n\n\n\n\nJan 4, 2021\n\n5 min\n\n\n\n\n\n\n\n\n\n\n\nHow to not lose in tic-tac-toe\n\n\n\nmiscellaneous\n\n\n\nSimple strategies to never lose a game of tic-tac-toe.\n\n\n\n\n\nNov 16, 2020\n\n3 min\n\n\n\n\n\n\n\n\n\n\n\nLandmark detection using Google Cloud and Vision API\n\n\n\nsoftware\n\n\n\nA hands-on tutorial for landmark detection using Google Cloud Storage and Vision API.\n\n\n\n\n\nNov 14, 2020\n\n7 min\n\n\n\n\n\n\n\n\n\n\n\nChoosing between REST and SOAP\n\n\n\nsoftware\n\n\n\nA practical decision guide for choosing between SOAP and REST web services.\n\n\n\n\n\nNov 12, 2020\n\n3 min\n\n\n\n\n\n\n\n\n\n\n\nReviewing a Java code snippet\n\n\n\nsoftware\n\n\n\nReviewing and refactoring a Java string-frequency counter for clarity and efficiency.\n\n\n\n\n\nNov 9, 2020\n\n4 min\n\n\n\n\n\n\n\n\n\n\n\nPrinciples of my life\n\n\n\nmiscellaneous\n\n\n\nA short list of personal rules across body, mind, work, money, and relationships.\n\n\n\n\n\nJul 10, 2020\n\n1 min\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/mersenne-prime-sieve/index.html",
@@ -775,5 +775,47 @@
     "title": "Verified, not true",
     "section": "Footnotes",
     "text": "Footnotes\n\n\nStrictly, this is Gödel’s second incompleteness theorem; the first, related but distinct, establishes that any such system contains true statements it cannot prove.↩︎\nFermat stated the underlying observation in a 1640 letter without a general proof; Euler supplied the generalization in 1763 that RSA’s correctness argument actually leans on. The seed insight is still Fermat’s.↩︎\nThe investors who saw the 2008 collapse coming and profited from it — Michael Burry’s trade being the most famous — made their money by refusing to trust the AAA badge and reading the underlying loan tapes themselves.↩︎\nPublic self-driving demonstrations go back roughly a decade; as of this writing, commercial robotaxi service is still geographically limited and closely regulated rather than available on ordinary roads everywhere. The lag has run through insurance law and long-tail edge cases, not through the driving-policy models.↩︎"
+  },
+  {
+    "objectID": "posts/life-principles/index.html",
+    "href": "posts/life-principles/index.html",
+    "title": "Principles of my life",
+    "section": "",
+    "text": "A short list of rules I try to actually live by, grouped by the areas of life they govern."
+  },
+  {
+    "objectID": "posts/life-principles/index.html#body",
+    "href": "posts/life-principles/index.html#body",
+    "title": "Principles of my life",
+    "section": "Body",
+    "text": "Body\n\nEat on time, simple and nutritious.\nSleep enough, at fixed times.\nMove the body: run, stretch, lift.\nMaintain cleanliness and silence."
+  },
+  {
+    "objectID": "posts/life-principles/index.html#mind",
+    "href": "posts/life-principles/index.html#mind",
+    "title": "Principles of my life",
+    "section": "Mind",
+    "text": "Mind\n\nStudy mathematics, solve problems.\nRead literature, especially philosophy.\nProtect study time; it’s sacred.\nSeek coherence and elegance."
+  },
+  {
+    "objectID": "posts/life-principles/index.html#profession",
+    "href": "posts/life-principles/index.html#profession",
+    "title": "Principles of my life",
+    "section": "Profession",
+    "text": "Profession\n\nDo small, precise work every day.\nAvoid multitasking and drama.\nKeep tools simple and durable.\nBuild minimal, permanent systems."
+  },
+  {
+    "objectID": "posts/life-principles/index.html#money",
+    "href": "posts/life-principles/index.html#money",
+    "title": "Principles of my life",
+    "section": "Money",
+    "text": "Money\n\nSave automatically; spend consciously.\nEliminate waste wherever possible.\nPlan monthly and review weekly.\nTreat time as currency."
+  },
+  {
+    "objectID": "posts/life-principles/index.html#relationships",
+    "href": "posts/life-principles/index.html#relationships",
+    "title": "Principles of my life",
+    "section": "Relationships",
+    "text": "Relationships\n\nGive respect, not indulgence.\nAvoid arguments that prove nothing.\nKeep promises; apologize when wrong.\nPrefer kindness to cleverness."
   }
 ]
