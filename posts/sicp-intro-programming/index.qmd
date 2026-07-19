@@ -1,6 +1,6 @@
 ---
 title: "Adapted excerpts from SICP's introduction"
-description: "Starting the new year with Structure and Interpretation of Computer Programs, and notes from its introduction."
+description: "Adapted notes from the introduction to Structure and Interpretation of Computer Programs, on what programming actually is."
 date: "2021-01-04"
 categories: [software]
 image: images/cover.png
@@ -8,9 +8,7 @@ image: images/cover.png
 
 ![](images/cover.png){fig-align="center" width="60%"}
 
-The end of 2020 left a strange kind of empty calendar behind it. No commute, no travel, evenings that used to disappear into other people's plans now just sitting there, unclaimed. I'd been meaning to work through *Structure and Interpretation of Computer Programs* for years, always deferring it for something more "immediately useful." With nothing left to defer it for, I finally opened it on New Year's Day.
-
-I didn't get past the introduction in the first sitting, and that was fine. Abelson and Sussman spend their opening pages not on syntax but on what programming *is*, and it's dense enough that I kept stopping to write things down. What follows are the lines I underlined, adapted into my own words, with the intention of returning to them as I move through the rest of the book over the coming weeks.
+*Structure and Interpretation of Computer Programs* doesn't spend its introduction on syntax. Abelson and Sussman use those opening pages to lay out what programming actually is, and it's dense enough to reward stopping and writing things down. What follows are the lines worth underlining, adapted into my own words.
 
 ## Responsibility
 
@@ -64,8 +62,4 @@ One should avoid the complexities of control and instead concentrate on organizi
 
 > The ability to write and modify programs provides a powerful medium in which exploring becomes a natural activity.
 
-That, more than any specific technique, is the reason I wanted to start this book now, with an open evening and nowhere to be.
-
----
-
-I expect this will be the first of several posts as I make my way through SICP. There's no better time for it than a year with this much room in it.
+That's the note the introduction leaves you on: not a technique to learn, but a way of treating programming as a space worth exploring for its own sake.

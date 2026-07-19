@@ -2458,8 +2458,7 @@ Note
 <p><img src="https://cuimri.com/posts/sicp-intro-programming/images/cover.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
 </figure>
 </div>
-<p>The end of 2020 left a strange kind of empty calendar behind it. No commute, no travel, evenings that used to disappear into other people’s plans now just sitting there, unclaimed. I’d been meaning to work through <em>Structure and Interpretation of Computer Programs</em> for years, always deferring it for something more “immediately useful.” With nothing left to defer it for, I finally opened it on New Year’s Day.</p>
-<p>I didn’t get past the introduction in the first sitting, and that was fine. Abelson and Sussman spend their opening pages not on syntax but on what programming <em>is</em>, and it’s dense enough that I kept stopping to write things down. What follows are the lines I underlined, adapted into my own words, with the intention of returning to them as I move through the rest of the book over the coming weeks.</p>
+<p><em>Structure and Interpretation of Computer Programs</em> doesn’t spend its introduction on syntax. Abelson and Sussman use those opening pages to lay out what programming actually is, and it’s dense enough to reward stopping and writing things down. What follows are the lines worth underlining, adapted into my own words.</p>
 <section id="responsibility" class="level2">
 <h2 class="anchored" data-anchor-id="responsibility">Responsibility</h2>
 <p>We are not really “responsible” for the successful, error-free, perfect use of our programs. We are responsible for creating them, for setting them off in a direction. The same, I think, can be said about our responsibility toward our own mind — we shape it and send it off, but we don’t get to dictate every outcome downstream.</p>
@@ -2513,9 +2512,7 @@ Note
 <blockquote class="blockquote">
 <p>The ability to write and modify programs provides a powerful medium in which exploring becomes a natural activity.</p>
 </blockquote>
-<p>That, more than any specific technique, is the reason I wanted to start this book now, with an open evening and nowhere to be.</p>
-<hr>
-<p>I expect this will be the first of several posts as I make my way through SICP. There’s no better time for it than a year with this much room in it.</p>
+<p>That’s the note the introduction leaves you on: not a technique to learn, but a way of treating programming as a space worth exploring for its own sake.</p>
 
 
 </section>
