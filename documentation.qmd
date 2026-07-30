@@ -1,8 +1,8 @@
 ---
-title: "Documentation"
+title: "Technical Documentation"
 ---
 
-Open source technical documentation:
+Open source technical documentation and published articles:
 
 - [SUSE Linux Enterprise - Modular Documentation](https://github.com/SUSE/doc-modular/pulls?q=is%3Apr+author%3Asounix000+is%3Aclosed)
 

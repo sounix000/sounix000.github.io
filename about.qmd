@@ -4,9 +4,12 @@ image: images/logo.png
 about:
   template: jolla
   links:
+    - icon: code
+      text: Software
+      href: software.qmd
     - icon: file-pdf
-      text: Resume
-      href: resume/souvik_sarkar_resume.pdf
+      text: Technical Documentation
+      href: documentation.qmd
     - icon: linkedin
       text: LinkedIn
       href: https://www.linkedin.com/in/sounix000

@@ -14,10 +14,6 @@ website:
   navbar:
     logo: images/logo.png
     right:
-      - text: Software
-        href: software.qmd
-      - text: Documentation
-        href: documentation.qmd
       - text: About
         href: about.qmd
       - icon: rss

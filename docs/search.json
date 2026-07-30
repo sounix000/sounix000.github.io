@@ -807,9 +807,9 @@
   {
     "objectID": "documentation.html",
     "href": "documentation.html",
-    "title": "Documentation",
+    "title": "Technical Documentation",
     "section": "",
-    "text": "Open source technical documentation:\n\nSUSE Linux Enterprise - Modular Documentation\nSUSE Linux Enterprise - Legacy Documentation\nSUSE Linux Enterprise - Compliance Documentation\nRed Hat OpenShift - CI/CD Pipelines Documentation\nFusionCharts - Weather Dashboard using Vue.js"
+    "text": "Open source technical documentation and published articles:\n\nSUSE Linux Enterprise - Modular Documentation\nSUSE Linux Enterprise - Legacy Documentation\nSUSE Linux Enterprise - Compliance Documentation\nRed Hat OpenShift - CI/CD Pipelines Documentation\nFusionCharts - Weather Dashboard using Vue.js"
   },
   {
     "objectID": "about.html",
