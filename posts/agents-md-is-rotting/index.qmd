@@ -57,7 +57,7 @@ Read it once and it sounds like a helpful note from a colleague. Read it against
 
 - `bootstrap.sh` moved into the Makefile last year and was deleted, but the line survived. Fedora 42 became Fedora 43 two quarters ago. The March incident was two Marches ago.
 
-- Then the sentences that are not instructions at all: be careful, use your judgment, check with the team, it would be nice if you could add tests. Documentation produces the same sentences. *Consult your system administrator. Use caution when modifying this value.* I have written both. None of them can be followed or checked.
+- Then the sentences that are not instructions at all: be careful, use your judgment, check with the team, it would be nice if you could add tests. Bad documentation produces the same sentences. *Consult your system administrator. Use caution when modifying this value.* I have written both. None of them can be followed or checked.
 
 Whichever agent you run, the file is text in a prompt, not a parsed config. Claude Code's documentation says so plainly: **"no guarantee of strict compliance, especially for vague or conflicting instructions"** [@claudecode2026]. The file above is both.
 
@@ -159,11 +159,11 @@ Steps 1 to 4 are an afternoon and cover most of the damage. Step 6 needs a decis
 
 The failure to watch for is a stale rule followed correctly. Go back to that ETH trace analysis: a tool got used far more often when the context file named it than when it didn't, and the measurement doesn't ask whether the file was still right to name it. A stale rule gets followed just like a current one, so it looks like success too. That's why it survives review. The date on the file is what catches it.
 
-## This came from engineering
+## Solved twice already
 
-None of this is a documentation invention. Version control, code review, CI, conditional compilation: all of it came from engineering, and documentation adopted it because writing prose outside the repository had stopped working.
+Conditional compilation is the one piece of this that's a straight borrow from engineering — documentation toolchains took `ifdef` because keeping prose in sync with the code it lives next to is easier when both use the same trick for the same problem.
 
-Documentation applied it to prose, which is a different job: you cannot compile a sentence or unit-test a paragraph. Keeping a large body of text true across versions and products is dull work, and it's already been solved — just not by anyone writing documentation from scratch.
+The rest isn't a borrow so much as a parallel invention. Technical writing has its own long answer to keeping a large, cross-referenced body of text true across versions and products — single-sourcing, structured authoring, versioned doc builds — developed to solve the documentation side of this problem on its own terms. Applying that discipline to prose is a different job than applying it to code: you cannot compile a sentence or unit-test a paragraph.
 
 Instruction files are the same problem on a smaller scale. It has to happen on a schedule, and it has to be somebody's job. In most repositories it is nobody's.
 

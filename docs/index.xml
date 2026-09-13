@@ -78,7 +78,7 @@ font-style: inherit;">## Style</span></span>
 <li><p><code>dnf install</code> is right on Fedora, and Fedora CoreOS doesn’t ship <code>dnf</code> at all. If you don’t have product-specific variants, the agent gets <code>command not found</code> — or, if the script swallows the exit code, fails silently instead.</p></li>
 <li><p>The Git section contradicts itself: never force-push, and then force-pushing to your own feature branch is fine. The agent does not know which one wins.</p></li>
 <li><p><code>bootstrap.sh</code> moved into the Makefile last year and was deleted, but the line survived. Fedora 42 became Fedora 43 two quarters ago. The March incident was two Marches ago.</p></li>
-<li><p>Then the sentences that are not instructions at all: be careful, use your judgment, check with the team, it would be nice if you could add tests. Documentation produces the same sentences. <em>Consult your system administrator. Use caution when modifying this value.</em> I have written both. None of them can be followed or checked.</p></li>
+<li><p>Then the sentences that are not instructions at all: be careful, use your judgment, check with the team, it would be nice if you could add tests. Bad documentation produces the same sentences. <em>Consult your system administrator. Use caution when modifying this value.</em> I have written both. None of them can be followed or checked.</p></li>
 </ul>
 <p>Whichever agent you run, the file is text in a prompt, not a parsed config. Claude Code’s documentation says so plainly: <strong>“no guarantee of strict compliance, especially for vague or conflicting instructions”</strong> <span class="citation" data-cites="claudecode2026">(Anthropic 2026)</span>. The file above is both.</p>
 </section>
@@ -196,10 +196,10 @@ endif::[]</code></pre>
 <p><strong>Whether the file helps at all is not testable with what you have.</strong> The two studies point in different directions depending on the task and the metric — cost went up in one, down in the other — and settling it for your own team means running A/B tests on tasks with known-good outcomes. What you can actually claim is narrower: the file loads on every run either way, and it is now true rather than false.</p>
 <p>The failure to watch for is a stale rule followed correctly. Go back to that ETH trace analysis: a tool got used far more often when the context file named it than when it didn’t, and the measurement doesn’t ask whether the file was still right to name it. A stale rule gets followed just like a current one, so it looks like success too. That’s why it survives review. The date on the file is what catches it.</p>
 </section>
-<section id="this-came-from-engineering" class="level2">
-<h2 class="anchored" data-anchor-id="this-came-from-engineering">This came from engineering</h2>
-<p>None of this is a documentation invention. Version control, code review, CI, conditional compilation: all of it came from engineering, and documentation adopted it because writing prose outside the repository had stopped working.</p>
-<p>Documentation applied it to prose, which is a different job: you cannot compile a sentence or unit-test a paragraph. Keeping a large body of text true across versions and products is dull work, and it’s already been solved — just not by anyone writing documentation from scratch.</p>
+<section id="solved-twice-already" class="level2">
+<h2 class="anchored" data-anchor-id="solved-twice-already">Solved twice already</h2>
+<p>Conditional compilation is the one piece of this that’s a straight borrow from engineering — documentation toolchains took <code>ifdef</code> because keeping prose in sync with the code it lives next to is easier when both use the same trick for the same problem.</p>
+<p>The rest isn’t a borrow so much as a parallel invention. Technical writing has its own long answer to keeping a large, cross-referenced body of text true across versions and products — single-sourcing, structured authoring, versioned doc builds — developed to solve the documentation side of this problem on its own terms. Applying that discipline to prose is a different job than applying it to code: you cannot compile a sentence or unit-test a paragraph.</p>
 <p>Instruction files are the same problem on a smaller scale. It has to happen on a schedule, and it has to be somebody’s job. In most repositories it is nobody’s.</p>
 
 
