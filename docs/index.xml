@@ -10,7 +10,239 @@
 <atom:link href="https://cuimri.com/index.xml" rel="self" type="application/rss+xml"/>
 <description>Website of Souvik Sarkar</description>
 <generator>quarto-1.9.38</generator>
-<lastBuildDate>Thu, 16 Jul 2026 18:30:00 GMT</lastBuildDate>
+<lastBuildDate>Thu, 10 Sep 2026 18:30:00 GMT</lastBuildDate>
+<item>
+  <title>Your AGENTS.md is rotting</title>
+  <dc:creator>Souvik Sarkar</dc:creator>
+  <link>https://cuimri.com/posts/agents-md-is-rotting/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://cuimri.com/posts/agents-md-is-rotting/images/cover.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></p>
+</figure>
+</div>
+<p>A file at the root of your repository tells an AI agent how to work there. <code>AGENTS.md</code>, <code>CLAUDE.md</code>, <code>GEMINI.md</code>, <code>.cursorrules</code>, <code>copilot-instructions.md</code>, whatever your tooling calls it. If you have been running agents for more than a few months, that file has grown and is at least partially false. The problem is maintenance, not writing.</p>
+<section id="the-file" class="level2">
+<h2 class="anchored" data-anchor-id="the-file">The file</h2>
+<p>I made up parts of this:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"># Notes for AI agents working in this repo</span></span>
+<span id="cb1-2"></span>
+<span id="cb1-3">Please be careful. This code ships to customers.</span>
+<span id="cb1-4"></span>
+<span id="cb1-5"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">## Setup</span></span>
+<span id="cb1-6">Install dependencies with <span class="in" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">`dnf install -y make git python3-pip`</span>.</span>
+<span id="cb1-7">Run <span class="in" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">`./scripts/bootstrap.sh`</span> before anything else.</span>
+<span id="cb1-8"></span>
+<span id="cb1-9"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">## Testing</span></span>
+<span id="cb1-10">Always run the full test suite before proposing a change.</span>
+<span id="cb1-11">If the suite takes too long, use your judgment about which parts to skip.</span>
+<span id="cb1-12"></span>
+<span id="cb1-13"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">## Git</span></span>
+<span id="cb1-14">Never force-push.</span>
+<span id="cb1-15">Force-pushing to your own feature branch is fine, just not to main.</span>
+<span id="cb1-16">Squash your commits.</span>
+<span id="cb1-17"></span>
+<span id="cb1-18"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">## Build</span></span>
+<span id="cb1-19">Target is Fedora 42.</span>
+<span id="cb1-20">Do not touch src/gen — after the March incident this must be left alone.</span>
+<span id="cb1-21">Be careful when changing the test fixtures.</span>
+<span id="cb1-22">Check with the team before editing the CI config.</span>
+<span id="cb1-23"></span>
+<span id="cb1-24"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">## Style</span></span>
+<span id="cb1-25">Follow the existing code style.</span>
+<span id="cb1-26">It would be nice if you could add tests for new code.</span></code></pre></div></div>
+<p>Read it once and it sounds like a helpful note from a colleague. Read it against the actual repo and four things are wrong.</p>
+<ul>
+<li><p><code>dnf install</code> is right on Fedora, and not on Fedora CoreOS. If you don’t have product-specific variants, the agent either stops with an error, or fails silently.</p></li>
+<li><p>The Git section contradicts itself: never force-push, and then force-pushing to your own feature branch is fine. The agent does not know which one wins.</p></li>
+<li><p><code>bootstrap.sh</code> moved into the Makefile last year and was deleted, but the line survived. Fedora 42 became Fedora 43 two quarters ago. The March incident was two Marches ago.</p></li>
+<li><p>Then the sentences that are not instructions at all: be careful, use your judgment, check with the team, it would be nice if you could add tests. Documentation produces the same sentences. <em>Consult your system administrator. Use caution when modifying this value.</em> I have written both. None of them can be followed or checked.</p></li>
+</ul>
+<p>Whichever agent you run, the file is text in a prompt, not a parsed config. Claude Code’s documentation says so plainly: <strong>“no guarantee of strict compliance, especially for vague or conflicting instructions”</strong> <span class="citation" data-cites="claudecode2026">(Anthropic 2026)</span>. The file above is both.</p>
+</section>
+<section id="how-bad-is-it" class="level2">
+<h2 class="anchored" data-anchor-id="how-bad-is-it">How bad is it</h2>
+<p>ETH Zurich found that adding a context file did not generally improve task success, and raised inference cost by more than 20% on average. They tested on SWE-bench tasks and on a benchmark of repositories that already had hand-written files, and the result held across models and agents, whether the file was hand-written or generated <span class="citation" data-cites="gloaguen2026">(Gloaguen et al. 2026)</span>.<sup>1</sup> The same study’s trace analysis shows how strong that compliance is: a tool got used far more often in the instances where the context file named it than in the instances where it didn’t.</p>
+<p>On focused pull requests, a second study found the opposite on cost: runs with a context file finished with roughly 29% better median runtime and 17% better token use than runs without one <span class="citation" data-cites="lulla2026">(Lulla et al. 2026)</span>. The two studies aren’t testing the same kind of task. An open bug on SWE-bench is something an agent has never seen before; a focused pull request is usually a change the author already understands. A context file can plausibly make an agent faster at work it’s already been pointed toward, without making it any better at work it has to figure out from scratch.</p>
+<p>Line the two up and the honest summary is narrower than either study alone: cost moves with how familiar the task already is, and neither study found a context file reliably improves whether the work actually gets done. On an unfamiliar problem, a file that earns nothing is still charged for, and a file with a false line in it is charged for and followed.</p>
+</section>
+<section id="why-it-rots" class="level2">
+<h2 class="anchored" data-anchor-id="why-it-rots">Why it rots</h2>
+<p>Every fault above has the same cause. The file has no lifecycle.</p>
+<p>Nothing owns it, so no one is responsible when it drifts. Nothing generates it, so variants are made by copying. Nothing tests it, so a path that stopped existing looks identical to one that still does. Nothing fails when it is wrong, so the feedback that fixes code never reaches it. Code has all four. This file has none.</p>
+<p>Underneath that is the part no tooling reaches. Owning the file earns nobody a ticket or a review credit, so it stays unowned. Blocking a merge over <em>use caution</em> costs the reviewer more than letting it through, so empty rules accumulate.</p>
+<p>The faults also split in two, and the halves need different treatment. Dead paths, stale versions and wrong commands are mechanical: a script can check every path, command and version the file names, and it will still be checking them next year. Contradictions and empty rules are not. No tool reads <em>never force-push</em> against <em>force-pushing to your own feature branch is fine</em> and reports a conflict, and none will tell you <em>be careful</em> is not an instruction. Those need a person.</p>
+</section>
+<section id="auditable-then-enforced" class="level2">
+<h2 class="anchored" data-anchor-id="auditable-then-enforced">Auditable, then enforced</h2>
+<p>A rule is auditable when you can tell from the diff whether it held. This one is not:</p>
+<blockquote class="blockquote">
+<p>Be careful when changing the test fixtures.</p>
+</blockquote>
+<p>This one is:</p>
+<blockquote class="blockquote">
+<p>Do not edit anything under <code>tests/fixtures/</code>. If a test needs a different fixture, stop and say which fixture and why.</p>
+</blockquote>
+<p>An auditable rule is still not an enforced one. An instruction file is text in a context window, competing with everything else in it, and on a long session it can lose. Better models do not fix this. A good guess just makes the failure quieter, because nobody checks a guess that worked.</p>
+<p>So sort by consequence. If a violation would fail the build, put it in the build: every agent ships a hook or permission layer, and pre-commit and CI were there before any of them. The file keeps what a reviewer would query and no gate would catch.</p>
+<p>The fixture rule belongs in the file. A pre-commit hook that rejects any edit under <code>src/gen</code> does not depend on the agent cooperating.</p>
+</section>
+<section id="variants-without-four-copies" class="level2">
+<h2 class="anchored" data-anchor-id="variants-without-four-copies">Variants, without four copies</h2>
+<p>Instructions differ by version and by variant. 4.2 needs different guidance from 4.3. Fedora and Fedora CoreOS need different install commands, as above.</p>
+<p>If your variants map to directories, the tooling already handles it. Nested <code>AGENTS.md</code> files scope to their own subtree, and the more specific one wins on conflict — the same mental model as <code>.gitignore</code>.<sup>2</sup> Most agents also take imported or path-scoped rules on top of that.</p>
+<p>They often do not map. Fedora against Fedora CoreOS is not a directory split, and neither is 4.2 against 4.3. So people copy the file and edit the copy. After a year there are four of them, three stale, and nobody can say which one the agent loaded on a given run. Git will not catch it: four divergent files are not an error.</p>
+<p>Documentation toolchains have a name for this problem: conditional compilation, applied to prose. They took <code>ifdef</code> from the preprocessor for the same reason compilers did — one source, built per target, instead of four copies drifting apart on their own. Write one source with conditionals and generate the per-target file:</p>
+<pre class="asciidoc"><code>== Installing packages
+
+ifdef::fedora[]
+Run `dnf install -y make git python3-pip`.
+endif::[]
+
+ifdef::coreos[]
+Root is read-only. Run `rpm-ostree install make git python3-pip`,
+then reboot to activate the new deployment.
+Do not use plain `dnf install` on these hosts.
+endif::[]</code></pre>
+<p>Build per target and the agent gets a plain <code>AGENTS.md</code> with no conditionals in it. Change one path and the other is on the adjacent line.</p>
+<p>The generated file rots too, so treat it like any other generated artifact: a build target that produces it, a CI job that regenerates and fails on a diff, and the output in <code>.gitignore</code> so nobody edits the artifact instead of the source.</p>
+</section>
+<section id="what-each-approach-costs" class="level2">
+<h2 class="anchored" data-anchor-id="what-each-approach-costs">What each approach costs</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Approach</th>
+<th>Handles</th>
+<th>Costs</th>
+<th>Revisit when</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Leave it, delete quarterly</td>
+<td>Drift, contradictions</td>
+<td>Nothing but discipline. No variant support</td>
+<td>You add a second target</td>
+</tr>
+<tr class="even">
+<td>Nested files</td>
+<td>Variants that map to directories</td>
+<td>A nested file can silently override a rule from the root</td>
+<td>A rule has to hold everywhere</td>
+</tr>
+<tr class="odd">
+<td>Generate from one source</td>
+<td>Variants by product or version</td>
+<td>A build target, a CI check, one more thing that can break the build</td>
+<td>The variant count stops growing</td>
+</tr>
+<tr class="even">
+<td>Hook or CI gate</td>
+<td>Rules that must hold</td>
+<td>Code to maintain, and it will block legitimate work sometimes</td>
+<td>The gate fires more on false positives than real ones</td>
+</tr>
+</tbody>
+</table>
+<p>The two cheap rows buy most of the value. Deleting on a schedule costs nothing and fixes contradictions, dead paths and stale versions. For one repo, one target and two people, the first row is the whole answer. Generation is worth it at two targets and hard to justify at one, and I have not seen anyone run it for instruction files, so treat that row as a mechanism rather than a practice.</p>
+</section>
+<section id="what-to-do-this-week" class="level2">
+<h2 class="anchored" data-anchor-id="what-to-do-this-week">What to do this week</h2>
+<ol type="1">
+<li><strong>Find out what actually loads.</strong> Claude Code lists the files in effect under <code>/context</code> <span class="citation" data-cites="claudecode2026">(Anthropic 2026)</span>; Codex can log its instruction chain <span class="citation" data-cites="openaicodex2026">(OpenAI 2026)</span>. A file missing from that list is invisible to the model. Codex also caps instruction text at 32 KiB by default and truncates past that, silently.<sup>3</sup></li>
+<li><strong>Diff the file against reality.</strong> Every path, command and version number it names. Write it as a script the first time, because you will run it again. This is the pass that finds <code>bootstrap.sh</code>.</li>
+<li><strong>Delete.</strong> Anything the model already does, anything contradicted elsewhere, anything you cannot date.</li>
+<li><strong>Add an owner and a date.</strong> <code>Owner: platform team. Reviewed: 2026-08-14.</code> Without them nobody can tell a live rule from a dead one.</li>
+<li><strong>Rewrite the vague rules as checkable ones,</strong> and move the absolute ones into a hook.</li>
+<li><strong>Only then</strong>, if you have more than one target, set up generation with the CI diff check.</li>
+</ol>
+<p>Steps 1 to 4 are an afternoon and cover most of the damage. Step 6 needs a decision first.</p>
+</section>
+<section id="how-you-know-it-worked" class="level2">
+<h2 class="anchored" data-anchor-id="how-you-know-it-worked">How you know it worked</h2>
+<p><strong>The file loads.</strong> Check <code>/context</code> or your agent’s equivalent, and check the byte count against your tool’s cap.</p>
+<p><strong>The file is true, mechanically.</strong> CI regenerates and fails on a diff, and the script from step 2 asserts every path, command and version still exists. Nobody has to remember to look.</p>
+<p><strong>Nothing checks the other half.</strong> No script reads <em>never force-push</em> against <em>force-pushing to your own feature branch is fine</em> and calls it a conflict, or flags <em>be careful</em> as not a rule. That still needs a person, and a calendar entry — the half that gets skipped.</p>
+<p><strong>The hard rules hold.</strong> Try to violate them. Edit something under <code>src/gen</code> and confirm the hook rejects it.</p>
+<p><strong>Whether the file helps at all is not testable with what you have.</strong> The two studies point in different directions depending on the task and the metric — cost went up in one, down in the other — and settling it for your own team means running A/B tests on tasks with known-good outcomes. What you can actually claim is narrower: the file loads on every run either way, and it is now true rather than false.</p>
+<p>The failure to watch for is a stale rule followed correctly. Go back to that ETH trace analysis: a tool got used far more often when the context file named it than when it didn’t, and the measurement doesn’t ask whether the file was still right to name it. A stale rule gets followed just like a current one, so it looks like success too — which is why it survives review. The date on the file is what catches it.</p>
+</section>
+<section id="this-came-from-engineering" class="level2">
+<h2 class="anchored" data-anchor-id="this-came-from-engineering">This came from engineering</h2>
+<p>None of this is a documentation invention. Version control, code review, CI, conditional compilation: all of it came from engineering, and documentation adopted it because writing prose outside the repository had stopped working.</p>
+<p>Documentation applied it to prose, which is a different job: you cannot compile a sentence or unit-test a paragraph. Keeping a large body of text true across versions and products is dull work that has been done before.</p>
+<p>Instruction files are the same problem on a smaller scale. It has to happen on a schedule, and it has to be somebody’s job. In most repositories it is nobody’s.</p>
+
+
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-claudecode2026" class="csl-entry">
+Anthropic. 2026. <span>“Manage <span>Claude</span>’s Memory Across Sessions.”</span> <a href="https://code.claude.com/docs/en/memory">https://code.claude.com/docs/en/memory</a>.
+</div>
+<div id="ref-gloaguen2026" class="csl-entry">
+Gloaguen, Thibaud, Niels Mündler, Mark Müller, Veselin Raychev, and Martin Vechev. 2026. <span>“Evaluating <span class="nocase">AGENTS.md</span>: Are Repository-Level Context Files Helpful for Coding Agents?”</span> <em>arXiv Preprint arXiv:2602.11988</em>.
+</div>
+<div id="ref-lulla2026" class="csl-entry">
+Lulla, Jai Lal, Seyedmoein Mohsenimofidi, Matthias Galster, Jie M. Zhang, Sebastian Baltes, and Christoph Treude. 2026. <span>“On the Impact of <span class="nocase">AGENTS.md</span> Files on the Efficiency of <span>AI</span> Coding Agents.”</span> <em>arXiv Preprint arXiv:2601.20404</em>.
+</div>
+<div id="ref-openaicodex2026" class="csl-entry">
+OpenAI. 2026. <span>“<span class="nocase">AGENTS.md</span> Guide for <span>Codex</span>.”</span> <a href="https://developers.openai.com/codex/guides/agents-md">https://developers.openai.com/codex/guides/agents-md</a>.
+</div>
+</div></section><section id="footnotes" class="footnotes footnotes-end-of-document"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Hand-written files moved success up a little — about 4% on average, for three of the four agents tested. LLM-generated files moved it down, in most of the settings tested. Call both effects noise: neither was large or consistent enough to justify the added cost.↩︎</p></li>
+<li id="fn2"><p>More precisely, at least for Codex: it concatenates every ancestor <code>AGENTS.md</code> from the project root down to the working directory, with the nearest file placed last so it overrides on conflict. A rule in the root file still applies anywhere a more specific file doesn’t override it. Claude Code and Cursor follow a similar hierarchical pattern.↩︎</p></li>
+<li id="fn3"><p>The setting is <code>project_doc_max_bytes</code>, defaulting to 32 KiB. Codex logs a warning internally when it truncates, but nothing surfaces that warning in the interactive CLI — which is why it reads as silent in practice.↩︎</p></li>
+</ol>
+</section><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{sarkar2026,
+  author = {Sarkar, Souvik},
+  title = {Your {AGENTS.md} Is Rotting},
+  date = {2026-09-11},
+  url = {https://cuimri.com/posts/agents-md-is-rotting/},
+  langid = {en}
+}
+</code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-sarkar2026" class="csl-entry quarto-appendix-citeas">
+Sarkar, Souvik. 2026. <span>“Your AGENTS.md Is Rotting.”</span>
+Curiosity | Imagination | Rigor, September 11. <a href="https://cuimri.com/posts/agents-md-is-rotting/">https://cuimri.com/posts/agents-md-is-rotting/</a>.
+</div></div></section></div> ]]></description>
+  <category>miscellaneous</category>
+  <guid>https://cuimri.com/posts/agents-md-is-rotting/</guid>
+  <pubDate>Thu, 10 Sep 2026 18:30:00 GMT</pubDate>
+  <media:content url="https://cuimri.com/posts/agents-md-is-rotting/images/cover.png" medium="image" type="image/png" height="76" width="144"/>
+</item>
 <item>
   <title>Verified, not true</title>
   <dc:creator>Souvik Sarkar</dc:creator>
