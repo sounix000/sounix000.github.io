@@ -56,29 +56,29 @@ It reads like a helpful note from a colleague, until you check it against the re
 
 - The Git section contradicts itself: never force-push, and then force-pushing to your own feature branch is fine. The agent does not know which one wins.
 
-- `bootstrap.sh` moved into the Makefile last year and was deleted, but the line survived. The team banned SHA-1 for new signatures two quarters ago — years overdue — and the file never got the memo. The March incident was two Marches ago.
+- `bootstrap.sh` moved into the Makefile last year and was deleted, but the line survived. The team banned SHA-1 for new signatures two quarters ago, years too late, and the file never got the memo. The March incident was two Marches ago.
 
 - Then the sentences that are not instructions at all: be careful, use your judgment, check with the team, it would be nice if you could add tests. Bad documentation produces the same sentences. *Consult your system administrator. Use caution when modifying this value.* I have written both. None of them can be followed or checked.
 
-Whichever agent you run, the file is text in a prompt, not a parsed config. Claude Code's documentation says so plainly: **"no guarantee of strict compliance, especially for vague or conflicting instructions"** [@claudecode2026]. The file above is both.
+Whichever agent you run, the file is text in a prompt, not a parsed config. Claude Code's documentation says so plainly: **"no guarantee of strict compliance, especially for vague or conflicting instructions"** [@claudecode2026]. The file above has both problems.
 
 ## How bad is it
 
 ETH Zurich found that adding a context file did not generally improve task success, and raised inference cost by more than 20% on average. They tested on SWE-bench tasks and on a benchmark of repositories that already had hand-written files, and the result held across models and agents, whether the file was hand-written or generated [@gloaguen2026].[^ethnuance] The same study's trace analysis shows just how mechanically agents comply: a tool got used far more often in the instances where the context file named it than in the instances where it didn't.
 
-On focused pull requests, a second study found the opposite on cost: runs with a context file finished with roughly 29% better median runtime and 17% better token use than runs without one [@lulla2026]. The two studies aren't testing the same kind of task. An open bug on SWE-bench is something an agent has never seen before; a focused pull request is usually a change the author already understands. A context file can plausibly make an agent faster at work it's already been pointed toward. That's a different claim from making it better at work it has to figure out on its own.
+On focused pull requests, a second study found the opposite on cost: runs with a context file finished with roughly 29% better median runtime and 17% better token use than runs without one [@lulla2026]. The two studies aren't testing the same kind of task. An open bug on SWE-bench is something an agent has never seen before; a focused pull request is usually a change the author already understands. A context file can plausibly make an agent faster at work it's already been pointed toward. It doesn't make the agent better at work it has to figure out on its own.
 
 Line the two up and the real takeaway is smaller than either study on its own: cost tracks how familiar the task already is, and only ETH actually measured whether the work gets done better — it found no reliable improvement there either. On an unfamiliar problem, a file that earns nothing still costs tokens, and a false line in it gets followed on top of that.
 
 ## Why it rots
 
-Every fault in that file has the same cause. The file has no lifecycle.
+Every fault in that file has the same cause: it has no lifecycle.
 
-Nobody owns this file, so nobody's responsible when it drifts. Nothing generates it, so copies get made by hand instead. Nothing tests it — a path that's gone looks the same as one that's still there. And when it's wrong, nothing fails; the feedback that keeps code honest never reaches it. Code gets all four checks. This file gets none of them.
+Nobody owns it, so nobody's on the hook when it drifts. Nothing generates it, so when a variant is needed, someone just copies the file by hand. Nothing tests it, so a path deleted last year still looks current. And nothing fails when a rule in it goes wrong — it just sits there, wrong, with nobody watching. That's four things code normally has and this file doesn't: an owner, a way to generate it, a test, and something that fails when it's wrong.
 
-Nobody gets a ticket or a review credit for owning the file, so nobody does. And blocking a merge over *use caution* costs the reviewer more than waving it through, which is why empty rules pile up.
+Part of this is plain incentive. Owning the file gets nobody a ticket or a review credit, and blocking a merge over *use caution* costs the reviewer more than just waving it through. So nobody signs up to own it, and vague rules never get cleared out.
 
-The faults split into two kinds, plus a third saved for its own section: a rule that's exactly right for one variant and wrong for another isn't stale or vague, just unscoped. Of the other two, dead paths, stale versions and wrong commands are mechanical: a script can check every path, command and version the file names, and it will still be checking them next year. Contradictions and empty rules are not. No tool reads *never force-push* against *force-pushing to your own feature branch is fine* and reports a conflict, and none will tell you *be careful* is not an instruction. Those need a person.
+Dead paths, stale versions and wrong commands are mechanical faults — a script can check every path, command and version the file names, and it'll still be checking them next year. Contradictions and vague rules aren't mechanical. No tool reads *never force-push* against *force-pushing to your own feature branch is fine* and calls it a conflict, and none will tell you *be careful* isn't an instruction. Those need a person.
 
 ## Auditable, then enforced
 
@@ -98,7 +98,7 @@ The fixture rule belongs in the file. A pre-commit hook that rejects any edit un
 
 ## Variants, without four copies
 
-Instructions differ by version and by variant. Your own product's 6.1 needs different guidance from 6.2; the standard build needs different crypto guidance from the FIPS one.
+Instructions differ by version and by variant. Your own product's 6.1 needs different guidance from 6.2. The standard build needs different crypto guidance from the FIPS one.
 
 If your variants map to directories, the tooling already handles it. Nested `AGENTS.md` files scope to their own subtree, and the more specific one wins on conflict — the same mental model as `.gitignore`.[^nested] Most agents also take imported or path-scoped rules on top of that.
 
@@ -143,13 +143,13 @@ Two of these rows are cheap, and they buy most of the value. Deleting on a sched
 5. **Rewrite the vague rules as checkable ones,** and move the absolute ones into a hook.
 6. **Only then**, if you have more than one target, set up generation with the CI diff check.
 
-Steps 1 to 4 are an afternoon and cover most of the damage; step 5 just keeps going, one rule at a time. Step 6 needs a decision first.
+Steps 1 to 4 are an afternoon and cover most of the damage. Step 5 just keeps going, one rule at a time. Step 6 needs a decision first.
 
 ## How you know it worked
 
 **The file loads.** Check `/context` or your agent's equivalent, and check the byte count against your tool's cap.
 
-**The file is true, mechanically.** The script from step 2 still asserts every path, command and version exists, and — if you've set up generation — CI regenerates and fails on a diff too. Either way, nobody has to remember to look.
+**The file is true, mechanically.** The script from step 2 still asserts every path, command and version exists. If you've set up generation, CI regenerates and fails on a diff too. Either way, nobody has to remember to look.
 
 **Nothing checks the other half.** No script reads two rules against each other and flags the contradiction, and none reads *it would be nice if you could add tests* and tells you that's not an instruction. This still needs a person, and a calendar entry. It's the half that gets skipped.
 
@@ -161,9 +161,9 @@ The failure to watch for is a stale rule followed correctly. Go back to that ETH
 
 ## Solved twice already
 
-The specific trick, `ifdef`-style conditionals, is a straight borrow from engineering: documentation toolchains took it because keeping prose in sync with the code it lives next to is easier when both use the same syntax for the same problem.
+`ifdef`-style conditionals are a straight borrow from engineering: documentation toolchains took the idea from the C preprocessor because keeping prose in sync with the code it lives next to is easier when both use the same trick for the same problem.
 
-The discipline it sits inside is documentation's own, though. Technical writing has its own long answer to keeping a large, cross-referenced body of text true across versions and products — single-sourcing, structured authoring, versioned doc builds, of which conditional text is one tool among several — developed to solve the documentation side of this problem on its own terms. Applying that discipline to prose is a different job than applying it to code: you cannot type-check a sentence or unit-test a paragraph.
+The broader discipline isn't a borrow, though. Technical writing has its own long answer to keeping a large body of text true across versions and products: single-sourcing, structured authoring, versioned doc builds. Conditional text is just one tool inside that toolbox. Applying it to prose is a different job than applying it to code: you cannot type-check a sentence or unit-test a paragraph.
 
 Instruction files are the same problem on a smaller scale, and they need the same two things: a schedule, and an owner. Most repositories have assigned neither.
 
