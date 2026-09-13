@@ -42,7 +42,7 @@ background-color: null;
 font-style: inherit;">## Setup</span></span>
 <span id="cb1-6">Install dependencies with <span class="in" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">`dnf install -y make git python3-pip`</span>.</span>
+font-style: inherit;">`pip install -r requirements.txt`</span>.</span>
 <span id="cb1-7">Run <span class="in" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">`./scripts/bootstrap.sh`</span> before anything else.</span>
@@ -62,22 +62,23 @@ font-style: inherit;">## Git</span></span>
 <span id="cb1-17"></span>
 <span id="cb1-18"><span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">## Build</span></span>
-<span id="cb1-19">Target is Fedora 42.</span>
-<span id="cb1-20">Do not touch src/gen — after the March incident this must be left alone.</span>
-<span id="cb1-21">Be careful when changing the test fixtures.</span>
-<span id="cb1-22">Check with the team before editing the CI config.</span>
-<span id="cb1-23"></span>
-<span id="cb1-24"><span class="fu" style="color: #4758AB;
+font-style: inherit;">## Crypto</span></span>
+<span id="cb1-19">Use AES-256-GCM via the platform's default crypto library for encryption at rest.</span>
+<span id="cb1-20">Sign release artifacts with SHA-1.</span>
+<span id="cb1-21">Do not touch src/gen — after the March incident this must be left alone.</span>
+<span id="cb1-22">Be careful when changing the test fixtures.</span>
+<span id="cb1-23">Check with the team before editing the CI config.</span>
+<span id="cb1-24"></span>
+<span id="cb1-25"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">## Style</span></span>
-<span id="cb1-25">Follow the existing code style.</span>
-<span id="cb1-26">It would be nice if you could add tests for new code.</span></code></pre></div></div>
-<p>Read it once and it sounds like a helpful note from a colleague. Read it against the actual repo and four things are wrong.</p>
+<span id="cb1-26">Follow the existing code style.</span>
+<span id="cb1-27">It would be nice if you could add tests for new code.</span></code></pre></div></div>
+<p>It reads like a helpful note from a colleague, until you check it against the repo — then the cracks show.</p>
 <ul>
-<li><p><code>dnf install</code> is right on Fedora, and Fedora CoreOS doesn’t ship <code>dnf</code> at all. If you don’t have product-specific variants, the agent gets <code>command not found</code> — or, if the script swallows the exit code, fails silently instead.</p></li>
+<li><p>The default crypto library is right for the standard build, and the FIPS build isn’t allowed to use it. FIPS certifies the validated module, not the algorithm. Nothing stops the agent from calling the familiar function anyway. It compiles and encrypts the data. It isn’t the certified path.</p></li>
 <li><p>The Git section contradicts itself: never force-push, and then force-pushing to your own feature branch is fine. The agent does not know which one wins.</p></li>
-<li><p><code>bootstrap.sh</code> moved into the Makefile last year and was deleted, but the line survived. Fedora 42 became Fedora 43 two quarters ago. The March incident was two Marches ago.</p></li>
+<li><p><code>bootstrap.sh</code> moved into the Makefile last year and was deleted, but the line survived. The team banned SHA-1 for new signatures two quarters ago — years overdue — and the file never got the memo. The March incident was two Marches ago.</p></li>
 <li><p>Then the sentences that are not instructions at all: be careful, use your judgment, check with the team, it would be nice if you could add tests. Bad documentation produces the same sentences. <em>Consult your system administrator. Use caution when modifying this value.</em> I have written both. None of them can be followed or checked.</p></li>
 </ul>
 <p>Whichever agent you run, the file is text in a prompt, not a parsed config. Claude Code’s documentation says so plainly: <strong>“no guarantee of strict compliance, especially for vague or conflicting instructions”</strong> <span class="citation" data-cites="claudecode2026">(Anthropic 2026)</span>. The file above is both.</p>
@@ -91,9 +92,9 @@ font-style: inherit;">## Style</span></span>
 <section id="why-it-rots" class="level2">
 <h2 class="anchored" data-anchor-id="why-it-rots">Why it rots</h2>
 <p>Every fault in that file has the same cause. The file has no lifecycle.</p>
-<p>Nothing owns it, so no one is responsible when it drifts. Nothing generates it, so variants are made by copying. Nothing tests it, so a path that stopped existing looks identical to one that still does. Nothing fails when it is wrong, so the feedback that fixes code never reaches it. Code has all four. This file has none.</p>
+<p>Nobody owns this file, so nobody’s responsible when it drifts. Nothing generates it, so copies get made by hand instead. Nothing tests it — a path that’s gone looks the same as one that’s still there. And when it’s wrong, nothing fails; the feedback that keeps code honest never reaches it. Code gets all four checks. This file gets none of them.</p>
 <p>Nobody gets a ticket or a review credit for owning the file, so nobody does. And blocking a merge over <em>use caution</em> costs the reviewer more than waving it through, which is why empty rules pile up.</p>
-<p>The faults split into two kinds, and each needs different treatment. Dead paths, stale versions and wrong commands are mechanical: a script can check every path, command and version the file names, and it will still be checking them next year. Contradictions and empty rules are not. No tool reads <em>never force-push</em> against <em>force-pushing to your own feature branch is fine</em> and reports a conflict, and none will tell you <em>be careful</em> is not an instruction. Those need a person.</p>
+<p>The faults split into two kinds, plus a third saved for its own section: a rule that’s exactly right for one variant and wrong for another isn’t stale or vague, just unscoped. Of the other two, dead paths, stale versions and wrong commands are mechanical: a script can check every path, command and version the file names, and it will still be checking them next year. Contradictions and empty rules are not. No tool reads <em>never force-push</em> against <em>force-pushing to your own feature branch is fine</em> and reports a conflict, and none will tell you <em>be careful</em> is not an instruction. Those need a person.</p>
 </section>
 <section id="auditable-then-enforced" class="level2">
 <h2 class="anchored" data-anchor-id="auditable-then-enforced">Auditable, then enforced</h2>
@@ -111,20 +112,19 @@ font-style: inherit;">## Style</span></span>
 </section>
 <section id="variants-without-four-copies" class="level2">
 <h2 class="anchored" data-anchor-id="variants-without-four-copies">Variants, without four copies</h2>
-<p>Instructions differ by version and by variant. 6.1 needs different guidance from 6.2. Fedora and Fedora CoreOS need different install commands, as above.</p>
+<p>Instructions differ by version and by variant. Your own product’s 6.1 needs different guidance from 6.2; the standard build needs different crypto guidance from the FIPS one.</p>
 <p>If your variants map to directories, the tooling already handles it. Nested <code>AGENTS.md</code> files scope to their own subtree, and the more specific one wins on conflict — the same mental model as <code>.gitignore</code>.<sup>2</sup> Most agents also take imported or path-scoped rules on top of that.</p>
-<p>They often do not map. Fedora against Fedora CoreOS is not a directory split, and neither is 6.1 against 6.2. So people copy the file and edit the copy. After a year there are four of them, three stale, and nobody can say which one the agent loaded on a given run. Git will not catch it: four divergent files are not an error.</p>
-<p>Documentation toolchains have a name for this problem: conditional compilation, applied to prose. They borrowed <code>ifdef</code> from the C preprocessor for the reason it exists there in the first place: one source, built per target, instead of four copies drifting apart on their own. Write one source with conditionals and generate the per-target file:</p>
-<pre class="asciidoc"><code>== Installing packages
+<p>They often do not map. Standard against FIPS is not a directory split, and neither is 6.1 against 6.2. So people copy the file and edit the copy. After a year there are four of them, three stale, and nobody can say which one the agent loaded on a given run. Git will not catch it: four divergent files are not an error.</p>
+<p>Documentation toolchains have a name for this problem: conditional compilation, applied to prose. They borrowed <code>ifdef</code> from the C preprocessor for the same reason it exists there: one source, built per target, instead of four copies drifting apart on their own. Write one source with conditionals and generate the per-target file:</p>
+<pre class="asciidoc"><code>== Cryptographic primitives
 
-ifdef::fedora[]
-Run `dnf install -y make git python3-pip`.
+ifdef::standard[]
+Use `AES-256-GCM` via the platform's default crypto library.
 endif::[]
 
-ifdef::coreos[]
-Root is read-only. Run `rpm-ostree install make git python3-pip`,
-then reboot to activate the new deployment.
-Do not use plain `dnf install` on these hosts.
+ifdef::fips[]
+Do not use the platform's default crypto library in this build.
+It runs the same algorithm as the validated module but isn't certified — call the module's AES-256-GCM implementation directly instead.
 endif::[]</code></pre>
 <p>Build per target and the agent gets a plain <code>AGENTS.md</code> with no conditionals in it. Change one path and the other is on the adjacent line.</p>
 <p>The generated file rots too, so treat it like any other generated artifact: a build target that produces it, a CI job that regenerates and fails on a diff, and the output in <code>.gitignore</code> so nobody edits the artifact instead of the source.</p>
@@ -163,7 +163,7 @@ endif::[]</code></pre>
 <td>Generate from one source</td>
 <td>Variants by product or version</td>
 <td>A build target, a CI check, one more thing that can break the build</td>
-<td>The variant count stops growing</td>
+<td>You’re down to one target again</td>
 </tr>
 <tr class="even">
 <td>Hook or CI gate</td>
@@ -185,22 +185,22 @@ endif::[]</code></pre>
 <li><strong>Rewrite the vague rules as checkable ones,</strong> and move the absolute ones into a hook.</li>
 <li><strong>Only then</strong>, if you have more than one target, set up generation with the CI diff check.</li>
 </ol>
-<p>Steps 1 to 4 are an afternoon and cover most of the damage. Step 6 needs a decision first.</p>
+<p>Steps 1 to 4 are an afternoon and cover most of the damage; step 5 just keeps going, one rule at a time. Step 6 needs a decision first.</p>
 </section>
 <section id="how-you-know-it-worked" class="level2">
 <h2 class="anchored" data-anchor-id="how-you-know-it-worked">How you know it worked</h2>
 <p><strong>The file loads.</strong> Check <code>/context</code> or your agent’s equivalent, and check the byte count against your tool’s cap.</p>
-<p><strong>The file is true, mechanically.</strong> CI regenerates and fails on a diff, and the script from step 2 asserts every path, command and version still exists. Nobody has to remember to look.</p>
+<p><strong>The file is true, mechanically.</strong> The script from step 2 still asserts every path, command and version exists, and — if you’ve set up generation — CI regenerates and fails on a diff too. Either way, nobody has to remember to look.</p>
 <p><strong>Nothing checks the other half.</strong> No script reads two rules against each other and flags the contradiction, and none reads <em>it would be nice if you could add tests</em> and tells you that’s not an instruction. This still needs a person, and a calendar entry. It’s the half that gets skipped.</p>
 <p><strong>The hard rules hold.</strong> Try to violate them. Edit something under <code>src/gen</code> and confirm the hook rejects it.</p>
-<p><strong>Whether the file helps at all is not testable with what you have.</strong> The two studies point in different directions depending on the task and the metric — cost went up in one, down in the other — and settling it for your own team means running A/B tests on tasks with known-good outcomes. What you can actually claim is narrower: the file loads on every run either way, and it is now true rather than false.</p>
-<p>The failure to watch for is a stale rule followed correctly. Go back to that ETH trace analysis: a tool got used far more often when the context file named it than when it didn’t, and the measurement doesn’t ask whether the file was still right to name it. A stale rule gets followed just like a current one, so it looks like success too. That’s why it survives review. The date on the file is what catches it.</p>
+<p><strong>Whether the file helps at all is not testable with what you have.</strong> The two studies point in different directions: cost went up in one, down in the other. Settling it for your own team means running A/B tests on tasks with known-good outcomes. What you can actually claim is narrower: the file loads on every run either way, and it is now true rather than false.</p>
+<p>The failure to watch for is a stale rule followed correctly. Go back to that ETH trace analysis. It measured how often a tool got used — not whether the file was still right to name it. A stale rule gets followed just like a current one, so it looks like success too. That’s why it survives review. The date on the file is what catches it.</p>
 </section>
 <section id="solved-twice-already" class="level2">
 <h2 class="anchored" data-anchor-id="solved-twice-already">Solved twice already</h2>
-<p>Conditional compilation is the one piece of this that’s a straight borrow from engineering — documentation toolchains took <code>ifdef</code> because keeping prose in sync with the code it lives next to is easier when both use the same trick for the same problem.</p>
-<p>The rest isn’t a borrow so much as a parallel invention. Technical writing has its own long answer to keeping a large, cross-referenced body of text true across versions and products — single-sourcing, structured authoring, versioned doc builds — developed to solve the documentation side of this problem on its own terms. Applying that discipline to prose is a different job than applying it to code: you cannot compile a sentence or unit-test a paragraph.</p>
-<p>Instruction files are the same problem on a smaller scale. It has to happen on a schedule, and it has to be somebody’s job. In most repositories it is nobody’s.</p>
+<p>The specific trick, <code>ifdef</code>-style conditionals, is a straight borrow from engineering: documentation toolchains took it because keeping prose in sync with the code it lives next to is easier when both use the same syntax for the same problem.</p>
+<p>The discipline it sits inside is documentation’s own, though. Technical writing has its own long answer to keeping a large, cross-referenced body of text true across versions and products — single-sourcing, structured authoring, versioned doc builds, of which conditional text is one tool among several — developed to solve the documentation side of this problem on its own terms. Applying that discipline to prose is a different job than applying it to code: you cannot type-check a sentence or unit-test a paragraph.</p>
+<p>Instruction files are the same problem on a smaller scale, and they need the same two things: a schedule, and an owner. Most repositories have assigned neither.</p>
 
 
 
