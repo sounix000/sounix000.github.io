@@ -51,7 +51,7 @@ It would be nice if you could add tests for new code.
 
 Read it once and it sounds like a helpful note from a colleague. Read it against the actual repo and four things are wrong.
 
-- `dnf install` is right on Fedora, and not on Fedora CoreOS. If you don't have product-specific variants, the agent either stops with an error, or fails silently.
+- `dnf install` is right on Fedora, and Fedora CoreOS doesn't ship `dnf` at all. If you don't have product-specific variants, the agent gets `command not found` — or, if the script swallows the exit code, fails silently instead.
 
 - The Git section contradicts itself: never force-push, and then force-pushing to your own feature branch is fine. The agent does not know which one wins.
 
@@ -63,21 +63,21 @@ Whichever agent you run, the file is text in a prompt, not a parsed config. Clau
 
 ## How bad is it
 
-ETH Zurich found that adding a context file did not generally improve task success, and raised inference cost by more than 20% on average. They tested on SWE-bench tasks and on a benchmark of repositories that already had hand-written files, and the result held across models and agents, whether the file was hand-written or generated [@gloaguen2026].[^ethnuance] The same study's trace analysis shows how strong that compliance is: a tool got used far more often in the instances where the context file named it than in the instances where it didn't.
+ETH Zurich found that adding a context file did not generally improve task success, and raised inference cost by more than 20% on average. They tested on SWE-bench tasks and on a benchmark of repositories that already had hand-written files, and the result held across models and agents, whether the file was hand-written or generated [@gloaguen2026].[^ethnuance] The same study's trace analysis shows just how mechanically agents comply: a tool got used far more often in the instances where the context file named it than in the instances where it didn't.
 
-On focused pull requests, a second study found the opposite on cost: runs with a context file finished with roughly 29% better median runtime and 17% better token use than runs without one [@lulla2026]. The two studies aren't testing the same kind of task. An open bug on SWE-bench is something an agent has never seen before; a focused pull request is usually a change the author already understands. A context file can plausibly make an agent faster at work it's already been pointed toward, without making it any better at work it has to figure out from scratch.
+On focused pull requests, a second study found the opposite on cost: runs with a context file finished with roughly 29% better median runtime and 17% better token use than runs without one [@lulla2026]. The two studies aren't testing the same kind of task. An open bug on SWE-bench is something an agent has never seen before; a focused pull request is usually a change the author already understands. A context file can plausibly make an agent faster at work it's already been pointed toward. That's a different claim from making it better at work it has to figure out on its own.
 
-Line the two up and the honest summary is narrower than either study alone: cost moves with how familiar the task already is, and neither study found a context file reliably improves whether the work actually gets done. On an unfamiliar problem, a file that earns nothing is still charged for, and a file with a false line in it is charged for and followed.
+Line the two up and the real takeaway is smaller than either study on its own: cost tracks how familiar the task already is, and only ETH actually measured whether the work gets done better — it found no reliable improvement there either. On an unfamiliar problem, a file that earns nothing still costs tokens, and a false line in it gets followed on top of that.
 
 ## Why it rots
 
-Every fault above has the same cause. The file has no lifecycle.
+Every fault in that file has the same cause. The file has no lifecycle.
 
 Nothing owns it, so no one is responsible when it drifts. Nothing generates it, so variants are made by copying. Nothing tests it, so a path that stopped existing looks identical to one that still does. Nothing fails when it is wrong, so the feedback that fixes code never reaches it. Code has all four. This file has none.
 
-Underneath that is the part no tooling reaches. Owning the file earns nobody a ticket or a review credit, so it stays unowned. Blocking a merge over *use caution* costs the reviewer more than letting it through, so empty rules accumulate.
+Nobody gets a ticket or a review credit for owning the file, so nobody does. And blocking a merge over *use caution* costs the reviewer more than waving it through, which is why empty rules pile up.
 
-The faults also split in two, and the halves need different treatment. Dead paths, stale versions and wrong commands are mechanical: a script can check every path, command and version the file names, and it will still be checking them next year. Contradictions and empty rules are not. No tool reads *never force-push* against *force-pushing to your own feature branch is fine* and reports a conflict, and none will tell you *be careful* is not an instruction. Those need a person.
+The faults split into two kinds, and each needs different treatment. Dead paths, stale versions and wrong commands are mechanical: a script can check every path, command and version the file names, and it will still be checking them next year. Contradictions and empty rules are not. No tool reads *never force-push* against *force-pushing to your own feature branch is fine* and reports a conflict, and none will tell you *be careful* is not an instruction. Those need a person.
 
 ## Auditable, then enforced
 
@@ -97,13 +97,13 @@ The fixture rule belongs in the file. A pre-commit hook that rejects any edit un
 
 ## Variants, without four copies
 
-Instructions differ by version and by variant. 4.2 needs different guidance from 4.3. Fedora and Fedora CoreOS need different install commands, as above.
+Instructions differ by version and by variant. 6.1 needs different guidance from 6.2. Fedora and Fedora CoreOS need different install commands, as above.
 
 If your variants map to directories, the tooling already handles it. Nested `AGENTS.md` files scope to their own subtree, and the more specific one wins on conflict — the same mental model as `.gitignore`.[^nested] Most agents also take imported or path-scoped rules on top of that.
 
-They often do not map. Fedora against Fedora CoreOS is not a directory split, and neither is 4.2 against 4.3. So people copy the file and edit the copy. After a year there are four of them, three stale, and nobody can say which one the agent loaded on a given run. Git will not catch it: four divergent files are not an error.
+They often do not map. Fedora against Fedora CoreOS is not a directory split, and neither is 6.1 against 6.2. So people copy the file and edit the copy. After a year there are four of them, three stale, and nobody can say which one the agent loaded on a given run. Git will not catch it: four divergent files are not an error.
 
-Documentation toolchains have a name for this problem: conditional compilation, applied to prose. They took `ifdef` from the preprocessor for the same reason compilers did — one source, built per target, instead of four copies drifting apart on their own. Write one source with conditionals and generate the per-target file:
+Documentation toolchains have a name for this problem: conditional compilation, applied to prose. They borrowed `ifdef` from the C preprocessor for the reason it exists there in the first place: one source, built per target, instead of four copies drifting apart on their own. Write one source with conditionals and generate the per-target file:
 
 ```asciidoc
 == Installing packages
@@ -132,7 +132,7 @@ The generated file rots too, so treat it like any other generated artifact: a bu
 | Generate from one source | Variants by product or version | A build target, a CI check, one more thing that can break the build | The variant count stops growing |
 | Hook or CI gate | Rules that must hold | Code to maintain, and it will block legitimate work sometimes | The gate fires more on false positives than real ones |
 
-The two cheap rows buy most of the value. Deleting on a schedule costs nothing and fixes contradictions, dead paths and stale versions. For one repo, one target and two people, the first row is the whole answer. Generation is worth it at two targets and hard to justify at one, and I have not seen anyone run it for instruction files, so treat that row as a mechanism rather than a practice.
+Two of these rows are cheap, and they buy most of the value. Deleting on a schedule costs nothing and fixes contradictions, dead paths and stale versions. Nested files cost nothing extra either, once your variants actually map to directories — the tooling was already going to do that for you. For one repo, one target and two people, those two rows are the whole answer. Generation is the expensive row: worth it once you're at two targets, hard to justify at one, and I have not seen anyone run it for instruction files specifically, so treat it as a mechanism rather than a practice.
 
 ## What to do this week
 
@@ -151,24 +151,24 @@ Steps 1 to 4 are an afternoon and cover most of the damage. Step 6 needs a decis
 
 **The file is true, mechanically.** CI regenerates and fails on a diff, and the script from step 2 asserts every path, command and version still exists. Nobody has to remember to look.
 
-**Nothing checks the other half.** No script reads *never force-push* against *force-pushing to your own feature branch is fine* and calls it a conflict, or flags *be careful* as not a rule. That still needs a person, and a calendar entry — the half that gets skipped.
+**Nothing checks the other half.** No script reads two rules against each other and flags the contradiction, and none reads *it would be nice if you could add tests* and tells you that's not an instruction. This still needs a person, and a calendar entry. It's the half that gets skipped.
 
 **The hard rules hold.** Try to violate them. Edit something under `src/gen` and confirm the hook rejects it.
 
 **Whether the file helps at all is not testable with what you have.** The two studies point in different directions depending on the task and the metric — cost went up in one, down in the other — and settling it for your own team means running A/B tests on tasks with known-good outcomes. What you can actually claim is narrower: the file loads on every run either way, and it is now true rather than false.
 
-The failure to watch for is a stale rule followed correctly. Go back to that ETH trace analysis: a tool got used far more often when the context file named it than when it didn't, and the measurement doesn't ask whether the file was still right to name it. A stale rule gets followed just like a current one, so it looks like success too — which is why it survives review. The date on the file is what catches it.
+The failure to watch for is a stale rule followed correctly. Go back to that ETH trace analysis: a tool got used far more often when the context file named it than when it didn't, and the measurement doesn't ask whether the file was still right to name it. A stale rule gets followed just like a current one, so it looks like success too. That's why it survives review. The date on the file is what catches it.
 
 ## This came from engineering
 
 None of this is a documentation invention. Version control, code review, CI, conditional compilation: all of it came from engineering, and documentation adopted it because writing prose outside the repository had stopped working.
 
-Documentation applied it to prose, which is a different job: you cannot compile a sentence or unit-test a paragraph. Keeping a large body of text true across versions and products is dull work that has been done before.
+Documentation applied it to prose, which is a different job: you cannot compile a sentence or unit-test a paragraph. Keeping a large body of text true across versions and products is dull work, and it's already been solved — just not by anyone writing documentation from scratch.
 
 Instruction files are the same problem on a smaller scale. It has to happen on a schedule, and it has to be somebody's job. In most repositories it is nobody's.
 
 [^ethnuance]: Hand-written files moved success up a little — about 4% on average, for three of the four agents tested. LLM-generated files moved it down, in most of the settings tested. Call both effects noise: neither was large or consistent enough to justify the added cost.
 
-[^nested]: More precisely, at least for Codex: it concatenates every ancestor `AGENTS.md` from the project root down to the working directory, with the nearest file placed last so it overrides on conflict. A rule in the root file still applies anywhere a more specific file doesn't override it. Claude Code and Cursor follow a similar hierarchical pattern.
+[^nested]: More precisely, at least for Codex: it concatenates every ancestor `AGENTS.md` from the project root down to the working directory, with the nearest file placed last so it overrides on conflict. A rule in the root file still applies anywhere a more specific file doesn't override it. Claude Code's CLAUDE.md hierarchy and Cursor's rules work the same way: additive, with the more specific file winning only where it actually conflicts.
 
 [^codexcap]: The setting is `project_doc_max_bytes`, defaulting to 32 KiB. Codex logs a warning internally when it truncates, but nothing surfaces that warning in the interactive CLI — which is why it reads as silent in practice.

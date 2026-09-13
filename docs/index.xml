@@ -75,7 +75,7 @@ font-style: inherit;">## Style</span></span>
 <span id="cb1-26">It would be nice if you could add tests for new code.</span></code></pre></div></div>
 <p>Read it once and it sounds like a helpful note from a colleague. Read it against the actual repo and four things are wrong.</p>
 <ul>
-<li><p><code>dnf install</code> is right on Fedora, and not on Fedora CoreOS. If you don’t have product-specific variants, the agent either stops with an error, or fails silently.</p></li>
+<li><p><code>dnf install</code> is right on Fedora, and Fedora CoreOS doesn’t ship <code>dnf</code> at all. If you don’t have product-specific variants, the agent gets <code>command not found</code> — or, if the script swallows the exit code, fails silently instead.</p></li>
 <li><p>The Git section contradicts itself: never force-push, and then force-pushing to your own feature branch is fine. The agent does not know which one wins.</p></li>
 <li><p><code>bootstrap.sh</code> moved into the Makefile last year and was deleted, but the line survived. Fedora 42 became Fedora 43 two quarters ago. The March incident was two Marches ago.</p></li>
 <li><p>Then the sentences that are not instructions at all: be careful, use your judgment, check with the team, it would be nice if you could add tests. Documentation produces the same sentences. <em>Consult your system administrator. Use caution when modifying this value.</em> I have written both. None of them can be followed or checked.</p></li>
@@ -84,16 +84,16 @@ font-style: inherit;">## Style</span></span>
 </section>
 <section id="how-bad-is-it" class="level2">
 <h2 class="anchored" data-anchor-id="how-bad-is-it">How bad is it</h2>
-<p>ETH Zurich found that adding a context file did not generally improve task success, and raised inference cost by more than 20% on average. They tested on SWE-bench tasks and on a benchmark of repositories that already had hand-written files, and the result held across models and agents, whether the file was hand-written or generated <span class="citation" data-cites="gloaguen2026">(Gloaguen et al. 2026)</span>.<sup>1</sup> The same study’s trace analysis shows how strong that compliance is: a tool got used far more often in the instances where the context file named it than in the instances where it didn’t.</p>
-<p>On focused pull requests, a second study found the opposite on cost: runs with a context file finished with roughly 29% better median runtime and 17% better token use than runs without one <span class="citation" data-cites="lulla2026">(Lulla et al. 2026)</span>. The two studies aren’t testing the same kind of task. An open bug on SWE-bench is something an agent has never seen before; a focused pull request is usually a change the author already understands. A context file can plausibly make an agent faster at work it’s already been pointed toward, without making it any better at work it has to figure out from scratch.</p>
-<p>Line the two up and the honest summary is narrower than either study alone: cost moves with how familiar the task already is, and neither study found a context file reliably improves whether the work actually gets done. On an unfamiliar problem, a file that earns nothing is still charged for, and a file with a false line in it is charged for and followed.</p>
+<p>ETH Zurich found that adding a context file did not generally improve task success, and raised inference cost by more than 20% on average. They tested on SWE-bench tasks and on a benchmark of repositories that already had hand-written files, and the result held across models and agents, whether the file was hand-written or generated <span class="citation" data-cites="gloaguen2026">(Gloaguen et al. 2026)</span>.<sup>1</sup> The same study’s trace analysis shows just how mechanically agents comply: a tool got used far more often in the instances where the context file named it than in the instances where it didn’t.</p>
+<p>On focused pull requests, a second study found the opposite on cost: runs with a context file finished with roughly 29% better median runtime and 17% better token use than runs without one <span class="citation" data-cites="lulla2026">(Lulla et al. 2026)</span>. The two studies aren’t testing the same kind of task. An open bug on SWE-bench is something an agent has never seen before; a focused pull request is usually a change the author already understands. A context file can plausibly make an agent faster at work it’s already been pointed toward. That’s a different claim from making it better at work it has to figure out on its own.</p>
+<p>Line the two up and the real takeaway is smaller than either study on its own: cost tracks how familiar the task already is, and only ETH actually measured whether the work gets done better — it found no reliable improvement there either. On an unfamiliar problem, a file that earns nothing still costs tokens, and a false line in it gets followed on top of that.</p>
 </section>
 <section id="why-it-rots" class="level2">
 <h2 class="anchored" data-anchor-id="why-it-rots">Why it rots</h2>
-<p>Every fault above has the same cause. The file has no lifecycle.</p>
+<p>Every fault in that file has the same cause. The file has no lifecycle.</p>
 <p>Nothing owns it, so no one is responsible when it drifts. Nothing generates it, so variants are made by copying. Nothing tests it, so a path that stopped existing looks identical to one that still does. Nothing fails when it is wrong, so the feedback that fixes code never reaches it. Code has all four. This file has none.</p>
-<p>Underneath that is the part no tooling reaches. Owning the file earns nobody a ticket or a review credit, so it stays unowned. Blocking a merge over <em>use caution</em> costs the reviewer more than letting it through, so empty rules accumulate.</p>
-<p>The faults also split in two, and the halves need different treatment. Dead paths, stale versions and wrong commands are mechanical: a script can check every path, command and version the file names, and it will still be checking them next year. Contradictions and empty rules are not. No tool reads <em>never force-push</em> against <em>force-pushing to your own feature branch is fine</em> and reports a conflict, and none will tell you <em>be careful</em> is not an instruction. Those need a person.</p>
+<p>Nobody gets a ticket or a review credit for owning the file, so nobody does. And blocking a merge over <em>use caution</em> costs the reviewer more than waving it through, which is why empty rules pile up.</p>
+<p>The faults split into two kinds, and each needs different treatment. Dead paths, stale versions and wrong commands are mechanical: a script can check every path, command and version the file names, and it will still be checking them next year. Contradictions and empty rules are not. No tool reads <em>never force-push</em> against <em>force-pushing to your own feature branch is fine</em> and reports a conflict, and none will tell you <em>be careful</em> is not an instruction. Those need a person.</p>
 </section>
 <section id="auditable-then-enforced" class="level2">
 <h2 class="anchored" data-anchor-id="auditable-then-enforced">Auditable, then enforced</h2>
@@ -111,10 +111,10 @@ font-style: inherit;">## Style</span></span>
 </section>
 <section id="variants-without-four-copies" class="level2">
 <h2 class="anchored" data-anchor-id="variants-without-four-copies">Variants, without four copies</h2>
-<p>Instructions differ by version and by variant. 4.2 needs different guidance from 4.3. Fedora and Fedora CoreOS need different install commands, as above.</p>
+<p>Instructions differ by version and by variant. 6.1 needs different guidance from 6.2. Fedora and Fedora CoreOS need different install commands, as above.</p>
 <p>If your variants map to directories, the tooling already handles it. Nested <code>AGENTS.md</code> files scope to their own subtree, and the more specific one wins on conflict — the same mental model as <code>.gitignore</code>.<sup>2</sup> Most agents also take imported or path-scoped rules on top of that.</p>
-<p>They often do not map. Fedora against Fedora CoreOS is not a directory split, and neither is 4.2 against 4.3. So people copy the file and edit the copy. After a year there are four of them, three stale, and nobody can say which one the agent loaded on a given run. Git will not catch it: four divergent files are not an error.</p>
-<p>Documentation toolchains have a name for this problem: conditional compilation, applied to prose. They took <code>ifdef</code> from the preprocessor for the same reason compilers did — one source, built per target, instead of four copies drifting apart on their own. Write one source with conditionals and generate the per-target file:</p>
+<p>They often do not map. Fedora against Fedora CoreOS is not a directory split, and neither is 6.1 against 6.2. So people copy the file and edit the copy. After a year there are four of them, three stale, and nobody can say which one the agent loaded on a given run. Git will not catch it: four divergent files are not an error.</p>
+<p>Documentation toolchains have a name for this problem: conditional compilation, applied to prose. They borrowed <code>ifdef</code> from the C preprocessor for the reason it exists there in the first place: one source, built per target, instead of four copies drifting apart on their own. Write one source with conditionals and generate the per-target file:</p>
 <pre class="asciidoc"><code>== Installing packages
 
 ifdef::fedora[]
@@ -173,7 +173,7 @@ endif::[]</code></pre>
 </tr>
 </tbody>
 </table>
-<p>The two cheap rows buy most of the value. Deleting on a schedule costs nothing and fixes contradictions, dead paths and stale versions. For one repo, one target and two people, the first row is the whole answer. Generation is worth it at two targets and hard to justify at one, and I have not seen anyone run it for instruction files, so treat that row as a mechanism rather than a practice.</p>
+<p>Two of these rows are cheap, and they buy most of the value. Deleting on a schedule costs nothing and fixes contradictions, dead paths and stale versions. Nested files cost nothing extra either, once your variants actually map to directories — the tooling was already going to do that for you. For one repo, one target and two people, those two rows are the whole answer. Generation is the expensive row: worth it once you’re at two targets, hard to justify at one, and I have not seen anyone run it for instruction files specifically, so treat it as a mechanism rather than a practice.</p>
 </section>
 <section id="what-to-do-this-week" class="level2">
 <h2 class="anchored" data-anchor-id="what-to-do-this-week">What to do this week</h2>
@@ -191,15 +191,15 @@ endif::[]</code></pre>
 <h2 class="anchored" data-anchor-id="how-you-know-it-worked">How you know it worked</h2>
 <p><strong>The file loads.</strong> Check <code>/context</code> or your agent’s equivalent, and check the byte count against your tool’s cap.</p>
 <p><strong>The file is true, mechanically.</strong> CI regenerates and fails on a diff, and the script from step 2 asserts every path, command and version still exists. Nobody has to remember to look.</p>
-<p><strong>Nothing checks the other half.</strong> No script reads <em>never force-push</em> against <em>force-pushing to your own feature branch is fine</em> and calls it a conflict, or flags <em>be careful</em> as not a rule. That still needs a person, and a calendar entry — the half that gets skipped.</p>
+<p><strong>Nothing checks the other half.</strong> No script reads two rules against each other and flags the contradiction, and none reads <em>it would be nice if you could add tests</em> and tells you that’s not an instruction. This still needs a person, and a calendar entry. It’s the half that gets skipped.</p>
 <p><strong>The hard rules hold.</strong> Try to violate them. Edit something under <code>src/gen</code> and confirm the hook rejects it.</p>
 <p><strong>Whether the file helps at all is not testable with what you have.</strong> The two studies point in different directions depending on the task and the metric — cost went up in one, down in the other — and settling it for your own team means running A/B tests on tasks with known-good outcomes. What you can actually claim is narrower: the file loads on every run either way, and it is now true rather than false.</p>
-<p>The failure to watch for is a stale rule followed correctly. Go back to that ETH trace analysis: a tool got used far more often when the context file named it than when it didn’t, and the measurement doesn’t ask whether the file was still right to name it. A stale rule gets followed just like a current one, so it looks like success too — which is why it survives review. The date on the file is what catches it.</p>
+<p>The failure to watch for is a stale rule followed correctly. Go back to that ETH trace analysis: a tool got used far more often when the context file named it than when it didn’t, and the measurement doesn’t ask whether the file was still right to name it. A stale rule gets followed just like a current one, so it looks like success too. That’s why it survives review. The date on the file is what catches it.</p>
 </section>
 <section id="this-came-from-engineering" class="level2">
 <h2 class="anchored" data-anchor-id="this-came-from-engineering">This came from engineering</h2>
 <p>None of this is a documentation invention. Version control, code review, CI, conditional compilation: all of it came from engineering, and documentation adopted it because writing prose outside the repository had stopped working.</p>
-<p>Documentation applied it to prose, which is a different job: you cannot compile a sentence or unit-test a paragraph. Keeping a large body of text true across versions and products is dull work that has been done before.</p>
+<p>Documentation applied it to prose, which is a different job: you cannot compile a sentence or unit-test a paragraph. Keeping a large body of text true across versions and products is dull work, and it’s already been solved — just not by anyone writing documentation from scratch.</p>
 <p>Instruction files are the same problem on a smaller scale. It has to happen on a schedule, and it has to be somebody’s job. In most repositories it is nobody’s.</p>
 
 
@@ -224,7 +224,7 @@ OpenAI. 2026. <span>“<span class="nocase">AGENTS.md</span> Guide for <span>Cod
 
 <ol>
 <li id="fn1"><p>Hand-written files moved success up a little — about 4% on average, for three of the four agents tested. LLM-generated files moved it down, in most of the settings tested. Call both effects noise: neither was large or consistent enough to justify the added cost.↩︎</p></li>
-<li id="fn2"><p>More precisely, at least for Codex: it concatenates every ancestor <code>AGENTS.md</code> from the project root down to the working directory, with the nearest file placed last so it overrides on conflict. A rule in the root file still applies anywhere a more specific file doesn’t override it. Claude Code and Cursor follow a similar hierarchical pattern.↩︎</p></li>
+<li id="fn2"><p>More precisely, at least for Codex: it concatenates every ancestor <code>AGENTS.md</code> from the project root down to the working directory, with the nearest file placed last so it overrides on conflict. A rule in the root file still applies anywhere a more specific file doesn’t override it. Claude Code’s CLAUDE.md hierarchy and Cursor’s rules work the same way: additive, with the more specific file winning only where it actually conflicts.↩︎</p></li>
 <li id="fn3"><p>The setting is <code>project_doc_max_bytes</code>, defaulting to 32 KiB. Codex logs a warning internally when it truncates, but nothing surfaces that warning in the interactive CLI — which is why it reads as silent in practice.↩︎</p></li>
 </ol>
 </section><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{sarkar2026,
