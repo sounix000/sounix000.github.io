@@ -444,7 +444,7 @@ div.csl-indent {
 <span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>It would be nice if you could add tests for new code.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>It reads like a helpful note from a colleague, until you check it against the repo — then the cracks show.</p>
 <ul>
-<li><p>The default crypto library is right for the standard build, and the FIPS build isn’t allowed to use it. FIPS certifies the validated module, not the algorithm. Nothing stops the agent from calling the familiar function anyway. It compiles and encrypts the data. It isn’t the certified path.</p></li>
+<li><p>The default crypto library is right for the standard build, and the FIPS build isn’t allowed to use it. FIPS certifies the validated module, not the algorithm. Nothing stops the agent from calling the familiar function anyway, and it will compile and encrypt the data just fine. It simply isn’t the certified path.</p></li>
 <li><p>The Git section contradicts itself: never force-push, and then force-pushing to your own feature branch is fine. The agent does not know which one wins.</p></li>
 <li><p><code>bootstrap.sh</code> moved into the Makefile last year and was deleted, but the line survived. The team banned SHA-1 for new signatures two quarters ago, years too late, and the file never got the memo. The March incident was two Marches ago.</p></li>
 <li><p>Then the sentences that are not instructions at all: be careful, use your judgment, check with the team, it would be nice if you could add tests. Bad documentation produces the same sentences. <em>Consult your system administrator. Use caution when modifying this value.</em> I have written both. None of them can be followed or checked.</p></li>
@@ -460,7 +460,7 @@ div.csl-indent {
 <section id="why-it-rots" class="level2">
 <h2 class="anchored" data-anchor-id="why-it-rots">Why it rots</h2>
 <p>Every fault in that file has the same cause: it has no lifecycle.</p>
-<p>Nobody owns it, so nobody’s on the hook when it drifts. Nothing generates it, so when a variant is needed, someone just copies the file by hand. Nothing tests it, so a path deleted last year still looks current. And nothing fails when a rule in it goes wrong — it just sits there, wrong, with nobody watching. That’s four things code normally has and this file doesn’t: an owner, a way to generate it, a test, and something that fails when it’s wrong.</p>
+<p>Nobody owns it, so nobody’s on the hook when it drifts. Nothing generates it, which means when a variant is needed, someone just copies the file by hand. Nothing tests it either — a path deleted last year still looks current. And nothing fails when a rule in it goes wrong: it just sits there, wrong, with nobody watching. Put together, that’s four things code has and this file doesn’t: an owner, a generator, a test, and a failure signal.</p>
 <p>Part of this is plain incentive. Owning the file gets nobody a ticket or a review credit, and blocking a merge over <em>use caution</em> costs the reviewer more than just waving it through. So nobody signs up to own it, and vague rules never get cleared out.</p>
 <p>Dead paths, stale versions and wrong commands are mechanical faults — a script can check every path, command and version the file names, and it’ll still be checking them next year. Contradictions and vague rules aren’t mechanical. No tool reads <em>never force-push</em> against <em>force-pushing to your own feature branch is fine</em> and calls it a conflict, and none will tell you <em>be careful</em> isn’t an instruction. Those need a person.</p>
 </section>
@@ -474,13 +474,13 @@ div.csl-indent {
 <blockquote class="blockquote">
 <p>Do not edit anything under <code>tests/fixtures/</code>. If a test needs a different fixture, stop and say which fixture and why.</p>
 </blockquote>
-<p>An auditable rule is still not an enforced one. An instruction file is text in a context window, competing with everything else in it, and on a long session it can lose. Better models do not fix this. A good guess just makes the failure quieter, because nobody checks a guess that worked.</p>
+<p>Being auditable still doesn’t make a rule enforced. An instruction file is text in a context window, competing with everything else in it, and on a long session it can lose. Better models do not fix this. A good guess just makes the failure quieter, because nobody checks a guess that worked.</p>
 <p>So sort by consequence. If a violation would fail the build, put it in the build: every agent ships a hook or permission layer, and pre-commit and CI were there before any of them. The file keeps what a reviewer would query and no gate would catch.</p>
 <p>The fixture rule belongs in the file. A pre-commit hook that rejects any edit under <code>src/gen</code> does not depend on the agent cooperating.</p>
 </section>
 <section id="variants-without-four-copies" class="level2">
 <h2 class="anchored" data-anchor-id="variants-without-four-copies">Variants, without four copies</h2>
-<p>Instructions differ by version and by variant. Your own product’s 6.1 needs different guidance from 6.2. The standard build needs different crypto guidance from the FIPS one.</p>
+<p>Instructions differ by version and by variant — your own product’s 6.1 needs different guidance from 6.2, just as the standard build needs different crypto guidance from the FIPS one.</p>
 <p>If your variants map to directories, the tooling already handles it. Nested <code>AGENTS.md</code> files scope to their own subtree, and the more specific one wins on conflict — the same mental model as <code>.gitignore</code>.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> Most agents also take imported or path-scoped rules on top of that.</p>
 <p>They often do not map. Standard against FIPS is not a directory split, and neither is 6.1 against 6.2. So people copy the file and edit the copy. After a year there are four of them, three stale, and nobody can say which one the agent loaded on a given run. Git will not catch it: four divergent files are not an error.</p>
 <p>Documentation toolchains have a name for this problem: conditional compilation, applied to prose. They borrowed <code>ifdef</code> from the C preprocessor for the same reason it exists there: one source, built per target, instead of four copies drifting apart on their own. Write one source with conditionals and generate the per-target file:</p>
@@ -553,7 +553,7 @@ endif::[]</code></pre>
 <li><strong>Rewrite the vague rules as checkable ones,</strong> and move the absolute ones into a hook.</li>
 <li><strong>Only then</strong>, if you have more than one target, set up generation with the CI diff check.</li>
 </ol>
-<p>Steps 1 to 4 are an afternoon and cover most of the damage. Step 5 just keeps going, one rule at a time. Step 6 needs a decision first.</p>
+<p>Steps 1 to 4 are an afternoon and cover most of the damage, and step 5 just keeps going, one rule at a time. Step 6 needs a decision first.</p>
 </section>
 <section id="how-you-know-it-worked" class="level2">
 <h2 class="anchored" data-anchor-id="how-you-know-it-worked">How you know it worked</h2>
@@ -567,7 +567,7 @@ endif::[]</code></pre>
 <section id="solved-twice-already" class="level2">
 <h2 class="anchored" data-anchor-id="solved-twice-already">Solved twice already</h2>
 <p><code>ifdef</code>-style conditionals are a straight borrow from engineering: documentation toolchains took the idea from the C preprocessor because keeping prose in sync with the code it lives next to is easier when both use the same trick for the same problem.</p>
-<p>The broader discipline isn’t a borrow, though. Technical writing has its own long answer to keeping a large body of text true across versions and products: single-sourcing, structured authoring, versioned doc builds. Conditional text is just one tool inside that toolbox. Applying it to prose is a different job than applying it to code: you cannot type-check a sentence or unit-test a paragraph.</p>
+<p>The broader discipline, though, belongs to documentation itself. Technical writing has its own long answer to keeping a large body of text true across versions and products: single-sourcing, structured authoring, versioned doc builds. Conditional text is just one tool inside that toolbox. Applying it to prose is a different job than applying it to code: you cannot type-check a sentence or unit-test a paragraph.</p>
 <p>Instruction files are the same problem on a smaller scale, and they need the same two things: a schedule, and an owner. Most repositories have assigned neither.</p>
 
 

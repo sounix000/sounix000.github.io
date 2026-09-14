@@ -52,7 +52,7 @@ It would be nice if you could add tests for new code.
 
 It reads like a helpful note from a colleague, until you check it against the repo — then the cracks show.
 
-- The default crypto library is right for the standard build, and the FIPS build isn't allowed to use it. FIPS certifies the validated module, not the algorithm. Nothing stops the agent from calling the familiar function anyway. It compiles and encrypts the data. It isn't the certified path.
+- The default crypto library is right for the standard build, and the FIPS build isn't allowed to use it. FIPS certifies the validated module, not the algorithm. Nothing stops the agent from calling the familiar function anyway, and it will compile and encrypt the data just fine. It simply isn't the certified path.
 
 - The Git section contradicts itself: never force-push, and then force-pushing to your own feature branch is fine. The agent does not know which one wins.
 
@@ -74,7 +74,7 @@ Line the two up and the real takeaway is smaller than either study on its own: c
 
 Every fault in that file has the same cause: it has no lifecycle.
 
-Nobody owns it, so nobody's on the hook when it drifts. Nothing generates it, so when a variant is needed, someone just copies the file by hand. Nothing tests it, so a path deleted last year still looks current. And nothing fails when a rule in it goes wrong — it just sits there, wrong, with nobody watching. That's four things code normally has and this file doesn't: an owner, a way to generate it, a test, and something that fails when it's wrong.
+Nobody owns it, so nobody's on the hook when it drifts. Nothing generates it, which means when a variant is needed, someone just copies the file by hand. Nothing tests it either — a path deleted last year still looks current. And nothing fails when a rule in it goes wrong: it just sits there, wrong, with nobody watching. Put together, that's four things code has and this file doesn't: an owner, a generator, a test, and a failure signal.
 
 Part of this is plain incentive. Owning the file gets nobody a ticket or a review credit, and blocking a merge over *use caution* costs the reviewer more than just waving it through. So nobody signs up to own it, and vague rules never get cleared out.
 
@@ -90,7 +90,7 @@ This one is:
 
 > Do not edit anything under `tests/fixtures/`. If a test needs a different fixture, stop and say which fixture and why.
 
-An auditable rule is still not an enforced one. An instruction file is text in a context window, competing with everything else in it, and on a long session it can lose. Better models do not fix this. A good guess just makes the failure quieter, because nobody checks a guess that worked.
+Being auditable still doesn't make a rule enforced. An instruction file is text in a context window, competing with everything else in it, and on a long session it can lose. Better models do not fix this. A good guess just makes the failure quieter, because nobody checks a guess that worked.
 
 So sort by consequence. If a violation would fail the build, put it in the build: every agent ships a hook or permission layer, and pre-commit and CI were there before any of them. The file keeps what a reviewer would query and no gate would catch.
 
@@ -98,7 +98,7 @@ The fixture rule belongs in the file. A pre-commit hook that rejects any edit un
 
 ## Variants, without four copies
 
-Instructions differ by version and by variant. Your own product's 6.1 needs different guidance from 6.2. The standard build needs different crypto guidance from the FIPS one.
+Instructions differ by version and by variant — your own product's 6.1 needs different guidance from 6.2, just as the standard build needs different crypto guidance from the FIPS one.
 
 If your variants map to directories, the tooling already handles it. Nested `AGENTS.md` files scope to their own subtree, and the more specific one wins on conflict — the same mental model as `.gitignore`.[^nested] Most agents also take imported or path-scoped rules on top of that.
 
@@ -143,7 +143,7 @@ Two of these rows are cheap, and they buy most of the value. Deleting on a sched
 5. **Rewrite the vague rules as checkable ones,** and move the absolute ones into a hook.
 6. **Only then**, if you have more than one target, set up generation with the CI diff check.
 
-Steps 1 to 4 are an afternoon and cover most of the damage. Step 5 just keeps going, one rule at a time. Step 6 needs a decision first.
+Steps 1 to 4 are an afternoon and cover most of the damage, and step 5 just keeps going, one rule at a time. Step 6 needs a decision first.
 
 ## How you know it worked
 
@@ -163,7 +163,7 @@ The failure to watch for is a stale rule followed correctly. Go back to that ETH
 
 `ifdef`-style conditionals are a straight borrow from engineering: documentation toolchains took the idea from the C preprocessor because keeping prose in sync with the code it lives next to is easier when both use the same trick for the same problem.
 
-The broader discipline isn't a borrow, though. Technical writing has its own long answer to keeping a large body of text true across versions and products: single-sourcing, structured authoring, versioned doc builds. Conditional text is just one tool inside that toolbox. Applying it to prose is a different job than applying it to code: you cannot type-check a sentence or unit-test a paragraph.
+The broader discipline, though, belongs to documentation itself. Technical writing has its own long answer to keeping a large body of text true across versions and products: single-sourcing, structured authoring, versioned doc builds. Conditional text is just one tool inside that toolbox. Applying it to prose is a different job than applying it to code: you cannot type-check a sentence or unit-test a paragraph.
 
 Instruction files are the same problem on a smaller scale, and they need the same two things: a schedule, and an owner. Most repositories have assigned neither.
 
