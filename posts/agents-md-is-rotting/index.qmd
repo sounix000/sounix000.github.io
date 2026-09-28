@@ -115,7 +115,8 @@ endif::[]
 
 ifdef::fips[]
 Do not use the platform's default crypto library in this build.
-It runs the same algorithm as the validated module but isn't certified — call the module's AES-256-GCM implementation directly instead.
+It runs the same algorithm as the validated module but isn't certified.
+Call the module's AES-256-GCM implementation directly instead.
 endif::[]
 ```
 
