@@ -2,7 +2,7 @@
 title: "Adapted excerpts from SICP's introduction"
 description: "Adapted notes from the introduction to Structure and Interpretation of Computer Programs, on what programming actually is."
 date: "2021-01-04"
-categories: [software]
+categories: [Computer Science]
 image: images/cover.png
 ---
 

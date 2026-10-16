@@ -2,7 +2,7 @@
 title: "First to call 50: winning strategy using backward induction"
 description: "Solving a number-calling game with backward induction and modular arithmetic."
 date: "2026-04-13"
-categories: [mathematics]
+categories: [Game Theory]
 image: images/cover.png
 ---
 

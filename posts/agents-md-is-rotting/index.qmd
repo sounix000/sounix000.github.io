@@ -2,7 +2,7 @@
 title: "Your AGENTS.md is rotting"
 description: "On why the file that tells your AI agent how to work goes quietly false, and the difference between the rules a script can catch and the ones that still need a person."
 date: "2026-09-11"
-categories: [miscellaneous]
+categories: [Agentic AI]
 image: images/cover.png
 bibliography: references.bib
 citation:

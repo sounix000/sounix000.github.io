@@ -2,7 +2,7 @@
 title: "Choosing between REST and SOAP"
 description: "A practical decision guide for choosing between SOAP and REST web services."
 date: "2020-11-12"
-categories: [software]
+categories: [API Design]
 image: images/cover.png
 ---
 

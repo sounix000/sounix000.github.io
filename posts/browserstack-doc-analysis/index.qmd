@@ -2,7 +2,7 @@
 title: "A brief analysis of BrowserStack's documentation"
 description: "A technical writer's nitpicks on BrowserStack's documentation, from admonitions to IA."
 date: "2022-10-27"
-categories: [documentation]
+categories: [Technical Writing]
 image: images/lambdatest-doc.png
 ---
 

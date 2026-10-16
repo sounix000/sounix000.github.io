@@ -2,7 +2,7 @@
 title: "Counting unordered pairs: three perspectives on C(n, 2)"
 description: "Three different proofs of C(n,2), from a checkerboard table to overcounting and dividing."
 date: "2026-03-18"
-categories: [mathematics]
+categories: [Combinatorics]
 image: images/cover.png
 ---
 

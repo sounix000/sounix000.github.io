@@ -2,7 +2,7 @@
 title: "Verified, not true"
 description: "On the widening gap between a system that checks out and one that's actually right, now that proof itself is getting cheap."
 date: "2026-07-17"
-categories: [miscellaneous]
+categories: [Formal Verification]
 image: images/cover.png
 bibliography: references.bib
 toc-location: left

@@ -2,7 +2,7 @@
 title: "Landmark detection using Google Cloud and Vision API"
 description: "A hands-on tutorial for landmark detection using Google Cloud Storage and Vision API."
 date: "2020-11-14"
-categories: [software]
+categories: [Cloud Computing]
 image: images/cover.png
 ---
 

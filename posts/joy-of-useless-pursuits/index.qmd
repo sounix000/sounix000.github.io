@@ -2,7 +2,7 @@
 title: "The joy of useless pursuits: why ancient wisdom will outlast AI"
 description: "Why civilizations that value knowledge for its own sake are best placed to survive AI."
 date: "2024-07-12"
-categories: [miscellaneous]
+categories: [Philosophy]
 image: images/ai_human.png
 ---
 

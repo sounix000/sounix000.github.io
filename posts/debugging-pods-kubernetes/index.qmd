@@ -2,7 +2,7 @@
 title: "Debugging pods in a Kubernetes cluster"
 description: "A field guide to diagnosing pod status, logs, and crashes in a Kubernetes cluster."
 date: "2023-02-06"
-categories: [software]
+categories: [DevOps]
 image: images/cluster_architecture.png
 ---
 

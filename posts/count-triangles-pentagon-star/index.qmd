@@ -2,7 +2,7 @@
 title: "Count the triangles in a five-sided star"
 description: "Counting all 35 triangles hidden inside a pentagon and its inscribed pentagram."
 date: "2026-02-09"
-categories: [mathematics]
+categories: [Combinatorics]
 image: images/cover.png
 ---
 

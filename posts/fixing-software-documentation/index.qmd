@@ -2,7 +2,7 @@
 title: "An opinionated approach to software documentation"
 description: "Why documentation fails when stakeholders never align, and a framework to fix it."
 date: "2023-02-10"
-categories: [documentation]
+categories: [Technical Writing]
 image: images/cover.png
 ---
 

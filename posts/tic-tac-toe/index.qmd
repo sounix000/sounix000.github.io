@@ -2,7 +2,7 @@
 title: "How to not lose in tic-tac-toe"
 description: "Simple strategies to never lose a game of tic-tac-toe."
 date: "2020-11-16"
-categories: [miscellaneous]
+categories: [Game Theory]
 image: images/tic5.png
 ---
 

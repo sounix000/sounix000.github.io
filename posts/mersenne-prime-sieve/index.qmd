@@ -2,7 +2,7 @@
 title: "A necessary condition for Mersenne primes"
 description: "A clean proof that composite exponents can never yield a Mersenne prime."
 date: "2026-05-07"
-categories: [mathematics]
+categories: [Number Theory]
 image: images/cover.png
 ---
 

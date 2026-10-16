@@ -2,7 +2,7 @@
 title: "Reviewing a Java code snippet"
 description: "Reviewing and refactoring a Java string-frequency counter for clarity and efficiency."
 date: "2020-11-09"
-categories: [software]
+categories: [Code Review]
 image: images/cover.png
 ---
 

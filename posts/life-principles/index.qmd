@@ -2,7 +2,7 @@
 title: "Principles of my life"
 description: "A short list of personal rules across body, mind, work, money, and relationships."
 date: "2020-07-10"
-categories: [miscellaneous]
+categories: [Personal]
 image: images/cover.png
 ---
 

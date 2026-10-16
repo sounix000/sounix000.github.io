@@ -239,7 +239,7 @@ OpenAI. 2026. <span>“<span class="nocase">AGENTS.md</span> Guide for <span>Cod
 Sarkar, Souvik. 2026. <span>“Your AGENTS.md Is Rotting.”</span>
 Curiosity | Imagination | Rigor, September 11. <a href="https://cuimri.com/posts/agents-md-is-rotting/">https://cuimri.com/posts/agents-md-is-rotting/</a>.
 </div></div></section></div> ]]></description>
-  <category>miscellaneous</category>
+  <category>Agentic AI</category>
   <guid>https://cuimri.com/posts/agents-md-is-rotting/</guid>
   <pubDate>Thu, 10 Sep 2026 18:30:00 GMT</pubDate>
   <media:content url="https://cuimri.com/posts/agents-md-is-rotting/images/cover.png" medium="image" type="image/png" height="76" width="144"/>
@@ -401,7 +401,7 @@ Susskind, Daniel. 2020. <em>A World Without Work: Technology, Automation, and Ho
 Sarkar, Souvik. 2026. <span>“Verified, Not True.”</span> Curiosity |
 Imagination | Rigor, July 17. <a href="https://cuimri.com/posts/verified-not-true/">https://cuimri.com/posts/verified-not-true/</a>.
 </div></div></section></div> ]]></description>
-  <category>miscellaneous</category>
+  <category>Formal Verification</category>
   <guid>https://cuimri.com/posts/verified-not-true/</guid>
   <pubDate>Thu, 16 Jul 2026 18:30:00 GMT</pubDate>
   <media:content url="https://cuimri.com/posts/verified-not-true/images/cover.png" medium="image" type="image/png" height="76" width="144"/>
@@ -494,7 +494,7 @@ Imagination | Rigor, July 17. <a href="https://cuimri.com/posts/verified-not-tru
 </section>
 
  ]]></description>
-  <category>mathematics</category>
+  <category>Number Theory</category>
   <guid>https://cuimri.com/posts/mersenne-prime-sieve/</guid>
   <pubDate>Wed, 06 May 2026 18:30:00 GMT</pubDate>
   <media:content url="https://cuimri.com/posts/mersenne-prime-sieve/images/cover.png" medium="image" type="image/png" height="76" width="144"/>
@@ -681,7 +681,7 @@ Imagination | Rigor, July 17. <a href="https://cuimri.com/posts/verified-not-tru
 </section>
 
  ]]></description>
-  <category>mathematics</category>
+  <category>Game Theory</category>
   <guid>https://cuimri.com/posts/first-to-call-fifty/</guid>
   <pubDate>Sun, 12 Apr 2026 18:30:00 GMT</pubDate>
   <media:content url="https://cuimri.com/posts/first-to-call-fifty/images/cover.png" medium="image" type="image/png" height="76" width="144"/>
@@ -902,7 +902,7 @@ Imagination | Rigor, July 17. <a href="https://cuimri.com/posts/verified-not-tru
 </section>
 
  ]]></description>
-  <category>mathematics</category>
+  <category>Combinatorics</category>
   <guid>https://cuimri.com/posts/counting-unordered-pairs/</guid>
   <pubDate>Tue, 17 Mar 2026 18:30:00 GMT</pubDate>
   <media:content url="https://cuimri.com/posts/counting-unordered-pairs/images/cover.png" medium="image" type="image/png" height="76" width="144"/>
@@ -971,7 +971,7 @@ Imagination | Rigor, July 17. <a href="https://cuimri.com/posts/verified-not-tru
 </section>
 
  ]]></description>
-  <category>mathematics</category>
+  <category>Combinatorics</category>
   <guid>https://cuimri.com/posts/count-triangles-pentagon-star/</guid>
   <pubDate>Sun, 08 Feb 2026 18:30:00 GMT</pubDate>
   <media:content url="https://cuimri.com/posts/count-triangles-pentagon-star/images/cover.png" medium="image" type="image/png" height="76" width="144"/>
@@ -1057,7 +1057,7 @@ Imagination | Rigor, July 17. <a href="https://cuimri.com/posts/verified-not-tru
 </section>
 
  ]]></description>
-  <category>miscellaneous</category>
+  <category>Philosophy</category>
   <guid>https://cuimri.com/posts/joy-of-useless-pursuits/</guid>
   <pubDate>Thu, 11 Jul 2024 18:30:00 GMT</pubDate>
   <media:content url="https://cuimri.com/posts/joy-of-useless-pursuits/images/ai_human.png" medium="image" type="image/png" height="81" width="144"/>
@@ -1151,7 +1151,7 @@ Imagination | Rigor, July 17. <a href="https://cuimri.com/posts/verified-not-tru
 </section>
 
  ]]></description>
-  <category>documentation</category>
+  <category>Technical Writing</category>
   <guid>https://cuimri.com/posts/fixing-software-documentation/</guid>
   <pubDate>Thu, 09 Feb 2023 18:30:00 GMT</pubDate>
   <media:content url="https://cuimri.com/posts/fixing-software-documentation/images/cover.png" medium="image" type="image/png" height="76" width="144"/>
@@ -1501,7 +1501,7 @@ font-style: inherit;">'{.spec.imagePullSecrets[0].name}'</span></span></code></p
 </section>
 
  ]]></description>
-  <category>software</category>
+  <category>DevOps</category>
   <guid>https://cuimri.com/posts/debugging-pods-kubernetes/</guid>
   <pubDate>Sun, 05 Feb 2023 18:30:00 GMT</pubDate>
   <media:content url="https://cuimri.com/posts/debugging-pods-kubernetes/images/cluster_architecture.png" medium="image" type="image/png" height="86" width="144"/>
@@ -1611,7 +1611,7 @@ Tip
 </section>
 
  ]]></description>
-  <category>documentation</category>
+  <category>Technical Writing</category>
   <guid>https://cuimri.com/posts/browserstack-doc-analysis/</guid>
   <pubDate>Wed, 26 Oct 2022 18:30:00 GMT</pubDate>
   <media:content url="https://cuimri.com/posts/browserstack-doc-analysis/images/lambdatest-doc.png" medium="image" type="image/png" height="62" width="144"/>
@@ -2670,7 +2670,7 @@ Note
 </section>
 
  ]]></description>
-  <category>software</category>
+  <category>Test Automation</category>
   <guid>https://cuimri.com/posts/test-automation-selenium/</guid>
   <pubDate>Sun, 23 Oct 2022 18:30:00 GMT</pubDate>
   <media:content url="https://cuimri.com/posts/test-automation-selenium/images/browserstack_builds.png" medium="image" type="image/png" height="69" width="144"/>
@@ -2751,7 +2751,7 @@ Note
 </section>
 
  ]]></description>
-  <category>software</category>
+  <category>Computer Science</category>
   <guid>https://cuimri.com/posts/sicp-intro-programming/</guid>
   <pubDate>Sun, 03 Jan 2021 18:30:00 GMT</pubDate>
   <media:content url="https://cuimri.com/posts/sicp-intro-programming/images/cover.png" medium="image" type="image/png" height="76" width="144"/>
@@ -2865,7 +2865,7 @@ Tip
 </section>
 
  ]]></description>
-  <category>miscellaneous</category>
+  <category>Game Theory</category>
   <guid>https://cuimri.com/posts/tic-tac-toe/</guid>
   <pubDate>Sun, 15 Nov 2020 18:30:00 GMT</pubDate>
   <media:content url="https://cuimri.com/posts/tic-tac-toe/images/tic5.png" medium="image" type="image/png" height="87" width="144"/>
@@ -3574,7 +3574,7 @@ Note
 </section>
 
  ]]></description>
-  <category>software</category>
+  <category>Cloud Computing</category>
   <guid>https://cuimri.com/posts/google-cloud-vision-api/</guid>
   <pubDate>Fri, 13 Nov 2020 18:30:00 GMT</pubDate>
   <media:content url="https://cuimri.com/posts/google-cloud-vision-api/images/cover.png" medium="image" type="image/png" height="76" width="144"/>
@@ -3715,7 +3715,7 @@ Tip
 </section>
 
  ]]></description>
-  <category>software</category>
+  <category>API Design</category>
   <guid>https://cuimri.com/posts/rest-vs-soap/</guid>
   <pubDate>Wed, 11 Nov 2020 18:30:00 GMT</pubDate>
   <media:content url="https://cuimri.com/posts/rest-vs-soap/images/cover.png" medium="image" type="image/png" height="76" width="144"/>
@@ -4173,7 +4173,7 @@ ML/AI: 1</code></pre>
 </section>
 
  ]]></description>
-  <category>software</category>
+  <category>Code Review</category>
   <guid>https://cuimri.com/posts/java-code-review/</guid>
   <pubDate>Sun, 08 Nov 2020 18:30:00 GMT</pubDate>
   <media:content url="https://cuimri.com/posts/java-code-review/images/cover.png" medium="image" type="image/png" height="76" width="144"/>
@@ -4239,7 +4239,7 @@ ML/AI: 1</code></pre>
 </section>
 
  ]]></description>
-  <category>miscellaneous</category>
+  <category>Personal</category>
   <guid>https://cuimri.com/posts/life-principles/</guid>
   <pubDate>Thu, 09 Jul 2020 18:30:00 GMT</pubDate>
   <media:content url="https://cuimri.com/posts/life-principles/images/cover.png" medium="image" type="image/png" height="76" width="144"/>
