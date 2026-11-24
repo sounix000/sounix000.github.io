@@ -884,15 +884,8 @@
   {
     "objectID": "documentation.html",
     "href": "documentation.html",
-    "title": "Technical Documentation",
+    "title": "Documentation",
     "section": "",
     "text": "Open source technical documentation and published articles:\n\nSUSE Linux Enterprise - Modular Documentation\nSUSE Linux Enterprise - Legacy Documentation\nSUSE Linux Enterprise - Compliance Documentation\nRed Hat OpenShift - CI/CD Pipelines Documentation\nFusionCharts - Weather Dashboard using Vue.js"
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "Souvik Sarkar",
-    "section": "",
-    "text": "A math-minded, code-literate technical writer documenting system software with clarity and precision."
   }
 ]

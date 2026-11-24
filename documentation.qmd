@@ -1,5 +1,5 @@
 ---
-title: "Technical Documentation"
+title: "Documentation"
 ---
 
 Open source technical documentation and published articles:

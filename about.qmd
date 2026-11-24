@@ -1,6 +1,7 @@
 ---
 title: "Souvik Sarkar"
 image: images/logo.png
+subtitle: Cryptography | Security | Linux
 about:
   template: jolla
   links:
@@ -8,15 +9,17 @@ about:
       text: Software
       href: software.qmd
     - icon: file-pdf
-      text: Technical Documentation
+      text: Documentation
       href: documentation.qmd
-    - icon: linkedin
-      text: LinkedIn
-      href: https://www.linkedin.com/in/sounix000
+    # - icon: linkedin
+    #   text: LinkedIn
+    #   href: https://www.linkedin.com/in/sounix000
+    - icon: file-pdf
+      text: Resume
+      href: resume/souvik_sarkar_resume.pdf
     - icon: envelope
       text: Email
       href: mailto:sounix000@gmail.com
 
 ---
 
-A math-minded, code-literate technical writer documenting system software with clarity and precision.
